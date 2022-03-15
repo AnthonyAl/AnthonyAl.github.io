@@ -1,0 +1,263 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>W3.CSS Template</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="css/core.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <style>
+        body {
+            font-family: "Lato", sans-serif
+        }
+        
+        h1,h2,h3,h4,h5,h6 {
+            font-family: "Montserrat", sans-serif;
+            margin-top: 0px !important
+        }
+
+        .profile {
+            width:100%;
+            text-align: center
+        }
+
+        #profile {
+             width:75%
+        }
+
+        .w3-row-padding img {
+            margin-bottom: 12px
+        }
+        /* Set the width of the sidebar to 120px */
+        .w3-sidebar {
+            width: 120px;
+            background: #222;
+        }
+        /* Add a left margin to the "page content" that matches the width of the sidebar (120px) */
+        #main {
+            margin-left: 120px
+        }
+        /* Remove margins from "page content" on small screens */
+        @media only screen and (max-width: 600px) {
+            #main {margin-left: 0}
+            #profile {width: 95%}
+        }
+        .button:hover {
+            color: #fff !important;
+            background-color: #000 !important
+        }
+
+    </style>
+</head>
+<body>
+
+    <!-- Icon Bar (Sidebar - hidden on small screens) -->
+    <nav class="w3-sidebar w3-bar-block w3-small w3-hide-small w3-center">
+        <!-- Avatar image in top left corner -->
+        <img src="res/Tonius(Github Profile).jpg" style="width:100%">
+        <a href="#" class="button w3-bar-item w3-button w3-padding-large" id="btn1" tabindex ="1" onclick="btn(this)">
+            <i class="fa fa-home w3-xxlarge"></i>
+            <p>HOME</p>
+        </a>
+        <a href="#about" class="button w3-bar-item w3-button w3-padding-large" id="btn2" tabindex ="2" onclick="btn(this)">
+            <i class="fa fa-user w3-xxlarge"></i>
+            <p>ABOUT</p>
+        </a>
+        <a href="#photos" class="button w3-bar-item w3-button w3-padding-large" id="btn3" tabindex ="3" onclick="btn(this)">
+            <i class="fa fa-eye w3-xxlarge"></i>
+            <p>PHOTOS</p>
+        </a>
+        <a href="#contact" class="button w3-bar-item w3-button w3-padding-large" id="btn4" tabindex ="4" onclick="btn(this)">
+            <i class="fa fa-envelope w3-xxlarge"></i>
+            <p>CONTACT</p>
+        </a>
+    </nav>
+
+    <!-- Navbar on small screens (Hidden on medium and large screens) -->
+    <div class="w3-top w3-hide-large w3-hide-medium" id="myNavbar">
+        <div class="w3-bar w3-black w3-opacity w3-hover-opacity-off w3-center w3-small">
+            <a href="#" class="w3-bar-item w3-button" style="width:25% !important">HOME</a>
+            <a href="#about" class="w3-bar-item w3-button" style="width:25% !important">ABOUT</a>
+            <a href="#photos" class="w3-bar-item w3-button" style="width:25% !important">PHOTOS</a>
+            <a href="#contact" class="w3-bar-item w3-button" style="width:25% !important">CONTACT</a>
+        </div>
+    </div>
+
+    <!-- Page content -->
+    <div class="w3-content" style="max-width:2000px;margin-top:0px", id="main">
+
+        <!-- The Band Section -->
+        <div class="w3-black w3-center" id="home">
+            <h2 class="w3-wide">THE BAND</h2>
+            <p class="w3-opacity"><i>We love music</i></p>
+            <div class="w3-row w3-padding-32">
+                <div class="profile">
+                    <img src="res/Tonius(Github Profile).jpg" id="profile" alt="Random Name"/>
+                </div>
+            </div>
+        </div>
+
+        <!-- The Tour Section -->
+        <div class="w3-black" id="about">
+            <div class="w3-container w3-content w3-padding-64" style="max-width:800px">
+                <h2 class="w3-wide w3-center">TOUR DATES</h2>
+                <p class="w3-opacity w3-center"><i>Remember to book your tickets!</i></p><br>
+
+                <ul class="w3-ul w3-border w3-white w3-text-grey">
+                    <li class="w3-padding">September <span class="w3-tag w3-red w3-margin-left">Sold out</span></li>
+                    <li class="w3-padding">October <span class="w3-tag w3-red w3-margin-left">Sold out</span></li>
+                    <li class="w3-padding">November <span class="w3-badge w3-right w3-margin-right">3</span></li>
+                </ul>
+
+                <div class="w3-row-padding w3-padding-32" style="margin:0 -16px">
+                    <div class="w3-third w3-margin-bottom">
+                        <img src="/w3images/newyork.jpg" alt="New York" style="width:100%" class="w3-hover-opacity">
+                        <div class="w3-container w3-white">
+                            <p><b>New York</b></p>
+                            <p class="w3-opacity">Fri 27 Nov 2016</p>
+                            <p>Praesent tincidunt sed tellus ut rutrum sed vitae justo.</p>
+                            <button class="w3-button w3-black w3-margin-bottom" onclick="document.getElementById('ticketModal').style.display='block'">Buy Tickets</button>
+                        </div>
+                    </div>
+                    <div class="w3-third w3-margin-bottom">
+                        <img src="/w3images/paris.jpg" alt="Paris" style="width:100%" class="w3-hover-opacity">
+                        <div class="w3-container w3-white">
+                            <p><b>Paris</b></p>
+                            <p class="w3-opacity">Sat 28 Nov 2016</p>
+                            <p>Praesent tincidunt sed tellus ut rutrum sed vitae justo.</p>
+                            <button class="w3-button w3-black w3-margin-bottom" onclick="document.getElementById('ticketModal').style.display='block'">Buy Tickets</button>
+                        </div>
+                    </div>
+                    <div class="w3-third w3-margin-bottom">
+                        <img src="/w3images/sanfran.jpg" alt="San Francisco" style="width:100%" class="w3-hover-opacity">
+                        <div class="w3-container w3-white">
+                            <p><b>San Francisco</b></p>
+                            <p class="w3-opacity">Sun 29 Nov 2016</p>
+                            <p>Praesent tincidunt sed tellus ut rutrum sed vitae justo.</p>
+                            <button class="w3-button w3-black w3-margin-bottom" onclick="document.getElementById('ticketModal').style.display='block'">Buy Tickets</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- The Contact Section -->
+        <div class="w3-container w3-content w3-padding-64" style="max-width:800px" id="contact">
+            <h2 class="w3-wide w3-center">CONTACT</h2>
+            <p class="w3-opacity w3-center"><i>Fan? Drop a note!</i></p>
+            <div class="w3-row w3-padding-32">
+                <div class="w3-col m6 w3-large w3-margin-bottom">
+                    <i class="fa fa-map-marker" style="width:30px"></i> Chicago, US<br>
+                    <i class="fa fa-phone" style="width:30px"></i> Phone: +00 151515<br>
+                    <i class="fa fa-envelope" style="width:30px"> </i> Email: mail@mail.com<br>
+                </div>
+                <div class="w3-col m6">
+                    <form action="/action_page.php" target="_blank">
+                        <div class="w3-row-padding" style="margin:0 -16px 8px -16px">
+                            <div class="w3-half">
+                                <input class="w3-input w3-border" type="text" placeholder="Name" required name="Name">
+                            </div>
+                            <div class="w3-half">
+                                <input class="w3-input w3-border" type="text" placeholder="Email" required name="Email">
+                            </div>
+                        </div>
+                        <input class="w3-input w3-border" type="text" placeholder="Message" required name="Message">
+                        <button class="w3-button w3-black w3-section w3-right" type="submit">SEND</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+        <!-- End Page Content -->
+    </div>
+
+    <!-- Image of location/map -->
+    <img src="/w3images/map.jpg" class="w3-image w3-greyscale-min" style="width:100%">
+
+    <!-- Footer -->
+    <footer class="w3-container w3-center w3-black w3-xlarge">
+        <i class="fa fa-facebook-official w3-hover-opacity"></i>
+        <i class="fa fa-instagram w3-hover-opacity"></i>
+        <i class="fa fa-snapchat w3-hover-opacity"></i>
+        <i class="fa fa-pinterest-p w3-hover-opacity"></i>
+        <i class="fa fa-twitter w3-hover-opacity"></i>
+        <i class="fa fa-linkedin w3-hover-opacity"></i>
+        <p class="w3-medium">Powered by <a href="https://www.w3schools.com/w3css/default.asp" target="_blank">w3.css</a></p>
+    </footer>
+
+    <script>
+        var color = document.getElementById("btn1").style.color;
+        var bcolor = document.getElementById("btn1").style.backgroundColor;
+
+        function adjustStyles(param, id1, id2, id3) {
+            param.style.color = "#fff";
+            param.style.backgroundColor = "#000";
+
+            document.getElementById(id1).style.color = color;
+            document.getElementById(id1).style.backgroundColor = bcolor;
+
+            document.getElementById(id2).style.color = color;
+            document.getElementById(id2).style.backgroundColor = bcolor;
+
+            document.getElementById(id3).style.color = color;
+            document.getElementById(id3).style.backgroundColor = bcolor;
+        }
+
+        function btn(param) {
+            if (param.id == "btn1") {
+                adjustStyles(param, "btn2","btn3","btn4");
+            }
+            if (param.id == "btn2") {
+                adjustStyles(param, "btn1", "btn3", "btn4");
+            }
+            if (param.id == "btn3") {
+                adjustStyles(param, "btn2", "btn1", "btn4");
+            }
+            if (param.id == "btn4") {
+                adjustStyles(param, "btn2", "btn3", "btn1");
+            }
+        }
+
+        // When the user clicks anywhere outside of the modal, close it
+        var modal = document.getElementById('ticketModal');
+        window.onclick = function (event) {
+            if (event.target == modal) {
+                modal.style.display = "none";
+            }
+        }
+
+        window.onscroll = function () {
+            var btn = document.getElementById("btn1");
+            var myElement = document.getElementById("home");
+            var bounding = myElement.getBoundingClientRect();
+            var myElementHeight = myElement.offsetHeight;
+            elementInView(btn, bounding, myElementHeight);
+
+            var btn = document.getElementById("btn2");
+            var myElement = document.getElementById("about");
+            var bounding = myElement.getBoundingClientRect();
+            var myElementHeight = myElement.offsetHeight;
+            elementInView(btn, bounding, myElementHeight);
+
+            var btn = document.getElementById("btn4");
+            var myElement = document.getElementById("contact");
+            var bounding = myElement.getBoundingClientRect();
+            var myElementHeight = myElement.offsetHeight;
+            elementInView(btn, bounding, myElementHeight);
+
+        }
+
+        function elementInView(btn, bounding, myElementHeight) {
+            if (bounding.top >= -myElementHeight / 3
+                && bounding.bottom <= (window.innerHeight || document.documentElement.clientHeight) + myElementHeight / 3) {
+
+                
+                this.btn(btn);
+            }
+        }
+
+
+    </script>
+
+</body>
+</html>

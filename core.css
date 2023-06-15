@@ -15,7 +15,6 @@ h1, h2, h3, h4, h5, h6 {
 
 .tonius-button-dark:hover {
     background: #1b1b2e !important;
-    color: #000209 !important;
 }
 
 .tonius-white {
@@ -46,7 +45,7 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .button {
-    color: #000209;
+    color: #fff;
 }
 
 .nav {

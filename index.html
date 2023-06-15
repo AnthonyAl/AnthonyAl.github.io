@@ -55,7 +55,7 @@
         }
     </style>
 </head>
-<body>
+<body class="parallax">
 
     <!-- Icon Bar (Sidebar - hidden on small screens) -->
     <nav class="w3-sidebar w3-bar-block w3-small w3-hide-small w3-center nav">
@@ -144,7 +144,7 @@
         </div>
 
         <!-- The Art Section -->
-        <div class="parallax w3-container w3-padding-64" id="art">
+        <div class="w3-container w3-padding-64" id="art">
             <h2 class="w3-wide w3-center">MY ART</h2>
             <p class="w3-opacity w3-center"><i>these are some of my favourite creations</i></p>
             <div class="w3-row-padding">
@@ -207,7 +207,7 @@
         </div>
 
         <!-- The Featured Project Section -->
-        <div class="parallax w3-container w3-padding-64" id="projects">
+        <div class="w3-container w3-padding-64" id="projects">
             <h2 class="w3-wide w3-center">FEATURED PROJECT</h2>
             <p class="w3-opacity w3-center"><i>My most recent project</i></p>
             <div style="width: 100%; display: table;">
@@ -386,9 +386,9 @@
         new FinisherHeader({
         "count": 5,
         "size": {
-            "min": 900,
+            "min": 1377,
             "max": 1500,
-            "pulse": 0
+            "pulse": 0.2
         },
         "speed": {
             "x": {
@@ -403,8 +403,8 @@
         "colors": {
             "background": "#1b1b2e",
             "particles": [
-            "#4b4cb7",
-            "#c32929"
+            "#084e5d",
+            "#690b10"
             ]
         },
         "blending": "screen",
@@ -412,7 +412,7 @@
             "center": 0.15,
             "edge": 0.05
         },
-        "skew": -2,
+        "skew": 0,
         "shapes": [
             "c"
         ]

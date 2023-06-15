@@ -25,7 +25,6 @@ h1, h2, h3, h4, h5, h6 {
 
 .tonius-dark {
     /*background: linear-gradient(90deg, #090914, #090914) !important;*/
-    background-image: url("res/tonius-dark7.png");
     background-size: cover;
     color: #fff !important;
 }

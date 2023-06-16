@@ -7,11 +7,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="w3.css">
     <link rel="stylesheet" href="core.css">
+    <link rel="stylesheet" href="particles.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <style>
         .parallax {
             /* The image used */
-            background-image: url('res/tonius-light2.png');
+            background-image: url('res/tonius-dark7.png');
             /* Full height */
             height: 100%;
             /* Create the parallax scrolling effect */
@@ -19,7 +20,7 @@
             background-position: center;
             background-repeat: no-repeat;
             background-size: cover;
-            color: #000 !important;
+            color: #fff !important;
         }
 
         .tonius-big-text {
@@ -64,29 +65,29 @@
         }
     </style>
 </head>
-<body class=" finisher-header">
+<body>
 
     <!-- Icon Bar (Sidebar - hidden on small screens) -->
     <nav class="w3-sidebar w3-bar-block w3-small w3-hide-small w3-center nav">
         <!-- Avatar image in top left corner -->
         <img src="res/Tonius(Github Profile).jpg" style="width:100%">
-        <a href="#" class="button w3-bar-item w3-button w3-padding-large" id="btn1" tabindex ="1" onclick="btn(this)" draggable="false">
+        <a href="#" class="button w3-bar-item w3-button w3-padding-large" id="btn1" tabindex="1" onclick="btn(this)" draggable="false">
             <i class="fa fa-home w3-xxlarge "></i>
             <p>HOME</p>
         </a>
-        <a href="#art" class="button w3-bar-item w3-button w3-padding-large" id="btn2" tabindex ="2" onclick="btn(this)" draggable="false">
+        <a href="#art" class="button w3-bar-item w3-button w3-padding-large" id="btn2" tabindex="2" onclick="btn(this)" draggable="false">
             <i class="fa fa-pencil w3-xxlarge"></i>
             <p>MY ART</p>
         </a>
-        <a href="#github" class="button w3-bar-item w3-button w3-padding-large" id="btn3" tabindex ="3" onclick="btn(this)" draggable="false">
+        <a href="#github" class="button w3-bar-item w3-button w3-padding-large" id="btn3" tabindex="3" onclick="btn(this)" draggable="false">
             <i class="fa fa-github w3-xxlarge"></i>
             <p>GITHUB</p>
         </a>
-        <a href="#projects" class="button w3-bar-item w3-button w3-padding-large" id="btn4" tabindex ="4" onclick="btn(this)" draggable="false">
+        <a href="#projects" class="button w3-bar-item w3-button w3-padding-large" id="btn4" tabindex="4" onclick="btn(this)" draggable="false">
             <i class="fa fa-eye w3-xxlarge"></i>
             <p>FEATURED PROJECT</p>
         </a>
-        <a href="#contact" class="button w3-bar-item w3-button w3-padding-large" id="btn5" tabindex ="5" onclick="btn(this)" draggable="false">
+        <a href="#contact" class="button w3-bar-item w3-button w3-padding-large" id="btn5" tabindex="5" onclick="btn(this)" draggable="false">
             <i class="fa fa-envelope w3-xxlarge"></i>
             <p>CONTACT</p>
         </a>
@@ -115,23 +116,44 @@
     </div>
 
     <!-- Page content -->
-    <div class="w3-content" style="max-width:2000px;margin-top:0px", id="main">
+    <div class="w3-content" style="max-width:2000px;margin-top:0px" , id="main">
 
         <!-- The Home Section -->
-        <div class="w3-center w3-padding-32"
-            style="color: #fff !important; width: 100%;" id="home">
+        <div class="w3-center w3-padding-32 forest"
+             style="color: #fff !important; width: 100%;" id="home">
+
+            <div class="firefly"></div>
+            <div class="firefly"></div>
+            <div class="firefly"></div>
+            <div class="firefly"></div>
+            <div class="firefly"></div>
+            <div class="firefly"></div>
+            <div class="firefly"></div>
+            <div class="firefly"></div>
+            <div class="firefly"></div>
+            <div class="firefly"></div>
+            <div class="firefly"></div>
+            <div class="firefly"></div>
+            <div class="firefly"></div>
+            <div class="firefly"></div>
+            <div class="firefly"></div>
+
             <div style="width: 50%; transform: translate(50%, 50%)">
                 <div>
                     <div class="w3-center" style="transform: translate(0%, -30%)">
-                        <h1 class="w3-wide w3-center tonius-big-text"><b> HELLO </b><br> I am 
-                        <br> ANTHONY 
-                        <br> ALEXANDRIS 
-                        <br> SAVIOLIDIS </h1>
+                        <h1 class="w3-wide w3-center tonius-big-text">
+                            <b> HELLO </b><br> I am
+                            <br> ANTHONY
+                            <br> ALEXANDRIS
+                            <br> SAVIOLIDIS
+                        </h1>
                         <div class="tonius-shadow" style="transform: translate(-0.5%, -101.8%)">
-                            <h1 class="w3-wide w3-opacity w3-center tonius-big-text"><b> HELLO </b><br> I am 
-                            <br> ANTHONY 
-                            <br> ALEXANDRIS 
-                            <br> SAVIOLIDIS </h1>
+                            <h1 class="w3-wide w3-opacity w3-center tonius-big-text">
+                                <b> HELLO </b><br> I am
+                                <br> ANTHONY
+                                <br> ALEXANDRIS
+                                <br> SAVIOLIDIS
+                            </h1>
                         </div>
                         <div class="header2 tonius-shadow w3-center" style="width: 20%; transform: translate(0%, -900%)">
                             <p class="w3-opacity w3-center"><i>aspiring to become an artist and developer</i></p>
@@ -178,10 +200,10 @@
         </div>
 
         <!-- The Github Section -->
-        <div class="tonius-dark" id="github">
+        <div class="tonius-dark dirt" id="github">
             <div class="w3-container w3-content w3-padding-64" style="max-width:800px">
                 <h2 class="w3-wide w3-center">GITHUB REPOSITORIES</h2>
-                <div class="tonius-shadow" style ="transform: translate(-0.3%, -118.5%)">
+                <div class="tonius-shadow" style="transform: translate(-0.3%, -118.5%)">
                     <h2 class="w3-wide w3-center w3-opacity">GITHUB REPOSITORIES</h2>
                 </div>
                 <p class="w3-opacity w3-center"><i>A few of my repositories are kept public.</i></p><br>
@@ -193,7 +215,7 @@
                             <p class="w3-opacity">Jan 22, 2023</p>
                             <p>A fun mini game plugin for the Minecraft game.</p>
                             <form action="https://github.com/AnthonyAl/DragonRankPlugin">
-                                <button class="tonius-button-dark w3-button w3-margin-bottom" >Check repository</button>
+                                <button class="tonius-button-dark w3-button w3-margin-bottom">Check repository</button>
                             </form>
                         </div>
                     </div>
@@ -203,7 +225,7 @@
                             <p class="w3-opacity">Aug 7, 2022</p>
                             <p>Adding utility to the existing Minecraft plugin, Slimefun.</p>
                             <form action="https://github.com/AnthonyAl/SlimefunMobDropsAddon">
-                                <button class="tonius-button-dark w3-button w3-margin-bottom" >Check repository</button>
+                                <button class="tonius-button-dark w3-button w3-margin-bottom">Check repository</button>
                             </form>
                         </div>
                     </div>
@@ -229,10 +251,10 @@
                 <div style="display: table-row;">
                     <div class="tonius-dark w3-third w3-margin-bottom" style="width:100%;">
                         <div class="w3-container tonius-white tonius-focus">
-                                
+
                             <div style="width: 100%; display: table-cell;">
                                 <img src="res/Intelligent Villager.png" style="width:100%;">
-                                <h3 style="text-align: center;"><b>Intelligent Minecraft Ajent</b></h3>
+                                <h3 style="text-align: center;"><b>Intelligent Minecraft Agent</b></h3>
                                 <p class="w3-opacity" style="text-align: center;">A quick description</p>
                                 <br />
                                 <h5 style="width: 80%; text-align: center; margin-left: 10%">
@@ -254,7 +276,7 @@
     </div>
 
     <!-- Footer -->
-    <footer class="tonius-dark w3-container w3-center w3-xlarge w3-padding-32" id="footer">
+    <footer class="tonius-dark dirt w3-container w3-center w3-xlarge w3-padding-32" id="footer">
 
         <!-- The Contact Section -->
         <div class="w3-container w3-padding-64" id="contact">
@@ -304,7 +326,7 @@
 
         function btn(param) {
             if (param.id == "btn1") {
-                adjustStyles(param, "btn2","btn3","btn4", "btn5");
+                adjustStyles(param, "btn2", "btn3", "btn4", "btn5");
             }
             if (param.id == "btn2") {
                 adjustStyles(param, "btn1", "btn3", "btn4", "btn5");
@@ -320,7 +342,7 @@
             }
         }
 
-        document.getElementById("toggle").onclick = function() {
+        document.getElementById("toggle").onclick = function () {
             let target = document.getElementById("toggled");
             let button = document.getElementById("toggle");
             target.style.display = "block";
@@ -390,54 +412,11 @@
             if (bounding.top >= -myElementHeight / 3
                 && bounding.bottom <= (window.innerHeight || document.documentElement.clientHeight) + myElementHeight / 3) {
 
-                
+
                 this.btn(btn);
             }
         }
 
-    </script>
-
-    <script type="text/javascript">
-
-        let window_width = window.innerWidth * 1.6;
-        if (window_width > 3000) window_width = 3000;
-
-        new FinisherHeader({
-        "count": 40 - Math.round(window_width / 100),
-        "size": {
-            "min": window_width,
-            "max": window_width,
-            "pulse": 0
-        },
-        "speed": {
-            "x": {
-            "min": 0,
-            "max": 1
-            },
-            "y": {
-            "min": 1,
-            "max": 2
-            }
-        },
-        "colors": {
-            "background": "#241b2e",
-            "particles": [
-                "#337d58",
-                "#161de0",
-                "#a10008",
-                "#a12e00"
-            ]
-        },
-        "blending": "none",
-        "opacity": {
-            "center": 0.15,
-            "edge": 0.05
-        },
-        "skew": 0,
-        "shapes": [
-            "c"
-        ]
-        });
     </script>
 
 </body>

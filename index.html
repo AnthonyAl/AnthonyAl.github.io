@@ -11,8 +11,12 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <style>
 
-        #myNavbar {
+        #myNavbar, .nav, .nav2 {
             z-index: 3;
+        }
+
+        .tonius-focus {
+            border-radius: 6%;
         }
 
         .parallax {
@@ -54,6 +58,10 @@
             #toggle {
                 display: block;
             }
+
+            .tonius-focus {
+                border-radius: 0.5%;
+            }
         }
 
         /* Turn off parallax scrolling and shadows for tablets and phones. */
@@ -68,6 +76,10 @@
 
             .tonius-big-text {
                 font-size: 29px
+            }
+
+            .tonius-focus {
+                border-radius: 2%;
             }
         }
     </style>
@@ -223,7 +235,7 @@
                             <p class="w3-opacity">Jan 22, 2023</p>
                             <p>A fun mini game plugin for the Minecraft game.</p>
                             <form action="https://github.com/AnthonyAl/DragonRankPlugin">
-                                <button class="tonius-button-dark w3-button w3-margin-bottom">Check repository</button>
+                                <button style="border-radius: 3%;" class="tonius-button-dark w3-button w3-margin-bottom">Check repository</button>
                             </form>
                         </div>
                     </div>
@@ -233,7 +245,7 @@
                             <p class="w3-opacity">Aug 7, 2022</p>
                             <p>Adding utility to the existing Minecraft plugin, Slimefun.</p>
                             <form action="https://github.com/AnthonyAl/SlimefunMobDropsAddon">
-                                <button class="tonius-button-dark w3-button w3-margin-bottom">Check repository</button>
+                                <button style="border-radius: 3%;" class="tonius-button-dark w3-button w3-margin-bottom">Check repository</button>
                             </form>
                         </div>
                     </div>
@@ -243,7 +255,7 @@
                             <p class="w3-opacity">Apr 27, 2022</p>
                             <p>This is a little game created <br> for a university project</p>
                             <form action="https://github.com/AnthonyAl/Public-Java-Repository">
-                                <button class="tonius-button-dark w3-button w3-margin-bottom">Check repository</button>
+                                <button style="border-radius: 3%;" class="tonius-button-dark w3-button w3-margin-bottom">Check repository</button>
                             </form>
                         </div>
                     </div>
@@ -255,28 +267,18 @@
         <div class="parallax w3-container w3-padding-64" id="projects">
             <h2 class="w3-wide w3-center">FEATURED PROJECT</h2>
             <p class="w3-opacity w3-center"><i>My most recent project</i></p>
-            <div style="width: 100%; display: table;">
-                <div style="display: table-row;">
-                    <div class="tonius-dark w3-third w3-margin-bottom" style="width:100%;">
-                        <div class="w3-container tonius-white tonius-focus">
-
-                            <div style="width: 100%; display: table-cell;">
-                                <img src="res/Intelligent Villager.png" style="width:100%;">
-                                <h3 style="text-align: center;"><b>Intelligent Minecraft Agent</b></h3>
-                                <p class="w3-opacity" style="text-align: center;">A quick description</p>
-                                <br />
-                                <h5 style="width: 80%; text-align: center; margin-left: 10%">
-                                    This is currently an ongoing project. I am aiming to achieve integrating
-                                    an intelligent ajent in the form of a smart NPC. Minecraft plugins tend to
-                                    have more limitations than the usual game-modding since they run server-side.
-                                    Regardless, I am determined to achieve creating an artificial learning NPC
-                                    that grows from watching the behavior of real players and acts upon its emotions.
-                                </h5>
-
-                            </div>
-                        </div>
-                    </div>
-                </div>
+            <div class="w3-container tonius-white tonius-focus" style="width: 100%; border-radius: 0.5%">
+                <img src="res/Intelligent Villager.png" style="width: 102.5%; border-radius: 1%; transform: translate(-1.25%, -0.25%)">
+                <h3 style="text-align: center;"><b>Intelligent Minecraft Agent</b></h3>
+                <p class="w3-opacity" style="text-align: center;">A quick description</p>
+                <br />
+                <h5 style="width: 80%; text-align: center; margin-left: 10%">
+                    This is currently an ongoing project. I am aiming to achieve integrating
+                    an intelligent ajent in the form of a smart NPC. Minecraft plugins tend to
+                    have more limitations than the usual game-modding since they run server-side.
+                    Regardless, I am determined to achieve creating an artificial learning NPC
+                    that grows from watching the behavior of real players and acts upon its emotions.
+                </h5>
             </div>
         </div>
 

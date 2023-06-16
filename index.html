@@ -398,11 +398,15 @@
     </script>
 
     <script type="text/javascript">
+
+        let window_width = window.innerWidth * 1.6;
+        if (window_width > 3000) window_width = 3000;
+
         new FinisherHeader({
-        "count": 10,
+        "count": 40 - Math.round(window_width / 100),
         "size": {
-            "min": 3000,
-            "max": 3000,
+            "min": window_width,
+            "max": window_width,
             "pulse": 0
         },
         "speed": {

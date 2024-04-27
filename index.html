@@ -20,6 +20,10 @@
                 border-radius: 6%;
             }
 
+            .tonius-shadow {
+                visibility: hidden;
+            }
+
             .parallax {
                 /* The image used */
                 background-image: url('res/tonius-dark7.png');
@@ -85,16 +89,18 @@
                     background-attachment: scroll;
                 }
 
-                .tonius-shadow {
-                    visibility: hidden;
-                }
-
                 .tonius-big-text {
                     font-size: 29px
                 }
 
                 .tonius-focus {
                     border-radius: 2%;
+                }
+            }
+
+            @media only screen and and (min-width: 1366px) and (max-width: 2366px) {
+                .tonius-shadow {
+                    visibility: visible;
                 }
             }
         </style>

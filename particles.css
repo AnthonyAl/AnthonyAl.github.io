@@ -5,7 +5,8 @@
 
 .dirt {
     background: url(res/forest_dirt.png);
-    background-size: cover;
+    background-position: center center;
+    background-repeat: repeat;
 }
 
 .firefly {

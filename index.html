@@ -400,6 +400,7 @@
             }
 
             window.onscroll = function () {
+
                 var btn = document.getElementById("btn1");
                 var myElement = document.getElementById("home");
                 var bounding = myElement.getBoundingClientRect();
@@ -465,17 +466,27 @@
             }
 
             // Smooth Scroll effect
+
+            var scrolling = false;
+
             $(document).ready(function () {
                 // Add smooth scrolling to all links
                 $("a").on('click', function (event) {
 
+                    if (scrolling) {
+                        // Prevent default anchor click behavior
+                        event.preventDefault();
+                    }
+
                     // Make sure this.hash has a value before overriding default behavior
-                    if (this.hash !== "") {
+                    if (this.hash !== "" && this.hash != window.location.hash && !scrolling) {
                         // Prevent default anchor click behavior
                         event.preventDefault();
 
                         // Store hash
                         var hash = this.hash;
+
+                        scrolling = true;
 
                         // Using jQuery's animate() method to add smooth page scroll
                         // The optional number (1200) specifies the number of milliseconds it takes to scroll to the specified area
@@ -485,6 +496,8 @@
 
                             // Add hash (#) to URL when done scrolling (default click behavior)
                             window.location.hash = hash;
+                            scrolling = false;
+
                         });
                     } // End if
                 });

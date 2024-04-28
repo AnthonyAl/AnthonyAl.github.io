@@ -1,113 +1,110 @@
 ﻿<!DOCTYPE html>
 <html lang="en">
-    <head>
-        <title>Anthony Alexandris Saviolidis</title>
-        <meta charset="UTF-8">
-        <link rel="icon" href="res/AnthonyAl.ico" type="image/x-icon">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-        <link rel="stylesheet" href="w3.css">
-        <link rel="stylesheet" href="core.css">
-        <link rel="stylesheet" href="particles.css">
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-        <style>
+<head>
+    <title>Anthony Alexandris Saviolidis</title>
+    <meta charset="UTF-8">
+    <link rel="icon" href="res/AnthonyAl.ico" type="image/x-icon">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="w3.css">
+    <link rel="stylesheet" href="core.css">
+    <link rel="stylesheet" href="particles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <style>
 
-            html {
-                scroll-behavior: smooth;
-            }
+        #myNavbar, .nav, .nav2 {
+            z-index: 3;
+        }
 
-            #myNavbar, .nav, .nav2 {
-                z-index: 3;
-            }
+        .tonius-focus {
+            border-radius: 6%;
+        }
 
-            .tonius-focus {
-                border-radius: 6%;
-            }
+        .tonius-shadow {
+            visibility: hidden;
+        }
 
-            .tonius-shadow {
-                visibility: hidden;
-            }
+        .parallax {
+            /* The image used */
+            background-image: url('res/tonius-dark7.png');
+            /* Full height */
+            height: 100%;
+            /* Create the parallax scrolling effect */
+            background-attachment: fixed;
+            background-position: center center;
+            background-repeat: no-repeat;
+            background-size: cover;
+            position: relative;
+            color: #fff !important;
+            z-index: 2;
+        }
 
-            .parallax {
-                /* The image used */
-                background-image: url('res/tonius-dark7.png');
-                /* Full height */
-                height: 100%;
-                /* Create the parallax scrolling effect */
-                background-attachment: fixed;
-                background-position: center center;
-                background-repeat: no-repeat;
-                background-size: cover;
-                position: relative;
-                color: #fff !important;
-                z-index: 2;
-            }
+        .progress-container {
+            height: 0px;
+            width: 100%;
+        }
 
-            .progress-container {
-                height: 0px;
-                width: 100%;
-            }
+        .progress-bar {
+            height: 6px;
+            transform: translate(0%, -6px);
+            opacity: 0.8;
+            background: #fff;
+            width: 0%;
+            z-index: 5;
+        }
 
-            .progress-bar {
-                height: 6px;
-                transform: translate(0%, -6px);
-                opacity: 0.8;
-                background: #fff;
-                width: 0%;
-                z-index: 5;
-            }
+        .tonius-big-text {
+            font-size: 60px
+        }
 
-            .tonius-big-text {
-                font-size: 60px
-            }
+        .w3-sidebar {
+            width: 120px;
+        }
 
-            .w3-sidebar {
-                width: 120px;
-            }
+        #toggled {
+            display: block;
+        }
 
+        #toggle {
+            display: none;
+        }
+
+        @media only screen and (max-width: 600px) {
             #toggled {
-                display: block;
-            }
-
-            #toggle {
                 display: none;
             }
 
-            @media only screen and (max-width: 600px) {
-                #toggled {
-                    display: none;
-                }
-
-                #toggle {
-                    display: block;
-                }
-
-                .tonius-focus {
-                    border-radius: 0.5%;
-                }
+            #toggle {
+                display: block;
             }
 
-            /* Turn off parallax scrolling and shadows for tablets and phones. */
-            @media only screen and (max-width: 1366px) {
-                .parallax {
-                    background-attachment: scroll;
-                }
+            .tonius-focus {
+                border-radius: 0.5%;
+            }
+        }
 
-                .tonius-big-text {
-                    font-size: 29px
-                }
-
-                .tonius-focus {
-                    border-radius: 2%;
-                }
+        /* Turn off parallax scrolling and shadows for tablets and phones. */
+        @media only screen and (max-width: 1366px) {
+            .parallax {
+                background-attachment: scroll;
             }
 
-            @media only screen and and (min-width: 1366px) and (max-width: 2366px) {
-                .tonius-shadow {
-                    visibility: visible;
-                }
+            .tonius-big-text {
+                font-size: 29px
             }
-        </style>
-    </head>
+
+            .tonius-focus {
+                border-radius: 2%;
+            }
+        }
+
+        @media only screen and (min-width: 1366px) and (max-width: 2366px) {
+            .tonius-shadow {
+                visibility: visible;
+            }
+        }
+    </style>
+</head>
     <body>
 
         <!-- Firefly effects (number of div signifies the amount of flies) -->
@@ -129,39 +126,39 @@
 
         
 
-        <!-- Icon Bar (Sidebar - hidden on small screens) -->
-        <nav class="w3-sidebar w3-bar-block w3-small w3-hide-small w3-center nav" id="mainNavbar">
+        <!-- Icon Bar (Sidebar - hidden on small and medium screens) -->
+        <nav class="w3-sidebar w3-bar-block w3-small w3-hide-small w3-hide-medium w3-center nav" id="mainNavbar">
             <!-- Avatar image in top left corner -->
             <img src="res/Tonius(Github Profile).jpg" style="width:100%">
             <div class="progress-container">
                 <div class="progress-bar" id="myBar"></div>
             </div>
-            <a href="#" class="button w3-bar-item w3-button w3-padding-large" id="btn1" tabindex="1" onclick="btn(this)" draggable="false">
+            <a href="#home" class="button w3-bar-item w3-button w3-padding-large" id="btn1" tabindex="1" draggable="false">
                 <i class="fa fa-home w3-xxlarge "></i>
                 <p>HOME</p>
             </a>
-            <a href="#art" class="button w3-bar-item w3-button w3-padding-large" id="btn2" tabindex="2" onclick="btn(this)" draggable="false">
+            <a href="#art" class="button w3-bar-item w3-button w3-padding-large" id="btn2" tabindex="2" draggable="false">
                 <i class="fa fa-pencil w3-xxlarge"></i>
                 <p>MY ART</p>
             </a>
-            <a href="#github" class="button w3-bar-item w3-button w3-padding-large" id="btn3" tabindex="3" onclick="btn(this)" draggable="false">
+            <a href="#github" class="button w3-bar-item w3-button w3-padding-large" id="btn3" tabindex="3" draggable="false">
                 <i class="fa fa-github w3-xxlarge"></i>
                 <p>GITHUB</p>
             </a>
-            <a href="#projects" class="button w3-bar-item w3-button w3-padding-large" id="btn4" tabindex="4" onclick="btn(this)" draggable="false">
+            <a href="#projects" class="button w3-bar-item w3-button w3-padding-large" id="btn4" tabindex="4" draggable="false">
                 <i class="fa fa-eye w3-xxlarge"></i>
                 <p>FEATURED PROJECT</p>
             </a>
-            <a href="#contact" class="button w3-bar-item w3-button w3-padding-large" id="btn5" tabindex="5" onclick="btn(this)" draggable="false">
+            <a href="#contact" class="button w3-bar-item w3-button w3-padding-large" id="btn5" tabindex="5" draggable="false">
                 <i class="fa fa-envelope w3-xxlarge"></i>
                 <p>CONTACT</p>
             </a>
         </nav>
 
-        <!-- Navbar on small screens (Hidden on medium and large screens)  -->
-        <div class="w3-top w3-hide-large w3-hide-medium" id="myNavbar">
+        <!-- Navbar on small screens (Hidden on large screens)  -->
+        <div class="w3-top w3-hide-large" id="myNavbar">
             <div class="w3-bar w3-black w3-opacity w3-hover-opacity-off w3-center w3-small">
-                <a href="#" class="w3-bar-item w3-button" style="width:25% !important" draggable="false">HOME</a>
+                <a href="#home" class="w3-bar-item w3-button" style="width:25% !important" draggable="false">HOME</a>
                 <a href="#art" class="w3-bar-item w3-button" style="width:25% !important" draggable="false">ART</a>
                 <a href="#github" class="w3-bar-item w3-button" style="width:25% !important" draggable="false">GIT</a>
                 <a href="#projects" class="w3-bar-item w3-button" style="width:25% !important" draggable="false">NOW</a>
@@ -171,7 +168,7 @@
         <!-- Navbar on very short height screens (Hidden on heigh screens) -->
         <div class="w3-top w3-hide-small nav2">
             <div class="w3-bar w3-black w3-opacity w3-hover-opacity-off w3-center w3-small">
-                <a href="#" class="w3-bar-item w3-button" style="width:16.5% !important" draggable="false">HOME</a>
+                <a href="#home" class="w3-bar-item w3-button" style="width:16.5% !important" draggable="false">HOME</a>
                 <a href="#art" class="w3-bar-item w3-button" style="width:20% !important" draggable="false">ART</a>
                 <a href="#github" class="w3-bar-item w3-button" style="width:20% !important" draggable="false">GIT</a>
                 <a href="#projects" class="w3-bar-item w3-button" style="width:20% !important" draggable="false">NOW</a>
@@ -184,7 +181,7 @@
 
             <!-- The Home Section -->
             <div class="w3-center w3-padding-32 forest"
-                 style="color: #fff !important; width: 100%;" id="home">
+                 style="color: #fff !important; width: 100%; height: 100vh; min-height: 1100px;" id="home">
 
                 <div style="width: 50%; transform: translate(50%, 50%)">
                     <div>
@@ -219,7 +216,6 @@
                             </i>
                         </p>
                     </div>
-                    <br><br>
                 </div>
             </div>
 
@@ -228,6 +224,7 @@
                 <div style="max-width: 2300px; margin-left: auto; margin-right: auto;">
                     <h2 class="w3-wide w3-center" style="font-family: 'Courier New'">MY ART</h2>
                     <p class="w3-opacity w3-center"><i>these are some of my favourite creations</i></p>
+                    <br />
                     <div class="w3-row-padding">
                         <div class="w3-half">
                             <img class="tonius-focus" src="res/Shara_Ishvalda.png" style="width:100%">
@@ -235,18 +232,18 @@
                             <img class="tonius-focus" src="res/Askeladd[webpage-preview].png" style="width:100%">
                             <img class="tonius-focus" src="res/Arisen's_Heart.png" style="width:100%">
                             <img class="tonius-focus" src="res/Dragon'sPerish.png" style="width:100%">
-                            <img class="tonius-focus" src="res/FreddieMercury[minimalistic].png" style="width:100%" id="art1">
-                            <img class="tonius-focus" src="res/Horror-HuTao-Noised.png" style="width:100%">
+                            <img class="tonius-focus" src="res/FreddieMercury[minimalistic].png" style="width:100%">
+                            <img class="tonius-focus" src="res/Horror-HuTao-Noised.png" style="width:100%" id="art2">
 
 
                         </div>
                         <div class="w3-half" id="toggled">
-                            <img class="tonius-focus" src="res/night_piano_skies.png" style="width:100%">
+                            <img class="tonius-focus" src="res/night_piano_skies.png" style="width:100%" id="art1">
                             <img class="tonius-focus" src="res/Plane Window View.png" style="width:100%">
                             <img class="tonius-focus" src="res/GenryusaiYamamoto.png" style="width:100%">
                             <img class="tonius-focus" src="res/EnderDragon.png" style="width:100%">
                             <img class="tonius-focus" src="res/Cave.png" style="width:100%">
-                            <img class="tonius-focus" src="res/XiaoLanzaDelRelampago.png" style="width:100%" id="art2">
+                            <img class="tonius-focus" src="res/XiaoLanzaDelRelampago.png" style="width:100%">
                             <img class="tonius-focus" src="res/Tonius(Github Profile).jpg" style="width:100%">
 
 
@@ -261,7 +258,7 @@
                 <div class="w3-container w3-content w3-padding-64" style="max-width:800px">
                     <h2 class="w3-wide w3-center" style="font-family: 'Courier New'">GITHUB REPOSITORIES</h2>
                     <p class="w3-opacity w3-center"><i>A few of my repositories are kept public.</i></p><br>
-
+                    <br />
 
                     <div class="w3-row-padding w3-padding-32" style="margin:0 -16px">
                         <div class="w3-third w3-margin-bottom">
@@ -295,6 +292,7 @@
                             </div>
                         </div>
                     </div>
+                    <br />
                 </div>
             </div>
 
@@ -305,7 +303,7 @@
                     <p class="w3-opacity w3-center"><i>My most recent project</i></p>
                     <div class="w3-container tonius-white tonius-focus" style="width: 100%; border-radius: 0.5%">
                         <img src="res/AntagonistAI.png" style="width: 102.5%; border-radius: 1%; transform: translate(-1.25%, -0.25%)">
-                        <h3 style="text-align: center;"><b>Intelligent Minecraft Antagonist</b></h3>
+                        <h3 style="text-align: center;" id="projects2"><b>Intelligent Minecraft Antagonist</b></h3>
                         <p class="w3-opacity" style="text-align: center;">A quick description</p>
                         <br />
                         <h5 style="width: 80%; text-align: center; margin-left: 10%">
@@ -415,12 +413,6 @@
                 elementInView(btn, bounding, myElementHeight);
 
                 var btn = document.getElementById("btn2");
-                var myElement = document.getElementById("art");
-                var bounding = myElement.getBoundingClientRect();
-                var myElementHeight = myElement.offsetHeight;
-                elementInView(btn, bounding, myElementHeight);
-
-                var btn = document.getElementById("btn2");
                 var myElement = document.getElementById("art1");
                 var bounding = myElement.getBoundingClientRect();
                 var myElementHeight = myElement.offsetHeight;
@@ -439,7 +431,7 @@
                 elementInView(btn, bounding, myElementHeight);
 
                 var btn = document.getElementById("btn4");
-                var myElement = document.getElementById("projects");
+                var myElement = document.getElementById("projects2");
                 var bounding = myElement.getBoundingClientRect();
                 var myElementHeight = myElement.offsetHeight;
                 elementInView(btn, bounding, myElementHeight);
@@ -449,6 +441,8 @@
                 var bounding = myElement.getBoundingClientRect();
                 var myElementHeight = myElement.offsetHeight;
                 elementInView(btn, bounding, myElementHeight);
+
+                progressBar();
 
             }
 
@@ -463,14 +457,38 @@
 
             // Progress bar JS
 
-            window.onscroll = function () { progressBar() };
-
             function progressBar() {
                 var winScroll = document.body.scrollTop || document.documentElement.scrollTop;
                 var height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
                 var scrolled = (winScroll / height) * 100;
                 document.getElementById("myBar").style.width = scrolled + "%";
             }
+
+            // Smooth Scroll effect
+            $(document).ready(function () {
+                // Add smooth scrolling to all links
+                $("a").on('click', function (event) {
+
+                    // Make sure this.hash has a value before overriding default behavior
+                    if (this.hash !== "") {
+                        // Prevent default anchor click behavior
+                        event.preventDefault();
+
+                        // Store hash
+                        var hash = this.hash;
+
+                        // Using jQuery's animate() method to add smooth page scroll
+                        // The optional number (1200) specifies the number of milliseconds it takes to scroll to the specified area
+                        $('html, body').animate({
+                            scrollTop: $(hash).offset().top
+                        }, 1200, function () {
+
+                            // Add hash (#) to URL when done scrolling (default click behavior)
+                            window.location.hash = hash;
+                        });
+                    } // End if
+                });
+            });
 
         </script>
 

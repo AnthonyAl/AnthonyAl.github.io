@@ -16,7 +16,7 @@ h1, h2, h3, h4, h5, h6 {
 
 .tonius-button-dark:hover {
     background: #1b1b2e !important;
-    color: #fff !important
+    color: #fff !important;
 }
 
 .tonius-white {
@@ -55,7 +55,7 @@ h1, h2, h3, h4, h5, h6 {
 
 .button:hover {
     color: #fff !important;
-    background-color: #000209 !important
+    background-color: #1b1b2e;
 }
 
 .button i {
@@ -71,8 +71,8 @@ h1, h2, h3, h4, h5, h6 {
 #main, #footer {
     margin-left: 120px
 }
-/* Remove margins from "page content" on small screens */
-@media only screen and (max-width: 600px) {
+/* Remove margins from "page content" on small and medium screens */
+@media only screen and (max-width: 1366px) {
     #main, #footer {
         margin-left: 0
     }

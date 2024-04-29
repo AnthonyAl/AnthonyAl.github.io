@@ -10,7 +10,34 @@
     <link rel="stylesheet" href="particles.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
     <style>
+
+        .squiggle {
+            filter: url(#torn-paper);
+            border-block-color: #808080;
+            border-block: inset;
+        }
+
+        .squiggle-small {
+            filter: url(#torn-paper-small);
+            border-bottom: inset;
+            border-bottom-color: #808080;
+            border-right: inset;
+            border-right-color: #808080;
+        }
+
+        .g-background {
+            position: absolute;
+            border-radius: 6%;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(#b9b9bd, #96969e);
+            filter: url(#torn-paper);
+            z-index: -1;
+        }
 
         #myNavbar, .nav, .nav2 {
             z-index: 3;
@@ -105,405 +132,425 @@
         }
     </style>
 </head>
-    <body>
+<body>
 
-        <!-- Firefly effects (number of div signifies the amount of flies) -->
-        <div class="firefly"></div>
-        <div class="firefly"></div>
-        <div class="firefly"></div>
-        <div class="firefly"></div>
-        <div class="firefly"></div>
-        <div class="firefly"></div>
-        <div class="firefly"></div>
-        <div class="firefly"></div>
-        <div class="firefly"></div>
-        <div class="firefly"></div>
-        <div class="firefly"></div>
-        <div class="firefly"></div>
-        <div class="firefly"></div>
-        <div class="firefly"></div>
-        <div class="firefly"></div>
+    <!-- Firefly effects (number of div signifies the amount of flies) -->
+    <div class="firefly"></div>
+    <div class="firefly"></div>
+    <div class="firefly"></div>
+    <div class="firefly"></div>
+    <div class="firefly"></div>
+    <div class="firefly"></div>
+    <div class="firefly"></div>
+    <div class="firefly"></div>
+    <div class="firefly"></div>
+    <div class="firefly"></div>
+    <div class="firefly"></div>
+    <div class="firefly"></div>
+    <div class="firefly"></div>
+    <div class="firefly"></div>
+    <div class="firefly"></div>
 
-        
 
-        <!-- Icon Bar (Sidebar - hidden on small and medium screens) -->
-        <nav class="w3-sidebar w3-bar-block w3-small w3-hide-small w3-hide-medium w3-center nav" id="mainNavbar">
-            <!-- Avatar image in top left corner -->
-            <img src="res/Tonius(Github Profile).jpg" style="width:100%">
-            <div class="progress-container">
-                <div class="progress-bar" id="myBar"></div>
-            </div>
-            <a href="#home" class="button w3-bar-item w3-button w3-padding-large" id="btn1" tabindex="1" draggable="false">
-                <i class="fa fa-home w3-xxlarge "></i>
-                <p>HOME</p>
-            </a>
-            <a href="#art" class="button w3-bar-item w3-button w3-padding-large" id="btn2" tabindex="2" draggable="false">
-                <i class="fa fa-pencil w3-xxlarge"></i>
-                <p>MY ART</p>
-            </a>
-            <a href="#github" class="button w3-bar-item w3-button w3-padding-large" id="btn3" tabindex="3" draggable="false">
-                <i class="fa fa-github w3-xxlarge"></i>
-                <p>GITHUB</p>
-            </a>
-            <a href="#projects" class="button w3-bar-item w3-button w3-padding-large" id="btn4" tabindex="4" draggable="false">
-                <i class="fa fa-eye w3-xxlarge"></i>
-                <p>FEATURED PROJECT</p>
-            </a>
-            <a href="#contact" class="button w3-bar-item w3-button w3-padding-large" id="btn5" tabindex="5" draggable="false">
-                <i class="fa fa-envelope w3-xxlarge"></i>
-                <p>CONTACT</p>
-            </a>
-        </nav>
-
-        <!-- Navbar on small screens (Hidden on large screens)  -->
-        <div class="w3-top w3-hide-large" id="myNavbar">
-            <div class="w3-bar w3-black w3-opacity w3-hover-opacity-off w3-center w3-small">
-                <a href="#home" class="w3-bar-item w3-button" style="width:25% !important" draggable="false">HOME</a>
-                <a href="#art" class="w3-bar-item w3-button" style="width:25% !important" draggable="false">ART</a>
-                <a href="#github" class="w3-bar-item w3-button" style="width:25% !important" draggable="false">GIT</a>
-                <a href="#projects" class="w3-bar-item w3-button" style="width:25% !important" draggable="false">NOW</a>
-            </div>
+    <!-- Icon Bar (Sidebar - hidden on small and medium screens) -->
+    <nav class="w3-sidebar w3-bar-block w3-small w3-hide-small w3-hide-medium w3-center nav" id="mainNavbar">
+        <!-- Avatar image in top left corner -->
+        <img src="res/Tonius(Github Profile).jpg" style="width:100%">
+        <div class="progress-container">
+            <div class="progress-bar" id="myBar"></div>
         </div>
+        <a href="#home" class="button w3-bar-item w3-button w3-padding-large" id="btn1" tabindex="1" draggable="false">
+            <i class="fa fa-home w3-xxlarge "></i>
+            <p>HOME</p>
+        </a>
+        <a href="#art" class="button w3-bar-item w3-button w3-padding-large" id="btn2" tabindex="2" draggable="false">
+            <i class="fa fa-pencil w3-xxlarge"></i>
+            <p>MY ART</p>
+        </a>
+        <a href="#github" class="button w3-bar-item w3-button w3-padding-large" id="btn3" tabindex="3" draggable="false">
+            <i class="fa fa-github w3-xxlarge"></i>
+            <p>GITHUB</p>
+        </a>
+        <a href="#projects" class="button w3-bar-item w3-button w3-padding-large" id="btn4" tabindex="4" draggable="false">
+            <i class="fa fa-eye w3-xxlarge"></i>
+            <p>FEATURED PROJECT</p>
+        </a>
+        <a href="#contact" class="button w3-bar-item w3-button w3-padding-large" id="btn5" tabindex="5" draggable="false">
+            <i class="fa fa-envelope w3-xxlarge"></i>
+            <p>CONTACT</p>
+        </a>
+    </nav>
 
-        <!-- Navbar on very short height screens (Hidden on heigh screens) -->
-        <div class="w3-top w3-hide-small nav2">
-            <div class="w3-bar w3-black w3-opacity w3-hover-opacity-off w3-center w3-small">
-                <a href="#home" class="w3-bar-item w3-button" style="width:16.5% !important" draggable="false">HOME</a>
-                <a href="#art" class="w3-bar-item w3-button" style="width:20% !important" draggable="false">ART</a>
-                <a href="#github" class="w3-bar-item w3-button" style="width:20% !important" draggable="false">GIT</a>
-                <a href="#projects" class="w3-bar-item w3-button" style="width:20% !important" draggable="false">NOW</a>
-                <a href="#contact" class="w3-bar-item w3-button" style="width:23.5% !important" draggable="false">CONTACT</a>
-            </div>
+    <!-- Navbar on small screens (Hidden on large screens)  -->
+    <div class="w3-top w3-hide-large" id="myNavbar">
+        <div class="w3-bar w3-black w3-opacity w3-hover-opacity-off w3-center w3-small">
+            <a href="#home" class="w3-bar-item w3-button" style="width:25% !important" draggable="false">HOME</a>
+            <a href="#art" class="w3-bar-item w3-button" style="width:25% !important" draggable="false">ART</a>
+            <a href="#github" class="w3-bar-item w3-button" style="width:25% !important" draggable="false">GIT</a>
+            <a href="#projects" class="w3-bar-item w3-button" style="width:25% !important" draggable="false">NOW</a>
         </div>
+    </div>
 
-        <!-- Page content -->
-        <div class="w3-content" style="max-width:8000px;margin-top:0px" , id="main">
+    <!-- Navbar on very short height screens (Hidden on heigh screens) -->
+    <div class="w3-top w3-hide-small nav2">
+        <div class="w3-bar w3-black w3-opacity w3-hover-opacity-off w3-center w3-small">
+            <a href="#home" class="w3-bar-item w3-button" style="width:16.5% !important" draggable="false">HOME</a>
+            <a href="#art" class="w3-bar-item w3-button" style="width:20% !important" draggable="false">ART</a>
+            <a href="#github" class="w3-bar-item w3-button" style="width:20% !important" draggable="false">GIT</a>
+            <a href="#projects" class="w3-bar-item w3-button" style="width:20% !important" draggable="false">NOW</a>
+            <a href="#contact" class="w3-bar-item w3-button" style="width:23.5% !important" draggable="false">CONTACT</a>
+        </div>
+    </div>
 
-            <!-- The Home Section -->
-            <div class="w3-center w3-padding-32 forest"
-                 style="color: #fff !important; width: 100%; height: 100vh; min-height: 1100px;" id="home">
+    <!-- Page content -->
+    <div class="w3-content" style="max-width:8000px;margin-top:0px" , id="main">
 
-                <div style="width: 50%; transform: translate(50%, 50%)">
-                    <div>
-                        <div class="w3-center" style="transform: translate(0%, -30%)">
-                            <h1 class="w3-wide w3-center tonius-big-text" style="font-family: 'Courier New'">
+        <!-- The Home Section -->
+        <div class="w3-center w3-padding-32 forest"
+             style="color: #fff !important; width: 100%; height: 100vh; min-height: 1100px;" id="home">
+
+            <div style="width: 50%; transform: translate(50%, 50%)">
+                <div>
+                    <div class="w3-center" style="transform: translate(0%, -30%)">
+                        <h1 class="w3-wide w3-center tonius-big-text" style="font-family: 'Courier New'">
+                            <br> ANTHONY
+                            <br> ALEXANDRIS
+                            <br> SAVIOLIDIS
+                        </h1>
+                        <div class="tonius-shadow" style="transform: translate(-0.5%, -102.8%)">
+                            <h1 class="w3-wide w3-opacity w3-center tonius-big-text" style="font-family: 'Courier New'">
                                 <br> ANTHONY
                                 <br> ALEXANDRIS
                                 <br> SAVIOLIDIS
                             </h1>
-                            <div class="tonius-shadow" style="transform: translate(-0.5%, -102.8%)">
-                                <h1 class="w3-wide w3-opacity w3-center tonius-big-text" style="font-family: 'Courier New'">
-                                    <br> ANTHONY
-                                    <br> ALEXANDRIS
-                                    <br> SAVIOLIDIS
-                                </h1>
-                            </div>
                         </div>
-                    </div>
-                </div>
-                <!-- The About me Section -->
-                <div class="w3-container w3-padding-32" id="about">
-                    <div style="transform: translate(0%, 50%)">
-                        <p class="w3-opacity w3-center">
-                            <i>
-                                As a student of an Informatics department who loves to create in all manners of art, <br>
-                            </i>
-                            <i>
-                                I have currently found myself in the world of game development. I am aiming to utilize <br>
-                            </i>
-                            <i>
-                                all my knowledge and artistic energy to manifest all my creative ideas.
-                            </i>
-                        </p>
                     </div>
                 </div>
             </div>
-
-            <!-- The Art Section -->
-            <div class="parallax w3-padding-64" id="art">
-                <div style="max-width: 2300px; margin-left: auto; margin-right: auto;">
-                    <h2 class="w3-wide w3-center" style="font-family: 'Courier New'">MY ART</h2>
-                    <p class="w3-opacity w3-center"><i>these are some of my favourite creations</i></p>
-                    <br />
-                    <div class="w3-row-padding">
-                        <div class="w3-half">
-                            <img class="tonius-focus" src="res/Shara_Ishvalda.png" style="width:100%">
-                            <img class="tonius-focus" src="res/Susho[webpage-preview].png" style="width:100%">
-                            <img class="tonius-focus" src="res/Askeladd[webpage-preview].png" style="width:100%">
-                            <img class="tonius-focus" src="res/Arisen's_Heart.png" style="width:100%">
-                            <img class="tonius-focus" src="res/Dragon'sPerish.png" style="width:100%">
-                            <img class="tonius-focus" src="res/FreddieMercury[minimalistic].png" style="width:100%">
-                            <img class="tonius-focus" src="res/Horror-HuTao-Noised.png" style="width:100%" id="art2">
-
-
-                        </div>
-                        <div class="w3-half" id="toggled">
-                            <img class="tonius-focus" src="res/night_piano_skies.png" style="width:100%" id="art1">
-                            <img class="tonius-focus" src="res/Plane Window View.png" style="width:100%">
-                            <img class="tonius-focus" src="res/GenryusaiYamamoto.png" style="width:100%">
-                            <img class="tonius-focus" src="res/EnderDragon.png" style="width:100%">
-                            <img class="tonius-focus" src="res/Cave.png" style="width:100%">
-                            <img class="tonius-focus" src="res/XiaoLanzaDelRelampago.png" style="width:100%">
-                            <img class="tonius-focus" src="res/Tonius(Github Profile).jpg" style="width:100%">
-
-
-                        </div>
-                        <button class="tonius-button-dark w3-button w3-margin-bottom" id="toggle" style="width:100%">Show me more drawings!</button>
-                    </div>
+            <!-- The About me Section -->
+            <div class="w3-container w3-padding-32" id="about">
+                <div style="transform: translate(0%, 50%)">
+                    <p class="w3-opacity w3-center">
+                        <i>
+                            As a student of an Informatics department who loves to create in all manners of art, <br>
+                        </i>
+                        <i>
+                            I have currently found myself in the world of game development. I am aiming to utilize <br>
+                        </i>
+                        <i>
+                            all my knowledge and artistic energy to manifest all my creative ideas.
+                        </i>
+                    </p>
                 </div>
             </div>
-
-            <!-- The Github Section -->
-            <div class="tonius-dark dirt" id="github">
-                <div class="w3-container w3-content w3-padding-64" style="max-width:800px">
-                    <h2 class="w3-wide w3-center" style="font-family: 'Courier New'">GITHUB REPOSITORIES</h2>
-                    <p class="w3-opacity w3-center"><i>A few of my repositories are kept public.</i></p><br>
-                    <br />
-
-                    <div class="w3-row-padding w3-padding-32" style="margin:0 -16px">
-                        <div class="w3-third w3-margin-bottom">
-                            <div class="w3-container tonius-white tonius-focus">
-                                <p><b>Educational-Software</b></p>
-                                <p class="w3-opacity">Jun 16, 2023</p>
-                                <p>This Greek app was made as a demo for a university project.</p>
-                                <form action="https://github.com/AnthonyAl/Educational-Software">
-                                    <button style="border-radius: 3%;" class="tonius-button-dark w3-button w3-margin-bottom">Check repository</button>
-                                </form>
-                            </div>
-                        </div>
-                        <div class="w3-third w3-margin-bottom">
-                            <div class="w3-container tonius-white tonius-focus">
-                                <p><b>DragonRankPlugin</b></p>
-                                <p class="w3-opacity">Jan 25, 2023</p>
-                                <p>A fun mini game plugin for the Minecraft game.</p>
-                                <form action="https://github.com/AnthonyAl/DragonRankPlugin">
-                                    <button style="border-radius: 3%;" class="tonius-button-dark w3-button w3-margin-bottom">Check repository</button>
-                                </form>
-                            </div>
-                        </div>
-                        <div class="w3-third w3-margin-bottom">
-                            <div class="w3-container tonius-white tonius-focus">
-                                <p><b>MinecraftPluginTemplate</b></p>
-                                <p class="w3-opacity">Sep 24, 2022</p>
-                                <p>This is a Spigot template for faster creation of new plugins.</p>
-                                <form action="https://github.com/AnthonyAl/MinecraftPluginTemplate">
-                                    <button style="border-radius: 3%;" class="tonius-button-dark w3-button w3-margin-bottom">Check repository</button>
-                                </form>
-                            </div>
-                        </div>
-                    </div>
-                    <br />
-                </div>
-            </div>
-
-            <!-- The Featured Project Section -->
-            <div class="parallax w3-container w3-padding-64" id="projects">
-                <div style="max-width: 2300px; margin-left: auto; margin-right: auto;">
-                    <h2 class="w3-wide w3-center" style="font-family: 'Courier New'">FEATURED PROJECT</h2>
-                    <p class="w3-opacity w3-center"><i>My most recent project</i></p>
-                    <div class="w3-container tonius-white tonius-focus" style="width: 100%; border-radius: 0.5%">
-                        <img src="res/AntagonistAI.png" style="width: 102.5%; border-radius: 1%; transform: translate(-1.25%, -0.25%)">
-                        <h3 style="text-align: center;" id="projects2"><b>Intelligent Minecraft Antagonist</b></h3>
-                        <p class="w3-opacity" style="text-align: center;">A quick description</p>
-                        <br />
-                        <h5 style="width: 80%; text-align: center; margin-left: 10%">
-                            This is currently an ongoing project. I am aiming to achieve integrating
-                            an intelligent ajent in the form of a smart NPC. Minecraft plugins tend to
-                            have more limitations than the usual game-modding since they run server-side.
-                            Regardless, I am determined to achieve creating an artificial antagonist IA
-                            that grows from watching the behavior of real players and acts upon its emotions.
-                        </h5>
-                    </div>
-                </div>
-            </div>
-
-            <!-- End Page Content -->
         </div>
 
-        <!-- Footer -->
-        <footer class="tonius-dark dirt w3-container w3-center w3-xlarge w3-padding-32" id="footer">
+        <!-- The Art Section -->
+        <div class="parallax w3-padding-64" id="art">
+            <div style="max-width: 2300px; margin-left: auto; margin-right: auto;">
+                <h2 class="w3-wide w3-center" style="font-family: 'Courier New'">MY ART</h2>
+                <p class="w3-opacity w3-center"><i>these are some of my favourite creations</i></p>
+                <br />
+                <div class="w3-row-padding">
+                    <div class="w3-half">
+                        <img class="tonius-focus squiggle-small" src="res/Shara_Ishvalda.png" style="width:100%">
+                        <img class="tonius-focus squiggle-small" src="res/Susho[webpage-preview].png" style="width:100%">
+                        <img class="tonius-focus squiggle-small" src="res/Askeladd[webpage-preview].png" style="width:100%">
+                        <img class="tonius-focus squiggle-small" src="res/Arisen's_Heart.png" style="width:100%">
+                        <img class="tonius-focus squiggle-small" src="res/Dragon'sPerish.png" style="width:100%">
+                        <img class="tonius-focus squiggle-small" src="res/FreddieMercury[minimalistic].png" style="width:100%">
+                        <img class="tonius-focus squiggle-small" src="res/Horror-HuTao-Noised.png" style="width:100%" id="art2">
 
-            <!-- The Contact Section -->
-            <div class="w3-container w3-padding-64" id="contact">
-                <h2 class="w3-wide w3-center" style="font-family: 'Courier New'">CONTACT</h2>
-                <p class="w3-medium w3-opacity w3-center"><i>You can reach me through mail</i></p>
-                <div class="w3-padding-32 w3-center">
-                    <div class="w3-large w3-margin-bottom w3-center">
-                        <i class="fa fa-map-marker" style="width:30px"> </i> Athens, Greece<br><br>
-                        <i class="fa fa-envelope" style="width:30px"> </i> Email:<br><a draggable="false">anthony.alexandris.saviolidis@gmail.com</a><br>
                     </div>
+                    <div class="w3-half" id="toggled">
+
+                        <img class="tonius-focus squiggle-small" src="res/night_piano_skies.png" style="width:100%" id="art1">
+                        <img class="tonius-focus squiggle-small" src="res/Plane Window View.png" style="width:100%">
+                        <img class="tonius-focus squiggle-small" src="res/GenryusaiYamamoto.png" style="width:100%">
+                        <img class="tonius-focus squiggle-small" src="res/EnderDragon.png" style="width:100%">
+                        <img class="tonius-focus squiggle-small" src="res/Cave.png" style="width:100%">
+                        <img class="tonius-focus squiggle-small" src="res/XiaoLanzaDelRelampago.png" style="width:100%">
+                        <img class="tonius-focus squiggle-small" src="res/Tonius(Github Profile).jpg" style="width:100%">
+
+                    </div>
+                    <button class="tonius-button-dark w3-button w3-margin-bottom" id="toggle" style="width:100%">Show me more drawings!</button>
                 </div>
             </div>
+        </div>
 
-            <i class="fa fa-facebook-official w3-hover-opacity"></i>
-            <a style="text-decoration: none" href="https://www.instagram.com/antitonius/" class="fa fa-instagram w3-hover-opacity"></a>
-            <a style="text-decoration: none" href="https://github.com/AnthonyAl" class="fa fa-github w3-hover-opacity"></a>
-            <a style="text-decoration: none" href="https://www.deviantart.com/antitonius" class="fa fa-deviantart w3-hover-opacity"></a>
-            <p class="w3-medium">Powered by <a style="text-decoration: none" href="https://www.w3schools.com/w3css/default.asp" target="_blank">w3.css</a></p>
-        </footer>
+        <!-- The Github Section -->
+        <div class="tonius-dark dirt" id="github">
+            <div class="w3-container w3-content w3-padding-64" style="max-width:800px">
+                <h2 class="w3-wide w3-center" style="font-family: 'Courier New'">GITHUB REPOSITORIES</h2>
+                <p class="w3-opacity w3-center"><i>A few of my repositories are kept public.</i></p><br>
+                <br />
 
-        <script src="finisher-header.es5.min.js" type="text/javascript"></script>
+                <div class="w3-row-padding w3-padding-32" style="margin:0 -16px">
+                    <div class="w3-third w3-margin-bottom">
+                        <div class="w3-container tonius-white tonius-focus">
+                            <div class="g-background"></div>
+                            <p><b>Educational-Software</b></p>
+                            <p class="w3-opacity">Jun 16, 2023</p>
+                            <p>This Greek app was made as a demo for a university project.</p>
+                            <form action="https://github.com/AnthonyAl/Educational-Software">
+                                <button style="border-radius: 3%;" class="tonius-button-dark w3-button w3-margin-bottom">Check repository</button>
+                            </form>
+                        </div>
+                    </div>
+                    <div class="w3-third w3-margin-bottom">
+                        <div class="w3-container tonius-white tonius-focus">
+                            <div class="g-background"></div>
+                            <p><b>DragonRankPlugin</b></p>
+                            <p class="w3-opacity">Jan 25, 2023</p>
+                            <p>A fun mini game plugin for the Minecraft game.</p>
+                            <form action="https://github.com/AnthonyAl/DragonRankPlugin">
+                                <button style="border-radius: 3%;" class="tonius-button-dark w3-button w3-margin-bottom">Check repository</button>
+                            </form>
+                        </div>
+                    </div>
+                    <div class="w3-third w3-margin-bottom">
+                        <div class="w3-container tonius-white tonius-focus">
+                            <div class="g-background"></div>
+                            <p><b>MinecraftPluginTemplate</b></p>
+                            <p class="w3-opacity">Sep 24, 2022</p>
+                            <p>This is a Spigot template for faster creation of new plugins.</p>
+                            <form action="https://github.com/AnthonyAl/MinecraftPluginTemplate">
+                                <button style="border-radius: 3%;" class="tonius-button-dark w3-button w3-margin-bottom">Check repository</button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+                <br />
+            </div>
+        </div>
 
-        <script>
-            var color = document.getElementById("btn1").style.color;
-            var bcolor = document.getElementById("btn1").style.backgroundColor;
-            adjustStyles(document.getElementById("btn1"), "btn2", "btn3", "btn4", "btn5");
+        <!-- The Featured Project Section -->
+        <div class="parallax w3-container w3-padding-64" id="projects">
+            <div style="max-width: 2300px; margin-left: auto; margin-right: auto;">
+                <h2 class="w3-wide w3-center" style="font-family: 'Courier New'">FEATURED PROJECT</h2>
+                <p class="w3-opacity w3-center"><i>My most recent project</i></p>
+                <div class="w3-container tonius-white tonius-focus" style="width: 100%; border-radius: 0.5%">
+                    <img class="squiggle" src="res/AntagonistAI.png" style="width: 102.5%; border-radius: 1%; transform: translate(-1.25%, -0.25%)">
+                    <h3 style="text-align: center;" id="projects2"><b>Intelligent Minecraft Antagonist</b></h3>
+                    <p class="w3-opacity" style="text-align: center;">A quick description</p>
+                    <br />
+                    <h5 style="width: 80%; text-align: center; margin-left: 10%">
+                        This is currently an ongoing project. I am aiming to achieve integrating
+                        an intelligent ajent in the form of a smart NPC. Minecraft plugins tend to
+                        have more limitations than the usual game-modding since they run server-side.
+                        Regardless, I am determined to achieve creating an artificial antagonist IA
+                        that grows from watching the behavior of real players and acts upon its emotions.
+                    </h5>
+                </div>
+            </div>
+        </div>
 
-            function adjustStyles(param, id1, id2, id3, id4) {
-                param.style.color = "#fff";
-                param.style.backgroundColor = "#000209";
+        <!-- End Page Content -->
+    </div>
 
-                document.getElementById(id1).style.color = color;
-                document.getElementById(id1).style.backgroundColor = bcolor;
+    <!-- Footer -->
+    <footer class="tonius-dark dirt w3-container w3-center w3-xlarge w3-padding-32" id="footer">
 
-                document.getElementById(id2).style.color = color;
-                document.getElementById(id2).style.backgroundColor = bcolor;
+        <!-- The Contact Section -->
+        <div class="w3-container w3-padding-64" id="contact">
+            <h2 class="w3-wide w3-center" style="font-family: 'Courier New'">CONTACT</h2>
+            <p class="w3-medium w3-opacity w3-center"><i>You can reach me through mail</i></p>
+            <div class="w3-padding-32 w3-center">
+                <div class="w3-large w3-margin-bottom w3-center">
+                    <i class="fa fa-map-marker" style="width:30px"> </i> Athens, Greece<br><br>
+                    <i class="fa fa-envelope" style="width:30px"> </i> Email:<br><a draggable="false">anthony.alexandris.saviolidis@gmail.com</a><br>
+                </div>
+            </div>
+        </div>
 
-                document.getElementById(id3).style.color = color;
-                document.getElementById(id3).style.backgroundColor = bcolor;
+        <i class="fa fa-facebook-official w3-hover-opacity"></i>
+        <a style="text-decoration: none" href="https://www.instagram.com/antitonius/" class="fa fa-instagram w3-hover-opacity"></a>
+        <a style="text-decoration: none" href="https://github.com/AnthonyAl" class="fa fa-github w3-hover-opacity"></a>
+        <a style="text-decoration: none" href="https://www.deviantart.com/antitonius" class="fa fa-deviantart w3-hover-opacity"></a>
+        <p class="w3-medium">Powered by <a style="text-decoration: none" href="https://www.w3schools.com/w3css/default.asp" target="_blank">w3.css</a></p>
+    </footer>
 
-                document.getElementById(id4).style.color = color;
-                document.getElementById(id4).style.backgroundColor = bcolor;
+    <script src="finisher-header.es5.min.js" type="text/javascript"></script>
+
+    <script>
+        var color = document.getElementById("btn1").style.color;
+        var bcolor = document.getElementById("btn1").style.backgroundColor;
+        adjustStyles(document.getElementById("btn1"), "btn2", "btn3", "btn4", "btn5");
+
+        function adjustStyles(param, id1, id2, id3, id4) {
+            param.style.color = "#fff";
+            param.style.backgroundColor = "#000209";
+
+            document.getElementById(id1).style.color = color;
+            document.getElementById(id1).style.backgroundColor = bcolor;
+
+            document.getElementById(id2).style.color = color;
+            document.getElementById(id2).style.backgroundColor = bcolor;
+
+            document.getElementById(id3).style.color = color;
+            document.getElementById(id3).style.backgroundColor = bcolor;
+
+            document.getElementById(id4).style.color = color;
+            document.getElementById(id4).style.backgroundColor = bcolor;
+        }
+
+        function btn(param) {
+            if (param.id == "btn1") {
+                adjustStyles(param, "btn2", "btn3", "btn4", "btn5");
             }
-
-            function btn(param) {
-                if (param.id == "btn1") {
-                    adjustStyles(param, "btn2", "btn3", "btn4", "btn5");
-                }
-                if (param.id == "btn2") {
-                    adjustStyles(param, "btn1", "btn3", "btn4", "btn5");
-                }
-                if (param.id == "btn3") {
-                    adjustStyles(param, "btn2", "btn1", "btn4", "btn5");
-                }
-                if (param.id == "btn4") {
-                    adjustStyles(param, "btn2", "btn3", "btn1", "btn5");
-                }
-                if (param.id == "btn5") {
-                    adjustStyles(param, "btn2", "btn3", "btn4", "btn1");
-                }
+            if (param.id == "btn2") {
+                adjustStyles(param, "btn1", "btn3", "btn4", "btn5");
             }
-
-            document.getElementById("toggle").onclick = function () {
-                let target = document.getElementById("toggled");
-                let button = document.getElementById("toggle");
-                target.style.display = "block";
-                button.style.display = "none";
+            if (param.id == "btn3") {
+                adjustStyles(param, "btn2", "btn1", "btn4", "btn5");
             }
+            if (param.id == "btn4") {
+                adjustStyles(param, "btn2", "btn3", "btn1", "btn5");
+            }
+            if (param.id == "btn5") {
+                adjustStyles(param, "btn2", "btn3", "btn4", "btn1");
+            }
+        }
 
-            // When the user clicks anywhere outside of the modal, close it
-            var modal = document.getElementById('ticketModal');
-            window.onclick = function (event) {
-                if (event.target == modal) {
-                    modal.style.display = "none";
+        document.getElementById("toggle").onclick = function () {
+            let target = document.getElementById("toggled");
+            let button = document.getElementById("toggle");
+            target.style.display = "block";
+            button.style.display = "none";
+        }
+
+        // When the user clicks anywhere outside of the modal, close it
+        var modal = document.getElementById('ticketModal');
+        window.onclick = function (event) {
+            if (event.target == modal) {
+                modal.style.display = "none";
+            }
+        }
+
+        window.onscroll = function () {
+
+            var btn = document.getElementById("btn1");
+            var myElement = document.getElementById("home");
+            var bounding = myElement.getBoundingClientRect();
+            var myElementHeight = myElement.offsetHeight;
+            elementInView(btn, bounding, myElementHeight);
+
+            var btn = document.getElementById("btn1");
+            var myElement = document.getElementById("about");
+            var bounding = myElement.getBoundingClientRect();
+            var myElementHeight = myElement.offsetHeight;
+            elementInView(btn, bounding, myElementHeight);
+
+            var btn = document.getElementById("btn2");
+            var myElement = document.getElementById("art1");
+            var bounding = myElement.getBoundingClientRect();
+            var myElementHeight = myElement.offsetHeight;
+            elementInView(btn, bounding, myElementHeight);
+
+            var btn = document.getElementById("btn2");
+            var myElement = document.getElementById("art2");
+            var bounding = myElement.getBoundingClientRect();
+            var myElementHeight = myElement.offsetHeight;
+            elementInView(btn, bounding, myElementHeight);
+
+            var btn = document.getElementById("btn3");
+            var myElement = document.getElementById("github");
+            var bounding = myElement.getBoundingClientRect();
+            var myElementHeight = myElement.offsetHeight;
+            elementInView(btn, bounding, myElementHeight);
+
+            var btn = document.getElementById("btn4");
+            var myElement = document.getElementById("projects2");
+            var bounding = myElement.getBoundingClientRect();
+            var myElementHeight = myElement.offsetHeight;
+            elementInView(btn, bounding, myElementHeight);
+
+            var btn = document.getElementById("btn5");
+            var myElement = document.getElementById("contact");
+            var bounding = myElement.getBoundingClientRect();
+            var myElementHeight = myElement.offsetHeight;
+            elementInView(btn, bounding, myElementHeight);
+
+            progressBar();
+
+        }
+
+        function elementInView(btn, bounding, myElementHeight) {
+            if (bounding.top >= -myElementHeight / 3
+                && bounding.bottom <= (window.innerHeight || document.documentElement.clientHeight) + myElementHeight / 3) {
+
+
+                this.btn(btn);
+            }
+        }
+
+        // Progress bar JS
+
+        function progressBar() {
+            var winScroll = document.body.scrollTop || document.documentElement.scrollTop;
+            var height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+            var scrolled = (winScroll / height) * 100;
+            document.getElementById("myBar").style.width = scrolled + "%";
+        }
+
+        // Smooth Scroll effect
+
+        var scrolling = false;
+
+        $(document).ready(function () {
+            // Add smooth scrolling to all links
+            $("a").on('click', function (event) {
+
+                if (scrolling) {
+                    // Prevent default anchor click behavior
+                    event.preventDefault();
                 }
-            }
 
-            window.onscroll = function () {
+                // Make sure this.hash has a value before overriding default behavior
+                if (this.hash !== "" && this.hash != window.location.hash && !scrolling) {
+                    // Prevent default anchor click behavior
+                    event.preventDefault();
 
-                var btn = document.getElementById("btn1");
-                var myElement = document.getElementById("home");
-                var bounding = myElement.getBoundingClientRect();
-                var myElementHeight = myElement.offsetHeight;
-                elementInView(btn, bounding, myElementHeight);
+                    // Store hash
+                    var hash = this.hash;
 
-                var btn = document.getElementById("btn1");
-                var myElement = document.getElementById("about");
-                var bounding = myElement.getBoundingClientRect();
-                var myElementHeight = myElement.offsetHeight;
-                elementInView(btn, bounding, myElementHeight);
+                    scrolling = true;
 
-                var btn = document.getElementById("btn2");
-                var myElement = document.getElementById("art1");
-                var bounding = myElement.getBoundingClientRect();
-                var myElementHeight = myElement.offsetHeight;
-                elementInView(btn, bounding, myElementHeight);
+                    // Using jQuery's animate() method to add smooth page scroll
+                    // The optional number (1200) specifies the number of milliseconds it takes to scroll to the specified area
+                    $('html, body').animate({
+                        scrollTop: $(hash).offset().top
+                    }, 1200, function () {
 
-                var btn = document.getElementById("btn2");
-                var myElement = document.getElementById("art2");
-                var bounding = myElement.getBoundingClientRect();
-                var myElementHeight = myElement.offsetHeight;
-                elementInView(btn, bounding, myElementHeight);
+                        // Add hash (#) to URL when done scrolling (default click behavior)
+                        window.location.hash = hash;
+                        scrolling = false;
 
-                var btn = document.getElementById("btn3");
-                var myElement = document.getElementById("github");
-                var bounding = myElement.getBoundingClientRect();
-                var myElementHeight = myElement.offsetHeight;
-                elementInView(btn, bounding, myElementHeight);
-
-                var btn = document.getElementById("btn4");
-                var myElement = document.getElementById("projects2");
-                var bounding = myElement.getBoundingClientRect();
-                var myElementHeight = myElement.offsetHeight;
-                elementInView(btn, bounding, myElementHeight);
-
-                var btn = document.getElementById("btn5");
-                var myElement = document.getElementById("contact");
-                var bounding = myElement.getBoundingClientRect();
-                var myElementHeight = myElement.offsetHeight;
-                elementInView(btn, bounding, myElementHeight);
-
-                progressBar();
-
-            }
-
-            function elementInView(btn, bounding, myElementHeight) {
-                if (bounding.top >= -myElementHeight / 3
-                    && bounding.bottom <= (window.innerHeight || document.documentElement.clientHeight) + myElementHeight / 3) {
-
-
-                    this.btn(btn);
-                }
-            }
-
-            // Progress bar JS
-
-            function progressBar() {
-                var winScroll = document.body.scrollTop || document.documentElement.scrollTop;
-                var height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
-                var scrolled = (winScroll / height) * 100;
-                document.getElementById("myBar").style.width = scrolled + "%";
-            }
-
-            // Smooth Scroll effect
-
-            var scrolling = false;
-
-            $(document).ready(function () {
-                // Add smooth scrolling to all links
-                $("a").on('click', function (event) {
-
-                    if (scrolling) {
-                        // Prevent default anchor click behavior
-                        event.preventDefault();
-                    }
-
-                    // Make sure this.hash has a value before overriding default behavior
-                    if (this.hash !== "" && this.hash != window.location.hash && !scrolling) {
-                        // Prevent default anchor click behavior
-                        event.preventDefault();
-
-                        // Store hash
-                        var hash = this.hash;
-
-                        scrolling = true;
-
-                        // Using jQuery's animate() method to add smooth page scroll
-                        // The optional number (1200) specifies the number of milliseconds it takes to scroll to the specified area
-                        $('html, body').animate({
-                            scrollTop: $(hash).offset().top
-                        }, 1200, function () {
-
-                            // Add hash (#) to URL when done scrolling (default click behavior)
-                            window.location.hash = hash;
-                            scrolling = false;
-
-                        });
-                    } // End if
-                });
+                    });
+                } // End if
             });
+        });
 
-        </script>
+    </script>
 
-    </body>
+</body>
+
+<!-- SVG filters -->
+<svg xmlns="http://www.w3.org/2000/svg" version="1.1" height="0" width="0" style="display: flex;">
+    <defs>
+        <filter id="torn-paper">
+            <feTurbulence type="turbulence" baseFrequency=".009" numOctaves="1" />
+            <feDisplacementMap in="SourceGraphic" in2="_" scale="10" />
+        </filter>
+    </defs>
+</svg>
+<svg xmlns="http://www.w3.org/2000/svg" version="1.1" height="0" width="0" style="display: flex;">
+    <defs>
+        <filter id="torn-paper-small">
+            <feTurbulence type="turbulence" baseFrequency=".009" numOctaves="1" />
+            <feDisplacementMap in="SourceGraphic" in2="_" scale="5" />
+        </filter>
+    </defs>
+</svg>
+
 </html>

@@ -50,8 +50,105 @@
         }
 
         .tonius-art-focus {
-            border-radius: 5%;
+            border-radius: 1.5%;
+            aspect-ratio: 1 / 1;
+            padding-bottom: 4px;
         }
+
+        .tonius-art-focus:hover {
+            opacity: 0.7;
+        }
+
+        /* The Modal (background) */
+        .modal {
+            display: none; /* Hidden by default */
+            position: fixed; /* Stay in place */
+            z-index: 1000; /* Sit on top */
+            padding-top: 100px; /* Location of the box */
+            left: 0;
+            top: 0;
+            width: 100%; /* Full width */
+            height: 100%; /* Full height */
+            overflow: auto; /* Enable scroll if needed */
+            background-color: rgb(0,0,0); /* Fallback color */
+            background-color: rgba(0,0,0,0.9); /* Black w/ opacity */
+        }
+
+        /* Modal Content (image) */
+        .modal-content {
+            display: block;
+        }
+
+        .modal .swiper-slide {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            max-height: 80vh; /* Prevent image from being taller than viewport */
+            max-width: 80vw; /* Prevent image from being wider than viewport */
+        }
+
+        .modal .mySwiper {
+            width: 80vw; /* Fit to content width */
+            height: 80vh; /* Fit to content height */
+            margin: auto;
+        }
+
+        /* Add Animation */
+        .modal-content {
+            -webkit-animation-name: zoom;
+            -webkit-animation-duration: 0.6s;
+            animation-name: zoom;
+            animation-duration: 0.6s;
+        }
+
+        @-webkit-keyframes zoom {
+            from {
+                -webkit-transform: scale(0)
+            }
+
+            to {
+                -webkit-transform: scale(1)
+            }
+        }
+
+        @keyframes zoom {
+            from {
+                transform: scale(0)
+            }
+
+            to {
+                transform: scale(1)
+            }
+        }
+
+        .tonius-container {
+            width: 50%
+        }
+
+
+        /* 100% Image Width on Smaller Screens */
+        @media only screen and (max-width: 1980px) {
+            .modal-content, .tonius-container {
+                width: 60%;
+            }
+        }
+
+        /* 100% Image Width on Smaller Screens */
+        @media only screen and (max-width: 1200px) {
+            .modal-content, .tonius-container {
+                width: 90%;
+            }
+        }
+
+        /* 100% Image Width on Smaller Screens */
+        @media only screen and (max-width: 700px) {
+            .modal-content, .tonius-container {
+                width: 100%;
+            }
+        }
+
+
+
 
         .tonius-shadow {
             visibility: hidden;
@@ -139,34 +236,34 @@
 
         /* Swiper style configurations */
         .swiper {
-          width: 100%;
-          height: 100%;
+            width: 100%;
+            height: 100%;
         }
 
         .swiper-slide {
-          background-blend-mode: transparent;
-          display: flex;
-          justify-content: center;
-          align-items: center;
+            background-blend-mode: transparent;
+            display: flex;
+            justify-content: center;
+            align-items: center;
         }
 
-        .swiper-slide .swiper-text {
-          display: block;
-          font-size: 14px;
-          line-height: 1.6;
-          text-align: center;
-          justify-content: center;
-          align-items: center;
-          object-fit: cover;
-        }
+            .swiper-slide .swiper-text {
+                display: block;
+                font-size: 14px;
+                line-height: 1.6;
+                text-align: center;
+                justify-content: center;
+                align-items: center;
+                object-fit: cover;
+            }
 
 
-        .swiper-slide img {
-          display: block;
-          width: 100%;
-          height: 100%;
-          object-fit: cover;
-        }
+            .swiper-slide img {
+                display: block;
+                width: 100%;
+                height: 100%;
+                object-fit: cover;
+            }
     </style>
 </head>
 <body>
@@ -246,28 +343,47 @@
         <div class="w3-center w3-padding-32 forest"
              style="color: #fff !important; width: 100%; height: 100vh; min-height: 1100px;" id="home">
 
-            <div style="width: 50%; transform: translate(50%, 50%)">
+            <div style="width: 100%; transform: translate(0%, 50%)">
                 <div>
-                    <div class="w3-center" style="transform: translate(0%, -30%)">
-                        <h1 class="w3-wide w3-center tonius-big-text" style="font-family: 'Courier New'">
+                    <div class="w3-center" style="width=100vw; background-color: black; opacity: 0.5">
+                        <h1 class="w3-wide w3-center tonius-big-text" style="font-family: 'Courier New'; opacity: 1">
+
                             <br> ANTHONY
                             <br> ALEXANDRIS
                             <br> SAVIOLIDIS
+                            <br />
+                            <br />
+
                         </h1>
-                        <div class="tonius-shadow" style="transform: translate(-0.5%, -102.8%)">
-                            <h1 class="w3-wide w3-opacity w3-center tonius-big-text" style="font-family: 'Courier New'">
-                                <br> ANTHONY
-                                <br> ALEXANDRIS
-                                <br> SAVIOLIDIS
-                            </h1>
+                        <div class="tonius-shadow">
                         </div>
                     </div>
                 </div>
             </div>
+            <br />
+            <br />
+            <br />
+            <br />
+            <br />
+            <br />
+            <br />
+            <br />
+            <br />
+            <br />
+            <br />
+            <br />
+            <br />
+            <br />
+            <br />
+            <br />
+            <br />
+            <br />
+            <br />
+            <br />
             <!-- The About me Section -->
             <div class="w3-container w3-padding-32" id="about">
-                <div style="transform: translate(0%, 50%)">
-                    <p class="w3-opacity w3-center">
+                <div>
+                    <p class="w3-opacity w3-center" style="font-size:large">
                         <i>
                             As a student of an Informatics department who loves to create in all manners of art, <br>
                         </i>
@@ -284,91 +400,17 @@
 
         <!-- The Art Section -->
         <div class="parallax w3-padding-64" id="art">
-            <div style="max-width: 2300px; margin-left: auto; margin-right: auto;">
+            <div style="max-width: 2000px; margin-left: auto; margin-right: auto;" class="tonius-container">
                 <h2 class="w3-wide w3-center" style="font-family: 'Courier New'">MY ART</h2>
                 <p class="w3-opacity w3-center"><i>these are some of my favourite creations</i></p>
                 <br />
                 <div class="w3-row-padding">
-                    <div class="w3-half">
+                    <div class="w3-third">
                         <div class="swiper mySwiper tonius-art-focus">
                             <div class="swiper-wrapper">
                                 <div class="swiper-slide">
                                     <div class="swiper-zoom-container">
-                                        <img src="res/KulveLeft.jpg" style="width:100%">
-                                    </div>
-                                </div>
-                                <div class="swiper-slide">
-                                    <div class="swiper-zoom-container">
-                                        <img src="res/KulveMid.jpg" style="width:100%">
-                                    </div>
-                                </div>
-                                <div class="swiper-slide">
-                                    <div class="swiper-zoom-container">
-                                        <img src="res/KulveRight.jpg" style="width:100%">
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <br />
-
-                        <div class="swiper mySwiper tonius-art-focus">
-                            <div class="swiper-wrapper">
-                                <div class="swiper-slide">
-                                    <div class="swiper-zoom-container">
-                                        <img src="res/NargaLeft.png" style="width:100%">
-                                    </div>
-                                </div>
-                                <div class="swiper-slide">
-                                    <div class="swiper-zoom-container">
-                                        <img src="res/NargaMid.png" style="width:100%">
-                                    </div>
-                                </div>
-                                <div class="swiper-slide">
-                                    <div class="swiper-zoom-container">
-                                        <img src="res/NargaRight.png" style="width:100%">
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <br />
-
-                        <div class="swiper mySwiper tonius-art-focus">
-                            <div class="swiper-wrapper">
-                                <div class="swiper-slide">
-                                    <div class="swiper-zoom-container">
-                                        <img src="res/night_piano_skies.png" style="width:100%">
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <br />
-
-                        <div class="swiper mySwiper tonius-art-focus">
-                            <div class="swiper-wrapper">
-                                <div class="swiper-slide">
-                                    <div class="swiper-zoom-container">
-                                        <img src="res/Shara_Ishvalda.png" style="width:100%">
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <br />
-
-                        <div class="swiper mySwiper tonius-art-focus">
-                            <div class="swiper-wrapper">
-                                <div class="swiper-slide">
-                                    <div class="swiper-zoom-container">
-                                        <img src="res/Susho[webpage-preview].png" style="width:100%">
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <br />
-                        <div class="swiper mySwiper tonius-art-focus">
-                            <div class="swiper-wrapper">
-                                <div class="swiper-slide">
-                                    <div class="swiper-zoom-container">
-                                        <img src="res/Askeladd[webpage-preview].png" style="width:100%">
+                                        <img class="modal-trigger" title="res/Kulve.png" src="res/KulveLeft.jpg" style="width: 100%;">
                                     </div>
                                 </div>
                             </div>
@@ -378,201 +420,317 @@
                             <div class="swiper-wrapper">
                                 <div class="swiper-slide">
                                     <div class="swiper-zoom-container">
-                                        <img src="res/GhostLevLeft.png" style="width:100%">
-                                    </div>
-                                </div>
-                                <div class="swiper-slide">
-                                    <div class="swiper-zoom-container">
-                                        <img src="res/GhostLevMid.png" style="width:100%">
-                                    </div>
-                                </div>
-                                <div class="swiper-slide">
-                                    <div class="swiper-zoom-container">
-                                        <img src="res/GhostLevRight.png" style="width:100%">
+                                        <img class="modal-trigger" title="res/Fatalis.png" src="res/FatalisLeft.jpg" style="width:100%">
                                     </div>
                                 </div>
                             </div>
                         </div>
-                        <br />
 
-                        <br />
                         <div class="swiper mySwiper tonius-art-focus">
                             <div class="swiper-wrapper">
                                 <div class="swiper-slide">
                                     <div class="swiper-zoom-container">
-                                        <img src="res/Arisen's_Heart.png" style="width:100%">
+                                        <img class="modal-trigger" title="res/Nargacuga.png" src="res/NargaLeft.png" style="width:100%">
+                                    </div>
+                                </div>
+                                <div class="swiper-slide">
+                                    <div class="swiper-zoom-container">
+                                        <img class="modal-trigger" title="res/Nargacuga.png" src="res/NargaMid.png" style="width:100%">
+                                    </div>
+                                </div>
+                                <div class="swiper-slide">
+                                    <div class="swiper-zoom-container">
+                                        <img class="modal-trigger" title="res/Nargacuga.png" src="res/NargaRight.png" style="width:100%">
                                     </div>
                                 </div>
                             </div>
                         </div>
-                        <br />
+
                         <div class="swiper mySwiper tonius-art-focus">
                             <div class="swiper-wrapper">
                                 <div class="swiper-slide">
                                     <div class="swiper-zoom-container">
-                                        <img src="res/FreddieMercury[minimalistic].png" style="width:100%">
+                                        <img class="modal-trigger" title="res/GrigoriςWallArt.png" src="res/GrigoriLeft.jpg" style="width:100%">
                                     </div>
                                 </div>
                             </div>
                         </div>
-                        <br />
+
                         <div class="swiper mySwiper tonius-art-focus">
                             <div class="swiper-wrapper">
                                 <div class="swiper-slide">
                                     <div class="swiper-zoom-container">
-                                        <img src="res/Horror-HuTao-Noised.png" style="width:100%" id="art2">
+                                        <img class="modal-trigger" title="res/Shara_Ishvalda.png" src="res/Shara_Ishvalda.png" style="width:100%">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="swiper mySwiper tonius-art-focus">
+                            <div class="swiper-wrapper">
+                                <div class="swiper-slide">
+                                    <div class="swiper-zoom-container">
+                                        <img class="modal-trigger" title="res/Wilds.png" src="res/WildsLeft.png" style="width:100%">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="swiper mySwiper tonius-art-focus">
+                            <div class="swiper-wrapper">
+                                <div class="swiper-slide">
+                                    <div class="swiper-zoom-container">
+                                        <img class="modal-trigger" title="res/Susho[webpage-preview].png" src="res/Susho[webpage-preview].png" style="width:100%">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="swiper mySwiper tonius-art-focus">
+                            <div class="swiper-wrapper">
+                                <div class="swiper-slide">
+                                    <div class="swiper-zoom-container">
+                                        <img class="modal-trigger" title="res/GhostLeviathanWallArt50%.png" src="res/GhostLevLeft.png" style="width:100%">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="swiper mySwiper tonius-art-focus">
+                            <div class="swiper-wrapper">
+                                <div class="swiper-slide">
+                                    <div class="swiper-zoom-container">
+                                        <img class="modal-trigger" title="res/night_piano_skies.png" src="res/night_piano_skies.png" style="width:100%">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="swiper mySwiper tonius-art-focus">
+                            <div class="swiper-wrapper">
+                                <div class="swiper-slide">
+                                    <div class="swiper-zoom-container">
+                                        <img class="modal-trigger" title="res/GenryusaiYamamoto.png" src="res/GenryusaiYamamoto.png" style="width:100%">
                                     </div>
                                 </div>
                             </div>
                         </div>
                         <br />
                     </div>
-                    <div class="w3-half" id="toggled">
+                    <div class="w3-third">
+                        <div class="swiper mySwiper tonius-art-focus">
+                            <div class="swiper-wrapper">
+                                <div class="swiper-slide">
+                                    <div class="swiper-zoom-container">
+                                        <img class="modal-trigger" title="res/Kulve.png" src="res/KulveMid.jpg" style="width: 100%;">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
 
                         <div class="swiper mySwiper tonius-art-focus">
                             <div class="swiper-wrapper">
                                 <div class="swiper-slide">
                                     <div class="swiper-zoom-container">
-                                        <img src="res/GrigoriLeft.jpg" style="width:100%">
-                                    </div>
-                                </div>
-                                <div class="swiper-slide">
-                                    <div class="swiper-zoom-container">
-                                        <img src="res/GrigoriMid.jpg" style="width:100%" id="art1">
-                                    </div>
-                                </div>
-                                <div class="swiper-slide">
-                                    <div class="swiper-zoom-container">
-                                        <img src="res/GrigoriRight.jpg" style="width:100%">
+                                        <img class="modal-trigger" title="res/Fatalis.png" src="res/FatalisMid.jpg" style="width:100%" id="art1">
                                     </div>
                                 </div>
                             </div>
                         </div>
-                        <br />
 
                         <div class="swiper mySwiper tonius-art-focus">
                             <div class="swiper-wrapper">
                                 <div class="swiper-slide">
                                     <div class="swiper-zoom-container">
-                                        <img src="res/Dragon'sPerish.png" style="width:100%">
+                                        <img class="modal-trigger" title="res/Dragon'sPerish.png" src="res/Dragon'sPerish.png" style="width:100%; object-position: top">
                                     </div>
                                 </div>
                             </div>
                         </div>
-                        <br />
 
                         <div class="swiper mySwiper tonius-art-focus">
                             <div class="swiper-wrapper">
                                 <div class="swiper-slide">
                                     <div class="swiper-zoom-container">
-                                        <img src="res/WildsLeft.png" style="width:100%">
-                                    </div>
-                                </div>
-                                <div class="swiper-slide">
-                                    <div class="swiper-zoom-container">
-                                        <img src="res/WildsMid.png" style="width:100%">
-                                    </div>
-                                </div>
-                                <div class="swiper-slide">
-                                    <div class="swiper-zoom-container">
-                                        <img src="res/WildsRight.png" style="width:100%">
+                                        <img class="modal-trigger" title="res/GrigoriςWallArt.png" src="res/GrigoriMid.jpg" style="width:100%" id="art1">
                                     </div>
                                 </div>
                             </div>
                         </div>
-                        <br />
 
                         <div class="swiper mySwiper tonius-art-focus">
                             <div class="swiper-wrapper">
                                 <div class="swiper-slide">
                                     <div class="swiper-zoom-container">
-                                        <img src="res/Tonius(Github Profile).jpg" style="width:100%">
+                                        <img class="modal-trigger" title="res/Tonius(Github Profile).jpg" src="res/Tonius(Github Profile).jpg" style="width:100%">
                                     </div>
                                 </div>
                             </div>
                         </div>
-                        <br />
 
                         <div class="swiper mySwiper tonius-art-focus">
                             <div class="swiper-wrapper">
                                 <div class="swiper-slide">
                                     <div class="swiper-zoom-container">
-                                        <img src="res/FatalisLeft.jpg" style="width:100%">
-                                    </div>
-                                </div>
-                                <div class="swiper-slide">
-                                    <div class="swiper-zoom-container">
-                                        <img src="res/FatalisMid.jpg" style="width:100%" id="art1">
-                                    </div>
-                                </div>
-                                <div class="swiper-slide">
-                                    <div class="swiper-zoom-container">
-                                        <img src="res/FatalisRight.jpg" style="width:100%">
+                                        <img class="modal-trigger" title="res/Wilds.png" src="res/WildsMid.png" style="width:100%">
                                     </div>
                                 </div>
                             </div>
                         </div>
-                        <br />
 
                         <div class="swiper mySwiper tonius-art-focus">
                             <div class="swiper-wrapper">
                                 <div class="swiper-slide">
                                     <div class="swiper-zoom-container">
-                                        <img src="res/GenryusaiYamamoto.png" style="width:100%">
+                                        <img class="modal-trigger" title="res/FreddieMercury[minimalistic].png" src="res/FreddieMercury[minimalistic].png" style="width:100%">
                                     </div>
                                 </div>
                             </div>
                         </div>
-                        <br />
+
                         <div class="swiper mySwiper tonius-art-focus">
                             <div class="swiper-wrapper">
                                 <div class="swiper-slide">
                                     <div class="swiper-zoom-container">
-                                        <img src="res/EnderDragon.png" style="width:100%">
+                                        <img class="modal-trigger" title="res/GhostLeviathanWallArt50%.png" src="res/GhostLevMid.png" style="width:100%">
                                     </div>
                                 </div>
                             </div>
                         </div>
-                        <br />
+
+
                         <div class="swiper mySwiper tonius-art-focus">
                             <div class="swiper-wrapper">
                                 <div class="swiper-slide">
                                     <div class="swiper-zoom-container">
-                                        <img src="res/Cave.png" style="width:100%">
+                                        <img class="modal-trigger" title="res/EnderDragon.png" src="res/EnderDragon.png" style="width:100%">
                                     </div>
                                 </div>
                             </div>
                         </div>
-                        <br />
+
                         <div class="swiper mySwiper tonius-art-focus">
                             <div class="swiper-wrapper">
                                 <div class="swiper-slide">
                                     <div class="swiper-zoom-container">
-                                        <img src="res/Plane-Window-View.png" style="width:100%">
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <br />
-                        <div class="swiper mySwiper tonius-art-focus">
-                            <div class="swiper-wrapper">
-                                <div class="swiper-slide">
-                                    <div class="swiper-zoom-container">
-                                        <img src="res/XiaoLanzaDelRelampago.png" style="width:100%">
+                                        <img class="modal-trigger" title="res/Arisen's_Heart.png" src="res/Arisen's_Heart.png" style="width:100%">
                                     </div>
                                 </div>
                             </div>
                         </div>
                         <br />
                     </div>
-                    <button class="tonius-button-dark w3-button w3-margin-bottom" id="toggle" style="width:100%">Show me more drawings!</button>
+
+                    <div class="w3-third">
+                        <div class="swiper mySwiper tonius-art-focus">
+                            <div class="swiper-wrapper">
+                                <div class="swiper-slide">
+                                    <div class="swiper-zoom-container">
+                                        <img class="modal-trigger" title="res/Kulve.png" src="res/KulveRight.jpg" style="width: 100%;">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="swiper mySwiper tonius-art-focus">
+                            <div class="swiper-wrapper">
+                                <div class="swiper-slide">
+                                    <div class="swiper-zoom-container">
+                                        <img class="modal-trigger" title="res/Fatalis.png" src="res/FatalisRight.jpg" style="width:100%">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="swiper mySwiper tonius-art-focus">
+                            <div class="swiper-wrapper">
+                                <div class="swiper-slide">
+                                    <div class="swiper-zoom-container">
+                                        <img class="modal-trigger" title="res/Askeladd[webpage-preview].png" src="res/Askeladd[webpage-preview].png" style="width:100%">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="swiper mySwiper tonius-art-focus">
+                            <div class="swiper-wrapper">
+                                <div class="swiper-slide">
+                                    <div class="swiper-zoom-container">
+                                        <img class="modal-trigger" title="res/GrigoriςWallArt.png" src="res/GrigoriRight.jpg" style="width:100%">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="swiper mySwiper tonius-art-focus">
+                            <div class="swiper-wrapper">
+                                <div class="swiper-slide">
+                                    <div class="swiper-zoom-container">
+                                        <img class="modal-trigger" title="res/Horror-HuTao-Noised.png" src="res/Horror-HuTao-Noised.png" style="width:100%" id="art2">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="swiper mySwiper tonius-art-focus">
+                            <div class="swiper-wrapper">
+                                <div class="swiper-slide">
+                                    <div class="swiper-zoom-container">
+                                        <img class="modal-trigger" title="res/Wilds.png" src="res/WildsRight.png" style="width:100%">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="swiper mySwiper tonius-art-focus">
+                            <div class="swiper-wrapper">
+                                <div class="swiper-slide">
+                                    <div class="swiper-zoom-container">
+                                        <img class="modal-trigger" title="res/XiaoLanzaDelRelampago.png" src="res/XiaoLanzaDelRelampago.png" style="width:100%">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="swiper mySwiper tonius-art-focus">
+                            <div class="swiper-wrapper">
+                                <div class="swiper-slide">
+                                    <div class="swiper-zoom-container">
+                                        <img class="modal-trigger" title="res/GhostLeviathanWallArt50%.png" src="res/GhostLevRight.png" style="width:100%">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="swiper mySwiper tonius-art-focus">
+                            <div class="swiper-wrapper">
+                                <div class="swiper-slide">
+                                    <div class="swiper-zoom-container">
+                                        <img class="modal-trigger" title="res/Cave.png" src="res/Cave.png" style="width:100%">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="swiper mySwiper tonius-art-focus">
+                            <div class="swiper-wrapper">
+                                <div class="swiper-slide">
+                                    <div class="swiper-zoom-container">
+                                        <img class="modal-trigger" title="res/Plane-Window-View.png" src="res/Plane-Window-View.png" style="width:100%">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <br />
+                    </div>
+                    <!---                    <button class="tonius-button-dark w3-button w3-margin-bottom" id="toggle" style="width:100%">Show me more drawings!</button> -->
+                    <div id="toggle"></div>
                 </div>
             </div>
         </div>
 
         <!-- The Github Section -->
         <div class="tonius-dark dirt" id="github">
-            <div class="w3-container w3-content w3-padding-64" style="max-width:800px">
+            <div class="w3-container w3-content w3-padding-64 tonius-container" style="max-width:2000px">
                 <h2 class="w3-wide w3-center" style="font-family: 'Courier New'">GITHUB REPOSITORIES</h2>
                 <p class="w3-opacity w3-center"><i>A few of my repositories are kept public.</i></p><br>
                 <br />
@@ -580,101 +738,91 @@
                 <br />
 
                 <div class="w3-row-padding w3-padding-32" style="margin:0 -16px">
-                    <div class="w3-third w3-margin-bottom">
-                        <div class="w3-container tonius-white tonius-focus">
-                            <div class="g-background"></div>
-                            <p><b>Educational-Software</b></p>
-                            <p class="w3-opacity">Jun 16, 2023</p>
-                            <p>This Greek app was made as a demo for a university project.</p>
-                            <form action="https://github.com/AnthonyAl/Educational-Software">
-                                <button style="border-radius: 3%;" class="tonius-button-dark w3-button w3-margin-bottom">Check repository</button>
-                            </form>
+                    <a href="https://github.com/AnthonyAl/Educational-Software">
+                        <div class="parallax w3-card-4 w3-third w3-th tonius-focus w3-margin-bottom" style="border-radius: 1px">
+                            <p style="font-size: larger; margin-left: 8px"><b>  Educational-Software</b></p>
+                            <br />
+                            <br />
+                            <img style="width: 100%; object-fit: cover; aspect-ratio: 4/3" src="res/edsoft.png" />
+                            <br />
+                            <br />
+                            <div class="w3-container w3-center">
+                                <p class="w3-opacity">Jun 16, 2023</p>
+                                <p style="font-size: large">This Greek app was made as a demo for a university project.</p>
+                                <br />
+                                <br />
+                                <br />
+                                <br />
+                                <div style="width: 100%; position: relative; text-align: center">
+                                    <h4 style="font-family: 'Courier New'; text-decoration: double;" class="w3-margin-bottom tonius-button-dark w3-button w3-margin-bottom">Check repository</h4>
+                                </div>
+                            </div>
                         </div>
-                    </div>
-                    <div class="w3-third w3-margin-bottom">
-                        <div class="w3-container tonius-white tonius-focus">
-                            <div class="g-background"></div>
-                            <p><b>Echo Trials</b></p>
-                            <p class="w3-opacity">Dec 15, 2024</p>
-                            <p>A 2D platformer with unique mechanics and particle effects.</p>
-                            <form action="https://github.com/AnthonyAl/EchoTrials">
-                                <button style="border-radius: 3%;" class="tonius-button-dark w3-button w3-margin-bottom">Check repository</button>
-                            </form>
+                    </a>
+                    <a href="https://github.com/AnthonyAl/EchoTrials">
+                        <div class="parallax w3-card-4 w3-third w3-th tonius-focus w3-margin-bottom" style="border-radius: 1px">
+                            <p style="font-size: larger; margin-left: 8px"><b>  Echo Trials</b></p>
+                            <br />
+                            <br />
+                            <img style="width: 100%; object-fit: cover; aspect-ratio: 4/3 " src="res/EchoTrials.png" />
+                            <br />
+                            <br />
+                            <div class="w3-container w3-center">
+                                <p class="w3-opacity">Dec 15, 2024</p>
+                                <p style="font-size: large">A 2D platformer with unique mechanics and particle effects.</p>
+                                <br />
+                                <br />
+                                <br />
+                                <br />
+                                <div style="width: 100%; position: relative; text-align: center">
+                                    <h4 style="font-family: 'Courier New'; text-decoration: double;" class="w3-margin-bottom tonius-button-dark w3-button w3-margin-bottom">Check repository</h4>
+                                </div>
+                            </div>
                         </div>
-                    </div>
-                    <div class="w3-third w3-margin-bottom">
-                        <div class="w3-container tonius-white tonius-focus">
-                            <div class="g-background"></div>
-                            <p><b>MinecraftPluginTemplate</b></p>
-                            <p class="w3-opacity">Sep 24, 2022</p>
-                            <p>This is a Spigot template for faster creation of new plugins.</p>
-                            <form action="https://github.com/AnthonyAl/MinecraftPluginTemplate">
-                                <button style="border-radius: 3%;" class="tonius-button-dark w3-button w3-margin-bottom">Check repository</button>
-                            </form>
+                    </a>
+                    <a href="https://github.com/AnthonyAl/MinecraftPluginTemplate">
+                        <div class="parallax w3-card-4 w3-third w3-th tonius-focus w3-margin-bottom" style="border-radius: 1px">
+                            <p style="font-size: larger; margin-left: 8px"><b>  MinecraftPluginTemplate</b></p>
+                            <br />
+                            <br />
+                            <img style="width: 100%; object-fit: fill; aspect-ratio: 4/3 " src="res/SPIGOT.jpg" />
+                            <br />
+                            <br />
+                            <div class="w3-container w3-center">
+                                <p class="w3-opacity">Sep 24, 2022</p>
+                                <p style="font-size: large">This is a Spigot template for faster creation of new plugins.</p>
+                                <br />
+                                <br />
+                                <br />
+                                <br />
+                                <div style="width: 100%; position: relative; text-align: center">
+                                    <h4 style="font-family: 'Courier New'; text-decoration: double;" class="w3-margin-bottom tonius-button-dark w3-button w3-margin-bottom">Check repository</h4>
+                                </div>
+                            </div>
                         </div>
-                    </div>
+                    </a>
+
                 </div>
-                <br />
-                <br />
-                <br />
             </div>
+            <br />
+            <br />
+            <br />
+            <br />
+            <br />
+            <br />
         </div>
-
         <!-- The Featured Project Section -->
-        <div class="parallax w3-container w3-padding-64" id="projects">
-            <div style="max-width: 2300px; margin-left: auto; margin-right: auto;">
-                <h2 class="w3-wide w3-center" style="font-family: 'Courier New'">FEATURED PAINTINGS</h2>
-                <p class="w3-opacity w3-center"><i>My most beloved art pieces</i></p>
-
-                <h3 class="w3-wide w3-center" style="font-family: 'Courier New'"><b>The Legendary Black Dragon: Fatalis</b></h3>
-                <p class="w3-opacity w3-center"><i>from Monster Hunter</i></p>
-                <div class="swiper mySwiper tonius-art-focus" style="border-radius: 0.5%;">
-                    <div class="swiper-wrapper">
-                        <div class="swiper-slide">
-                            <div class="swiper-zoom-container">
-                                <img src="res/Fatalis.png" style="width:100%" id="projects2">
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <br />
-
-                <h3 class="w3-wide w3-center" style="font-family: 'Courier New'"><b>The Glittering Dragon made of Blistering Gold: Kulve Taroth</b></h3>
-                <p class="w3-opacity w3-center"><i>from Monster Hunter World</i></p>
-                <div class="swiper mySwiper tonius-art-focus" style="border-radius: 0.5%;">
-                    <div class="swiper-wrapper">
-                        <div class="swiper-slide">
-                            <div class="swiper-zoom-container">
-                                <img src="res/Kulve.png" style="width:100%">
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <br />
-
-                <h3 class="w3-wide w3-center" style="font-family: 'Courier New'"><b>The Nightmarish Howls that Haunt the Midnights: Nargacuga</b></h3>
-                <p class="w3-opacity w3-center"><i>from Monster Hunter</i></p>
-                <div class="swiper mySwiper tonius-art-focus" style="border-radius: 0.5%;">
-                    <div class="swiper-wrapper">
-                        <div class="swiper-slide">
-                            <div class="swiper-zoom-container">
-                                <img src="res/Nargacuga.png" style="width:100%">
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <br />
-                <br />
-                <br />
-                <br />
-                <br />
-
-                <h2 class="w3-wide w3-center" style="font-family: 'Courier New'">FEATURED PROJECTS</h2>
+        <div class="parallax w3-padding-64" id="projects">
+            <div class="w3-container w3-content w3-padding-64 tonius-container" style="max-width:2000px" id="projects2">
+                <h2 class="w3-wide w3-center" style="font-family: 'Courier New'">FEATURED PROJECT</h2>
                 <p class="w3-opacity w3-center"><i>My most recent project</i></p>
                 <h3 class="w3-wide w3-center" style="font-family: 'Courier New'">ECHO TRIALS VIDEO GAME</h3>
-                <div class="w3-container tonius-white tonius-focus" style="width: 100%; border-radius: 0.5%">
-                    <a href="https://anthonyal.github.io/EchoTrials/" style="display: block; height: 100%; width: 100%; text-decoration: none;">
+                <a href="https://anthonyal.github.io/EchoTrials/" style="display: block; height: 100%; width: 100%; text-decoration: none;">
+                    <div class="tonius-dark dirt w3-container tonius-focus" style="width: 100%; border-radius: 0.5%">
                         <img class="squiggle" src="res/EchoTrials.png" style="width: 102.5%; border-radius: 1%; transform: translate(-1.25%, -0.25%)">
+                        <br />
+                        <br />
+                        <br />
                         <h3 style="text-align: center;"><b>A Challenging 2D Platformer</b></h3>
                         <p class="w3-opacity" style="text-align: center;">Test your intuition, memory, and patience</p>
                         <br />
@@ -684,16 +832,29 @@
                             and face the ultimate challenge in the final level that combines all mechanics.
                             Features a Speedrun mode with shared lives for competitive players seeking additional excitement.
                         </h5>
-                        <br/>
+                        <br />
                         <div style="width: 100%; position: relative; text-align: center">
-                            <h4 style="font-family: 'Courier New'; text-decoration: double; color: #1b1b2e" class="w3-margin-bottom">Visit Web Page</h4>
+                            <h4 style="font-family: 'Courier New'; text-decoration: double;" class="w3-margin-bottom tonius-button-dark w3-button w3-margin-bottom">Visit Web Page</h4>
                         </div>
-                </div>
+                    </div>
                 </a>
             </div>
         </div>
 
-        <!-- End Page Content -->
+    </div>
+
+    <!-- End Page Content -->
+    <!-- The Modal -->
+    <div id="myModal" class="modal">
+        <div class="swiper mySwiper">
+            <div class="swiper-wrapper">
+                <div class="swiper-slide">
+                    <div class="swiper-zoom-container">
+                        <img class="modal-content" id="modal-image">
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
 
     <!-- Footer -->
@@ -719,23 +880,24 @@
     </footer>
 
     <script src="finisher-header.es5.min.js" type="text/javascript"></script>
-      <!-- Swiper JS -->
+    <!-- Swiper JS -->
     <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
 
 
     <script>
+
         var swiper_git = new Swiper(".mySwiperGit", {
-              spaceBetween: 30,
-              effect: "fade",
-              navigation: {
+            spaceBetween: 30,
+            effect: "fade",
+            navigation: {
                 nextEl: ".swiper-button-next",
                 prevEl: ".swiper-button-prev",
-              },
-              pagination: {
+            },
+            pagination: {
                 el: ".swiper-pagination",
                 clickable: true,
-              },
-            });
+            },
+        });
 
         var swiper = new Swiper(".mySwiper", {
             zoom: true,
@@ -901,6 +1063,56 @@
                 } // End if
             });
         });
+
+        // Only initialize for elements with specific class 'modal-trigger'
+        const modalTriggers = document.querySelectorAll('.modal-trigger');
+
+        // Only proceed if we find modal trigger elements
+        if (modalTriggers.length > 0) {
+            const modal = document.getElementById("myModal");
+            const modalImg = document.getElementById("modal-image");
+
+            // Add click event only to modal trigger images
+            modalTriggers.forEach(img => {
+                img.addEventListener('click', function (e) {
+                    e.stopPropagation(); // Prevent event bubbling
+                    modal.style.display = "block";
+                    modalImg.src = this.title;
+
+                    modalImg.onload = function () {
+                        const viewportWidth = window.innerWidth * 0.8;  // 90% of viewport width
+                        const viewportHeight = window.innerHeight * 0.8; // 90% of viewport height
+
+                        // Calculate scaling ratio to fit within viewport while maintaining aspect ratio
+                        const widthRatio = viewportWidth / this.naturalWidth;
+                        const heightRatio = viewportHeight / this.naturalHeight;
+                        const scale = Math.min(1, widthRatio, heightRatio);
+
+                        // Set the container size to match the scaled image
+                        const swiper = modal.querySelector('.swiper');
+                        if (swiper) {
+                            swiper.style.width = `${this.naturalWidth * scale}px`;
+                            swiper.style.height = `${this.naturalHeight * scale}px`;
+                        }
+                    };
+                });
+            });
+
+            // Optional: Close modal when clicking outside the image
+            modal.addEventListener('click', function (e) {
+                if (e.target === modal) {
+                    modal.style.display = "none";
+                }
+            });
+
+            // Add escape key listener
+            document.addEventListener('keydown', function (e) {
+                if (e.key === 'Escape' && modal.style.display === "block") {
+                    modal.style.display = "none";
+                }
+            });
+
+        }
 
     </script>
 

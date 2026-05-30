@@ -9,11 +9,41 @@
     <link rel="stylesheet" href="core.css">
     <link rel="stylesheet" href="particles.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>  
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <!-- Link Swiper's CSS -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
-
     <style>
+
+        #myModal.zoomed-fullscreen {
+            position: fixed !important;
+            top: 0 !important;
+            left: 0 !important;
+            width: 100vw !important;
+            height: 100vh !important;
+            margin: 0 !important;
+            padding: 0 !important; /* CRITICAL: This overrides your original padding-top: 100px */
+            background: rgba(0, 0, 0, 0.95) !important;
+            z-index: 99999 !important;
+            /* Use Flexbox to perfectly center the Swiper container inside */
+            display: flex !important;
+            align-items: center !important;
+            justify-content: center !important;
+        }
+
+            #myModal.zoomed-fullscreen .mySwiper {
+                width: 95vw !important;
+                height: 95vh !important;
+            }
+
+            #myModal.zoomed-fullscreen .modal-content {
+                width: 100% !important;
+                height: 100% !important;
+                max-width: none !important;
+                max-height: none !important;
+                object-fit: contain !important; /* Keeps the aspect ratio intact */
+                margin: 0 !important;
+                border-radius: 8px !important; /* Optional: A soft rounded corner looks great at 95% */
+            }
 
         .squiggle {
             filter: url(#torn-paper);
@@ -42,7 +72,7 @@
         }
 
         #myNavbar, .nav, .nav2 {
-            z-index: 3;
+            z-index: 20;
         }
 
         .tonius-focus {
@@ -55,9 +85,9 @@
             padding-bottom: 4px;
         }
 
-        .tonius-art-focus:hover {
-            opacity: 0.7;
-        }
+            .tonius-art-focus:hover {
+                opacity: 0.7;
+            }
 
         /* The Modal (background) */
         .modal {
@@ -67,8 +97,8 @@
             padding-top: 100px; /* Location of the box */
             left: 0;
             top: 0;
-            width: 100%; /* Full width */
-            height: 100%; /* Full height */
+            width: 100vw; /* Full width */
+            height: 100vh; /* Full height */
             overflow: auto; /* Enable scroll if needed */
             background-color: rgb(0,0,0); /* Fallback color */
             background-color: rgba(0,0,0,0.9); /* Black w/ opacity */
@@ -170,8 +200,9 @@
         }
 
         .progress-container {
-            height: 0px;
-            width: 100%;
+            height: 1vh;
+            width: 100vw;
+            z-index: 999;
         }
 
         .progress-bar {
@@ -180,7 +211,7 @@
             opacity: 0.8;
             background: #fff;
             width: 0%;
-            z-index: 5;
+            z-index: 999;
         }
 
         .tonius-big-text {
@@ -264,9 +295,140 @@
                 height: 100%;
                 object-fit: cover;
             }
+
+        /* Square Icon Buttons */
+        .trigger-btn {
+            width: 10vw;
+            height: 10vw;
+            cursor: pointer;
+            border: 1px solid var(--subtle-border);
+            border-radius: 8px; /* Slight rounding looks better, but it remains visually square */
+            background-color: var(--fg-color);
+            color: var(--text-color);
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 24px;
+            margin-right: 2vw;
+            transition: background-color 0.3s ease, border-color 0.3s ease;
+        }
+
+            /* Icon wrapper for the scale effects */
+            .trigger-btn .icon {
+                transition: transform 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+            }
+
+        .icon {
+            transform: scale(2);
+        }
+
+        /* Hover: Icon gets larger */
+        .trigger-btn:hover .icon {
+            transform: scale(2.5);
+        }
+
+        /* Click-hold (active): Icon shrinks */
+        .trigger-btn:active .icon {
+            transform: scale(1.7);
+        }
+
+        @media screen and (max-width: 768px) {
+            /* Base size for phones */
+            .icon {
+                transform: scale(1);
+            }
+
+            /* Hover state (Note: hover can sometimes stick on touch screens) */
+            .trigger-btn:hover .icon {
+                transform: scale(1.2);
+            }
+
+            /* Active/Tap state */
+            .trigger-btn:active .icon {
+                transform: scale(0.8);
+            }
+        }
+
+        /* Selected State (Modal is showing) */
+        .trigger-btn.selected {
+            background-color: var(--active-color);
+            border-color: rgba(255, 255, 255, 0.4);
+            color: black;
+        }
+
+        /* Container that scales its height */
+        #modal-container {
+            position: relative;
+            width: 100%;
+            height: 0;
+            overflow: hidden;
+            transition: height 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        /* Modal styling */
+        .custom-modal {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            box-sizing: border-box;
+            /* Hidden state */
+            opacity: 0;
+            visibility: hidden;
+            transform: translateY(-30px);
+            transition: opacity 0.6s ease, transform 0.6s ease, visibility 0.6s;
+        }
+
+            /* Active Modal state */
+            .custom-modal.active {
+                opacity: 1;
+                visibility: visible;
+                transform: translateY(0);
+            }
+
+        /* Footer and close button */
+        .modal-footer {
+            text-align: center;
+            padding-top: 20px;
+            border-top: 1px solid var(--subtle-border);
+        }
+
+        .close-btn {
+            background: var(--fg-color);
+            color: var(--text-color);
+            border: 2px solid var(--subtle-border);
+            border-radius: 50%;
+            width: 50px;
+            height: 50px;
+            font-size: 24px;
+            cursor: pointer;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s ease;
+        }
+
+            .close-btn:hover {
+                background: var(--text-color);
+                color: var(--bg-color);
+                transform: translateY(-3px);
+            }
+
+
+        a.w3-button {
+            text-decoration: none !important;
+        }
+
+        .avatar {
+            height: 100vh !important;
+            width: 100vw !important;
+            object-fit: cover !important;
+            object-position: center center !important;
+        }
     </style>
 </head>
 <body>
+
 
     <!-- Firefly effects (number of div signifies the amount of flies) -->
     <div class="firefly"></div>
@@ -285,67 +447,30 @@
     <div class="firefly"></div>
     <div class="firefly"></div>
 
-
-    <!-- Icon Bar (Sidebar - hidden on small and medium screens) -->
-    <nav class="w3-sidebar w3-bar-block w3-small w3-hide-small w3-hide-medium w3-center nav" id="mainNavbar">
-        <!-- Avatar image in top left corner -->
-        <img src="res/Tonius(Github Profile).jpg" style="width:100%">
+    <!-- Navbar on very short height screens (Hidden on heigh screens) -->
+    <div class="w3-top nav2">
+        <div class="w3-bar w3-black w3-opacity w3-hover-opacity-off w3-center w3-large">
+            <a class="w3-bar-item w3-button" style="width:16.5% !important" draggable="false" onclick="closeCurrentModal()">HOME</a>
+            <a href="#art" class="w3-bar-item w3-button" style="width:20% !important" draggable="false" onclick="handleButtonClick('modal-1')">ART</a>
+            <a href="#github" class="w3-bar-item w3-button" style="width:20% !important" draggable="false" onclick="handleButtonClick('modal-2')">GIT</a>
+            <a href="#thesis" class="w3-bar-item w3-button" style="width:20% !important" draggable="false" onclick="handleButtonClick('modal-3')">NOW</a>
+            <a href="#contact" class="w3-bar-item w3-button" style="width:23.5% !important" draggable="false" onclick="handleButtonClick('modal-5')">CONTACT</a>
+        </div>
         <div class="progress-container">
             <div class="progress-bar" id="myBar"></div>
-        </div>
-        <a href="#home" class="button w3-bar-item w3-button w3-padding-large" id="btn1" tabindex="1" draggable="false">
-            <i class="fa fa-home w3-xxlarge "></i>
-            <p>HOME</p>
-        </a>
-        <a href="#art" class="button w3-bar-item w3-button w3-padding-large" id="btn2" tabindex="2" draggable="false">
-            <i class="fa fa-pencil w3-xxlarge"></i>
-            <p>MY ART</p>
-        </a>
-        <a href="#github" class="button w3-bar-item w3-button w3-padding-large" id="btn3" tabindex="3" draggable="false">
-            <i class="fa fa-github w3-xxlarge"></i>
-            <p>GITHUB</p>
-        </a>
-        <a href="#projects" class="button w3-bar-item w3-button w3-padding-large" id="btn4" tabindex="4" draggable="false">
-            <i class="fa fa-eye w3-xxlarge"></i>
-            <p>FEATURED CONTENT</p>
-        </a>
-        <a href="#contact" class="button w3-bar-item w3-button w3-padding-large" id="btn5" tabindex="5" draggable="false">
-            <i class="fa fa-envelope w3-xxlarge"></i>
-            <p>CONTACT</p>
-        </a>
-    </nav>
-
-    <!-- Navbar on small screens (Hidden on large screens)  -->
-    <div class="w3-top w3-hide-large" id="myNavbar">
-        <div class="w3-bar w3-black w3-opacity w3-hover-opacity-off w3-center w3-small">
-            <a href="#home" class="w3-bar-item w3-button" style="width:25% !important" draggable="false">HOME</a>
-            <a href="#art" class="w3-bar-item w3-button" style="width:25% !important" draggable="false">ART</a>
-            <a href="#github" class="w3-bar-item w3-button" style="width:25% !important" draggable="false">GIT</a>
-            <a href="#projects" class="w3-bar-item w3-button" style="width:25% !important" draggable="false">NOW</a>
-        </div>
-    </div>
-
-    <!-- Navbar on very short height screens (Hidden on heigh screens) -->
-    <div class="w3-top w3-hide-small nav2">
-        <div class="w3-bar w3-black w3-opacity w3-hover-opacity-off w3-center w3-small">
-            <a href="#home" class="w3-bar-item w3-button" style="width:16.5% !important" draggable="false">HOME</a>
-            <a href="#art" class="w3-bar-item w3-button" style="width:20% !important" draggable="false">ART</a>
-            <a href="#github" class="w3-bar-item w3-button" style="width:20% !important" draggable="false">GIT</a>
-            <a href="#projects" class="w3-bar-item w3-button" style="width:20% !important" draggable="false">NOW</a>
-            <a href="#contact" class="w3-bar-item w3-button" style="width:23.5% !important" draggable="false">CONTACT</a>
         </div>
     </div>
 
     <!-- Page content -->
     <div class="w3-content" style="max-width:8000px;margin-top:0px" , id="main">
-
         <!-- The Home Section -->
         <div class="w3-center w3-padding-32 forest"
              style="color: #fff !important; width: 100%; height: 100vh; min-height: 1100px;" id="home">
 
+            <img class="avatar" src="res/Portrait Subject.png" style="position: absolute; top: 0; left: 0; z-index: 5; pointer-events: none;">
             <div style="width: 100%; transform: translate(0%, 50%)">
                 <div>
-                    <div class="w3-center" style="width=100vw; background-color: black; opacity: 0.5">
+                    <div class="w3-center" style="width: 100vw; background-color: black; opacity: 0.5">
                         <h1 class="w3-wide w3-center tonius-big-text" style="font-family: 'Courier New'; opacity: 1">
 
                             <br> ANTHONY
@@ -373,534 +498,583 @@
             <br />
             <br />
             <br />
-            <br />
-            <br />
-            <br />
-            <br />
-            <br />
-            <br />
-            <br />
-            <!-- The About me Section -->
-            <div class="w3-container w3-padding-32" id="about">
-                <div>
-                    <p class="w3-opacity w3-center" style="font-size:large">
-                        <i>
-                            As a student of an Informatics department who loves to create in all manners of art, <br>
-                        </i>
-                        <i>
-                            I have currently found myself in the world of game development. I am aiming to utilize <br>
-                        </i>
-                        <i>
-                            all my knowledge and artistic energy to manifest all my creative ideas.
-                        </i>
-                    </p>
-                </div>
-            </div>
-        </div>
-
-        <!-- The Art Section -->
-        <div class="parallax w3-padding-64" id="art">
-            <div style="max-width: 2000px; margin-left: auto; margin-right: auto;" class="tonius-container">
-                <h2 class="w3-wide w3-center" style="font-family: 'Courier New'">MY ART</h2>
-                <p class="w3-opacity w3-center"><i>these are some of my favourite creations</i></p>
-                <br />
-                <div class="w3-row-padding">
-                    <div class="w3-third">
-                        <div class="swiper mySwiper tonius-art-focus">
-                            <div class="swiper-wrapper">
-                                <div class="swiper-slide">
-                                    <div class="swiper-zoom-container">
-                                        <img class="modal-trigger" title="res/Kulve.png" src="res/KulveLeft.jpg" style="width: 100%;">
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="swiper mySwiper tonius-art-focus">
-                            <div class="swiper-wrapper">
-                                <div class="swiper-slide">
-                                    <div class="swiper-zoom-container">
-                                        <img class="modal-trigger" title="res/ZohShia.png" src="res/zs1.png" style="width: 100%;">
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="swiper mySwiper tonius-art-focus">
-                            <div class="swiper-wrapper">
-                                <div class="swiper-slide">
-                                    <div class="swiper-zoom-container">
-                                        <img class="modal-trigger" title="res/ZohShia.png" src="res/zs4.png" style="width: 100%;">
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="swiper mySwiper tonius-art-focus">
-                            <div class="swiper-wrapper">
-                                <div class="swiper-slide">
-                                    <div class="swiper-zoom-container">
-                                        <img class="modal-trigger" title="res/Fatalis.png" src="res/FatalisLeft.jpg" style="width:100%">
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="swiper mySwiper tonius-art-focus">
-                            <div class="swiper-wrapper">
-                                <div class="swiper-slide">
-                                    <div class="swiper-zoom-container">
-                                        <img class="modal-trigger" title="res/Nargacuga.png" src="res/NargaLeft.png" style="width:100%">
-                                    </div>
-                                </div>
-                                <div class="swiper-slide">
-                                    <div class="swiper-zoom-container">
-                                        <img class="modal-trigger" title="res/Nargacuga.png" src="res/NargaMid.png" style="width:100%">
-                                    </div>
-                                </div>
-                                <div class="swiper-slide">
-                                    <div class="swiper-zoom-container">
-                                        <img class="modal-trigger" title="res/Nargacuga.png" src="res/NargaRight.png" style="width:100%">
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="swiper mySwiper tonius-art-focus">
-                            <div class="swiper-wrapper">
-                                <div class="swiper-slide">
-                                    <div class="swiper-zoom-container">
-                                        <img class="modal-trigger" title="res/GrigoriςWallArt.png" src="res/GrigoriLeft.jpg" style="width:100%">
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="swiper mySwiper tonius-art-focus">
-                            <div class="swiper-wrapper">
-                                <div class="swiper-slide">
-                                    <div class="swiper-zoom-container">
-                                        <img class="modal-trigger" title="res/Shara_Ishvalda.png" src="res/Shara_Ishvalda.png" style="width:100%">
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="swiper mySwiper tonius-art-focus">
-                            <div class="swiper-wrapper">
-                                <div class="swiper-slide">
-                                    <div class="swiper-zoom-container">
-                                        <img class="modal-trigger" title="res/Wilds.png" src="res/WildsLeft.png" style="width:100%">
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="swiper mySwiper tonius-art-focus">
-                            <div class="swiper-wrapper">
-                                <div class="swiper-slide">
-                                    <div class="swiper-zoom-container">
-                                        <img class="modal-trigger" title="res/Susho[webpage-preview].png" src="res/Susho[webpage-preview].png" style="width:100%">
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="swiper mySwiper tonius-art-focus">
-                            <div class="swiper-wrapper">
-                                <div class="swiper-slide">
-                                    <div class="swiper-zoom-container">
-                                        <img class="modal-trigger" title="res/GhostLeviathanWallArt.png" src="res/GhostLevLeft.png" style="width:100%">
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="swiper mySwiper tonius-art-focus">
-                            <div class="swiper-wrapper">
-                                <div class="swiper-slide">
-                                    <div class="swiper-zoom-container">
-                                        <img class="modal-trigger" title="res/night_piano_skies.png" src="res/night_piano_skies.png" style="width:100%">
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="swiper mySwiper tonius-art-focus">
-                            <div class="swiper-wrapper">
-                                <div class="swiper-slide">
-                                    <div class="swiper-zoom-container">
-                                        <img class="modal-trigger" title="res/GenryusaiYamamoto.png" src="res/GenryusaiYamamoto.png" style="width:100%">
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <br />
-                    </div>
-                    <div class="w3-third">
-                        <div class="swiper mySwiper tonius-art-focus">
-                            <div class="swiper-wrapper">
-                                <div class="swiper-slide">
-                                    <div class="swiper-zoom-container">
-                                        <img class="modal-trigger" title="res/Kulve.png" src="res/KulveMid.jpg" style="width: 100%;">
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="swiper mySwiper tonius-art-focus">
-                            <div class="swiper-wrapper">
-                                <div class="swiper-slide">
-                                    <div class="swiper-zoom-container">
-                                        <img class="modal-trigger" title="res/ZohShia.png" src="res/zs2.png" style="width: 100%;">
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="swiper mySwiper tonius-art-focus">
-                            <div class="swiper-wrapper">
-                                <div class="swiper-slide">
-                                    <div class="swiper-zoom-container">
-                                        <img class="modal-trigger" title="res/ZohShia.png" src="res/zs5.png" style="width: 100%;">
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="swiper mySwiper tonius-art-focus">
-                            <div class="swiper-wrapper">
-                                <div class="swiper-slide">
-                                    <div class="swiper-zoom-container">
-                                        <img class="modal-trigger" title="res/Fatalis.png" src="res/FatalisMid.jpg" style="width:100%" id="art1">
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="swiper mySwiper tonius-art-focus">
-                            <div class="swiper-wrapper">
-                                <div class="swiper-slide">
-                                    <div class="swiper-zoom-container">
-                                        <img class="modal-trigger" title="res/Dragon'sPerish.png" src="res/Dragon'sPerish.png" style="width:100%; object-position: top">
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="swiper mySwiper tonius-art-focus">
-                            <div class="swiper-wrapper">
-                                <div class="swiper-slide">
-                                    <div class="swiper-zoom-container">
-                                        <img class="modal-trigger" title="res/GrigoriςWallArt.png" src="res/GrigoriMid.jpg" style="width:100%" id="art1">
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="swiper mySwiper tonius-art-focus">
-                            <div class="swiper-wrapper">
-                                <div class="swiper-slide">
-                                    <div class="swiper-zoom-container">
-                                        <img class="modal-trigger" title="res/Tonius(Github Profile).jpg" src="res/Tonius(Github Profile).jpg" style="width:100%">
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="swiper mySwiper tonius-art-focus">
-                            <div class="swiper-wrapper">
-                                <div class="swiper-slide">
-                                    <div class="swiper-zoom-container">
-                                        <img class="modal-trigger" title="res/Wilds.png" src="res/WildsMid.png" style="width:100%">
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="swiper mySwiper tonius-art-focus">
-                            <div class="swiper-wrapper">
-                                <div class="swiper-slide">
-                                    <div class="swiper-zoom-container">
-                                        <img class="modal-trigger" title="res/FreddieMercury[minimalistic].png" src="res/FreddieMercury[minimalistic].png" style="width:100%">
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="swiper mySwiper tonius-art-focus">
-                            <div class="swiper-wrapper">
-                                <div class="swiper-slide">
-                                    <div class="swiper-zoom-container">
-                                        <img class="modal-trigger" title="res/GhostLeviathanWallArt.png" src="res/GhostLevMid.png" style="width:100%">
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-
-                        <div class="swiper mySwiper tonius-art-focus">
-                            <div class="swiper-wrapper">
-                                <div class="swiper-slide">
-                                    <div class="swiper-zoom-container">
-                                        <img class="modal-trigger" title="res/EnderDragon.png" src="res/EnderDragon.png" style="width:100%">
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="swiper mySwiper tonius-art-focus">
-                            <div class="swiper-wrapper">
-                                <div class="swiper-slide">
-                                    <div class="swiper-zoom-container">
-                                        <img class="modal-trigger" title="res/Arisen's_Heart.png" src="res/Arisen's_Heart.png" style="width:100%">
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <br />
-                    </div>
-
-                    <div class="w3-third">
-                        <div class="swiper mySwiper tonius-art-focus">
-                            <div class="swiper-wrapper">
-                                <div class="swiper-slide">
-                                    <div class="swiper-zoom-container">
-                                        <img class="modal-trigger" title="res/Kulve.png" src="res/KulveRight.jpg" style="width: 100%;">
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="swiper mySwiper tonius-art-focus">
-                            <div class="swiper-wrapper">
-                                <div class="swiper-slide">
-                                    <div class="swiper-zoom-container">
-                                        <img class="modal-trigger" title="res/ZohShia.png" src="res/zs3.png" style="width: 100%;">
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="swiper mySwiper tonius-art-focus">
-                            <div class="swiper-wrapper">
-                                <div class="swiper-slide">
-                                    <div class="swiper-zoom-container">
-                                        <img class="modal-trigger" title="res/ZohShia.png" src="res/zs6.png" style="width: 100%;">
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="swiper mySwiper tonius-art-focus">
-                            <div class="swiper-wrapper">
-                                <div class="swiper-slide">
-                                    <div class="swiper-zoom-container">
-                                        <img class="modal-trigger" title="res/Fatalis.png" src="res/FatalisRight.jpg" style="width:100%">
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="swiper mySwiper tonius-art-focus">
-                            <div class="swiper-wrapper">
-                                <div class="swiper-slide">
-                                    <div class="swiper-zoom-container">
-                                        <img class="modal-trigger" title="res/Askeladd[webpage-preview].png" src="res/Askeladd[webpage-preview].png" style="width:100%">
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="swiper mySwiper tonius-art-focus">
-                            <div class="swiper-wrapper">
-                                <div class="swiper-slide">
-                                    <div class="swiper-zoom-container">
-                                        <img class="modal-trigger" title="res/GrigoriςWallArt.png" src="res/GrigoriRight.jpg" style="width:100%">
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="swiper mySwiper tonius-art-focus">
-                            <div class="swiper-wrapper">
-                                <div class="swiper-slide">
-                                    <div class="swiper-zoom-container">
-                                        <img class="modal-trigger" title="res/Horror-HuTao-Noised.png" src="res/Horror-HuTao-Noised.png" style="width:100%" id="art2">
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="swiper mySwiper tonius-art-focus">
-                            <div class="swiper-wrapper">
-                                <div class="swiper-slide">
-                                    <div class="swiper-zoom-container">
-                                        <img class="modal-trigger" title="res/Wilds.png" src="res/WildsRight.png" style="width:100%">
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="swiper mySwiper tonius-art-focus">
-                            <div class="swiper-wrapper">
-                                <div class="swiper-slide">
-                                    <div class="swiper-zoom-container">
-                                        <img class="modal-trigger" title="res/XiaoLanzaDelRelampago.png" src="res/XiaoLanzaDelRelampago.png" style="width:100%">
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="swiper mySwiper tonius-art-focus">
-                            <div class="swiper-wrapper">
-                                <div class="swiper-slide">
-                                    <div class="swiper-zoom-container">
-                                        <img class="modal-trigger" title="res/GhostLeviathanWallArt.png" src="res/GhostLevRight.png" style="width:100%">
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="swiper mySwiper tonius-art-focus">
-                            <div class="swiper-wrapper">
-                                <div class="swiper-slide">
-                                    <div class="swiper-zoom-container">
-                                        <img class="modal-trigger" title="res/Cave.png" src="res/Cave.png" style="width:100%">
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="swiper mySwiper tonius-art-focus">
-                            <div class="swiper-wrapper">
-                                <div class="swiper-slide">
-                                    <div class="swiper-zoom-container">
-                                        <img class="modal-trigger" title="res/Plane-Window-View.png" src="res/Plane-Window-View.png" style="width:100%">
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <br />
-                    </div>
-                    <!---                    <button class="tonius-button-dark w3-button w3-margin-bottom" id="toggle" style="width:100%">Show me more drawings!</button> -->
-                    <div id="toggle"></div>
-                </div>
-            </div>
-        </div>
-
-        <!-- The Github Section -->
-        <div class="tonius-dark dirt" id="github">
-            <div class="w3-container w3-content w3-padding-64 tonius-container" style="max-width:2000px">
-                <h2 class="w3-wide w3-center" style="font-family: 'Courier New'">GITHUB REPOSITORIES</h2>
-                <p class="w3-opacity w3-center"><i>A few of my repositories are kept public.</i></p><br>
-                <br />
-                <br />
-                <br />
-
-                <div class="w3-row-padding w3-padding-32" style="margin:0 -16px">
-                    <a href="https://github.com/AnthonyAl/Educational-Software">
-                        <div class="parallax w3-card-4 w3-third w3-th tonius-focus w3-margin-bottom" style="border-radius: 1px">
-                            <p style="font-size: larger; margin-left: 8px"><b>  Educational-Software</b></p>
-                            <br />
-                            <br />
-                            <img style="width: 100%; object-fit: cover; aspect-ratio: 4/3" src="res/edsoft.PNG" />
-                            <br />
-                            <br />
-                            <div class="w3-container w3-center">
-                                <p class="w3-opacity">Jun 16, 2023</p>
-                                <p style="font-size: large">This Greek app was made as a demo for a university project.</p>
-                                <br />
-                                <br />
-                                <br />
-                                <br />
-                                <div style="width: 100%; position: relative; text-align: center">
-                                    <h4 style="font-family: 'Courier New'; text-decoration: double;" class="w3-margin-bottom tonius-button-dark w3-button w3-margin-bottom">Check repository</h4>
-                                </div>
-                            </div>
-                        </div>
-                    </a>
-                    <a href="https://github.com/AnthonyAl/EchoTrials">
-                        <div class="parallax w3-card-4 w3-third w3-th tonius-focus w3-margin-bottom" style="border-radius: 1px">
-                            <p style="font-size: larger; margin-left: 8px"><b>  Echo Trials</b></p>
-                            <br />
-                            <br />
-                            <img style="width: 100%; object-fit: cover; aspect-ratio: 4/3 " src="res/EchoTrials.png" />
-                            <br />
-                            <br />
-                            <div class="w3-container w3-center">
-                                <p class="w3-opacity">Dec 15, 2024</p>
-                                <p style="font-size: large">A 2D platformer with unique mechanics and particle effects.</p>
-                                <br />
-                                <br />
-                                <br />
-                                <br />
-                                <div style="width: 100%; position: relative; text-align: center">
-                                    <h4 style="font-family: 'Courier New'; text-decoration: double;" class="w3-margin-bottom tonius-button-dark w3-button w3-margin-bottom">Check repository</h4>
-                                </div>
-                            </div>
-                        </div>
-                    </a>
-                    <a href="https://github.com/AnthonyAl/MinecraftPluginTemplate">
-                        <div class="parallax w3-card-4 w3-third w3-th tonius-focus w3-margin-bottom" style="border-radius: 1px">
-                            <p style="font-size: larger; margin-left: 8px"><b>  MinecraftPluginTemplate</b></p>
-                            <br />
-                            <br />
-                            <img style="width: 100%; object-fit: fill; aspect-ratio: 4/3 " src="res/SPIGOT.jpg" />
-                            <br />
-                            <br />
-                            <div class="w3-container w3-center">
-                                <p class="w3-opacity">Sep 24, 2022</p>
-                                <p style="font-size: large">This is a Spigot template for faster creation of new plugins.</p>
-                                <br />
-                                <br />
-                                <br />
-                                <br />
-                                <div style="width: 100%; position: relative; text-align: center">
-                                    <h4 style="font-family: 'Courier New'; text-decoration: double;" class="w3-margin-bottom tonius-button-dark w3-button w3-margin-bottom">Check repository</h4>
-                                </div>
-                            </div>
-                        </div>
-                    </a>
-
-                </div>
-            </div>
-            <br />
-            <br />
-            <br />
-            <br />
-            <br />
-            <br />
-        </div>
-        <!-- The Featured Project Section -->
-        <div class="parallax w3-padding-64" id="projects">
-            <div class="w3-container w3-content w3-padding-64 tonius-container" style="max-width:2000px" id="projects2">
-                <h2 class="w3-wide w3-center" style="font-family: 'Courier New'">FEATURED PROJECT</h2>
-                <p class="w3-opacity w3-center"><i>My most recent project</i></p>
-                <h3 class="w3-wide w3-center" style="font-family: 'Courier New'">ECHO TRIALS VIDEO GAME</h3>
-                <a href="https://anthonyal.github.io/EchoTrials/" style="display: block; height: 100%; width: 100%; text-decoration: none;">
-                    <div class="tonius-dark dirt w3-container tonius-focus" style="width: 100%; border-radius: 0.5%">
-                        <img class="squiggle" src="res/EchoTrials.png" style="width: 102.5%; border-radius: 1%; transform: translate(-1.25%, -0.25%)">
-                        <br />
-                        <br />
-                        <br />
-                        <h3 style="text-align: center;"><b>A Challenging 2D Platformer</b></h3>
-                        <p class="w3-opacity" style="text-align: center;">Test your intuition, memory, and patience</p>
-                        <br />
-                        <h5 style="width: 80%; text-align: center; margin-left: 10%">
-                            Echo Trials is a unique 2D Java-based platformer that challenges players through distinct levels,
-                            each introducing new mechanics and obstacles. Master wall jumps, navigate treacherous pits,
-                            and face the ultimate challenge in the final level that combines all mechanics.
-                            Features a Speedrun mode with shared lives for competitive players seeking additional excitement.
-                        </h5>
-                        <br />
-                        <div style="width: 100%; position: relative; text-align: center">
-                            <h4 style="font-family: 'Courier New'; text-decoration: double;" class="w3-margin-bottom tonius-button-dark w3-button w3-margin-bottom">Visit Web Page</h4>
-                        </div>
-                    </div>
+            <div>
+                <a class="trigger-btn w3-button" onclick="closeCurrentModal()" title="Section 0" draggable="false" style="z-index: 10;">
+                    <span class="icon fa fa-home w3-xxlarge"></span>
+                </a>
+                <a class="trigger-btn w3-button" data-target="modal-1" onclick="handleButtonClick('modal-1')" title="Section 1" draggable="false" href="#art" style="z-index: 10;">
+                    <span class="icon fa fa-pencil w3-xxlarge"></span>
+                </a>
+                <a class="trigger-btn w3-button" data-target="modal-2" onclick="handleButtonClick('modal-2')" title="Section 2" draggable="false" href="#github" style="z-index: 10;">
+                    <span class="icon fa fa-github w3-xxlarge"></span>
+                </a>
+                <a class="trigger-btn w3-button" data-target="modal-3" onclick="handleButtonClick('modal-3')" title="Section 3" draggable="false" href="#thesis" style="z-index: 10;">
+                    <span class="icon fa fa-eye w3-xxlarge"></span>
+                </a>
+                <a class="trigger-btn w3-button" data-target="modal-5" onclick="handleButtonClick('modal-5')" title="Section 5" draggable="false" href="#contact" style="z-index: 10;">
+                    <span class="icon fa fa-envelope w3-xxlarge"></span>
+                </a>
+                <a class="trigger-btn w3-button" data-target="" onclick="" title="Section 5" draggable="false" href="" style="visibility: hidden;">
+                    <span></span>
                 </a>
             </div>
         </div>
 
+
+        <div id="modal-container" class="parallax">
+            <div id="modal-1" class="custom-modal">
+                <!-- The Art Section -->
+                <div id="art">
+                    <div style="max-width: 2000px; margin-left: auto; margin-right: auto;" class="tonius-container">
+                        <br />
+                        <h2 class="w3-wide w3-center" style="font-family: 'Courier New'">MY ART</h2>
+                        <p class="w3-opacity w3-center"><i>these are some of my favourite creations</i></p>
+                        <br />
+                        <div class="w3-row-padding">
+                            <div class="w3-third">
+                                <div class="swiper mySwiper tonius-art-focus">
+                                    <div class="swiper-wrapper">
+                                        <div class="swiper-slide">
+                                            <div class="swiper-zoom-container">
+                                                <img class="modal-trigger" title="res/Kulve.png" src="res/KulveLeft.jpg" style="width: 100%;">
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="swiper mySwiper tonius-art-focus">
+                                    <div class="swiper-wrapper">
+                                        <div class="swiper-slide">
+                                            <div class="swiper-zoom-container">
+                                                <img class="modal-trigger" title="res/ZohShia.png" src="res/zs1.png" style="width: 100%;">
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="swiper mySwiper tonius-art-focus">
+                                    <div class="swiper-wrapper">
+                                        <div class="swiper-slide">
+                                            <div class="swiper-zoom-container">
+                                                <img class="modal-trigger" title="res/ZohShia.png" src="res/zs4.png" style="width: 100%;">
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="swiper mySwiper tonius-art-focus">
+                                    <div class="swiper-wrapper">
+                                        <div class="swiper-slide">
+                                            <div class="swiper-zoom-container">
+                                                <img class="modal-trigger" title="res/Fatalis.png" src="res/FatalisLeft.jpg" style="width:100%">
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="swiper mySwiper tonius-art-focus">
+                                    <div class="swiper-wrapper">
+                                        <div class="swiper-slide">
+                                            <div class="swiper-zoom-container">
+                                                <img class="modal-trigger" title="res/Nargacuga.png" src="res/NargaLeft.png" style="width:100%">
+                                            </div>
+                                        </div>
+                                        <div class="swiper-slide">
+                                            <div class="swiper-zoom-container">
+                                                <img class="modal-trigger" title="res/Nargacuga.png" src="res/NargaMid.png" style="width:100%">
+                                            </div>
+                                        </div>
+                                        <div class="swiper-slide">
+                                            <div class="swiper-zoom-container">
+                                                <img class="modal-trigger" title="res/Nargacuga.png" src="res/NargaRight.png" style="width:100%">
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="swiper mySwiper tonius-art-focus">
+                                    <div class="swiper-wrapper">
+                                        <div class="swiper-slide">
+                                            <div class="swiper-zoom-container">
+                                                <img class="modal-trigger" title="res/GrigoriςWallArt.png" src="res/GrigoriLeft.jpg" style="width:100%">
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="swiper mySwiper tonius-art-focus">
+                                    <div class="swiper-wrapper">
+                                        <div class="swiper-slide">
+                                            <div class="swiper-zoom-container">
+                                                <img class="modal-trigger" title="res/Shara_Ishvalda.png" src="res/Shara_Ishvalda.png" style="width:100%">
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="swiper mySwiper tonius-art-focus">
+                                    <div class="swiper-wrapper">
+                                        <div class="swiper-slide">
+                                            <div class="swiper-zoom-container">
+                                                <img class="modal-trigger" title="res/Wilds.png" src="res/WildsLeft.png" style="width:100%">
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="swiper mySwiper tonius-art-focus">
+                                    <div class="swiper-wrapper">
+                                        <div class="swiper-slide">
+                                            <div class="swiper-zoom-container">
+                                                <img class="modal-trigger" title="res/Susho[webpage-preview].png" src="res/Susho[webpage-preview].png" style="width:100%">
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="swiper mySwiper tonius-art-focus">
+                                    <div class="swiper-wrapper">
+                                        <div class="swiper-slide">
+                                            <div class="swiper-zoom-container">
+                                                <img class="modal-trigger" title="res/GhostLeviathanWallArt.png" src="res/GhostLevLeft.png" style="width:100%">
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="swiper mySwiper tonius-art-focus">
+                                    <div class="swiper-wrapper">
+                                        <div class="swiper-slide">
+                                            <div class="swiper-zoom-container">
+                                                <img class="modal-trigger" title="res/night_piano_skies.png" src="res/night_piano_skies.png" style="width:100%">
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="swiper mySwiper tonius-art-focus">
+                                    <div class="swiper-wrapper">
+                                        <div class="swiper-slide">
+                                            <div class="swiper-zoom-container">
+                                                <img class="modal-trigger" title="res/GenryusaiYamamoto.png" src="res/GenryusaiYamamoto.png" style="width:100%">
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <br />
+                            </div>
+                            <div class="w3-third">
+                                <div class="swiper mySwiper tonius-art-focus">
+                                    <div class="swiper-wrapper">
+                                        <div class="swiper-slide">
+                                            <div class="swiper-zoom-container">
+                                                <img class="modal-trigger" title="res/Kulve.png" src="res/KulveMid.jpg" style="width: 100%;">
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="swiper mySwiper tonius-art-focus">
+                                    <div class="swiper-wrapper">
+                                        <div class="swiper-slide">
+                                            <div class="swiper-zoom-container">
+                                                <img class="modal-trigger" title="res/ZohShia.png" src="res/zs2.png" style="width: 100%;">
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="swiper mySwiper tonius-art-focus">
+                                    <div class="swiper-wrapper">
+                                        <div class="swiper-slide">
+                                            <div class="swiper-zoom-container">
+                                                <img class="modal-trigger" title="res/ZohShia.png" src="res/zs5.png" style="width: 100%;">
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="swiper mySwiper tonius-art-focus">
+                                    <div class="swiper-wrapper">
+                                        <div class="swiper-slide">
+                                            <div class="swiper-zoom-container">
+                                                <img class="modal-trigger" title="res/Fatalis.png" src="res/FatalisMid.jpg" style="width:100%" id="art1">
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="swiper mySwiper tonius-art-focus">
+                                    <div class="swiper-wrapper">
+                                        <div class="swiper-slide">
+                                            <div class="swiper-zoom-container">
+                                                <img class="modal-trigger" title="res/Dragon'sPerish.png" src="res/Dragon'sPerish.png" style="width:100%; object-position: top">
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="swiper mySwiper tonius-art-focus">
+                                    <div class="swiper-wrapper">
+                                        <div class="swiper-slide">
+                                            <div class="swiper-zoom-container">
+                                                <img class="modal-trigger" title="res/GrigoriςWallArt.png" src="res/GrigoriMid.jpg" style="width:100%" id="art1">
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="swiper mySwiper tonius-art-focus">
+                                    <div class="swiper-wrapper">
+                                        <div class="swiper-slide">
+                                            <div class="swiper-zoom-container">
+                                                <img class="modal-trigger" title="res/Tonius(Github Profile).jpg" src="res/Tonius(Github Profile).jpg" style="width:100%">
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="swiper mySwiper tonius-art-focus">
+                                    <div class="swiper-wrapper">
+                                        <div class="swiper-slide">
+                                            <div class="swiper-zoom-container">
+                                                <img class="modal-trigger" title="res/Wilds.png" src="res/WildsMid.png" style="width:100%">
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="swiper mySwiper tonius-art-focus">
+                                    <div class="swiper-wrapper">
+                                        <div class="swiper-slide">
+                                            <div class="swiper-zoom-container">
+                                                <img class="modal-trigger" title="res/FreddieMercury[minimalistic].png" src="res/FreddieMercury[minimalistic].png" style="width:100%">
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="swiper mySwiper tonius-art-focus">
+                                    <div class="swiper-wrapper">
+                                        <div class="swiper-slide">
+                                            <div class="swiper-zoom-container">
+                                                <img class="modal-trigger" title="res/GhostLeviathanWallArt.png" src="res/GhostLevMid.png" style="width:100%">
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+
+                                <div class="swiper mySwiper tonius-art-focus">
+                                    <div class="swiper-wrapper">
+                                        <div class="swiper-slide">
+                                            <div class="swiper-zoom-container">
+                                                <img class="modal-trigger" title="res/EnderDragon.png" src="res/EnderDragon.png" style="width:100%">
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="swiper mySwiper tonius-art-focus">
+                                    <div class="swiper-wrapper">
+                                        <div class="swiper-slide">
+                                            <div class="swiper-zoom-container">
+                                                <img class="modal-trigger" title="res/Arisen's_Heart.png" src="res/Arisen's_Heart.png" style="width:100%">
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <br />
+                            </div>
+
+                            <div class="w3-third">
+                                <div class="swiper mySwiper tonius-art-focus">
+                                    <div class="swiper-wrapper">
+                                        <div class="swiper-slide">
+                                            <div class="swiper-zoom-container">
+                                                <img class="modal-trigger" title="res/Kulve.png" src="res/KulveRight.jpg" style="width: 100%;">
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="swiper mySwiper tonius-art-focus">
+                                    <div class="swiper-wrapper">
+                                        <div class="swiper-slide">
+                                            <div class="swiper-zoom-container">
+                                                <img class="modal-trigger" title="res/ZohShia.png" src="res/zs3.png" style="width: 100%;">
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="swiper mySwiper tonius-art-focus">
+                                    <div class="swiper-wrapper">
+                                        <div class="swiper-slide">
+                                            <div class="swiper-zoom-container">
+                                                <img class="modal-trigger" title="res/ZohShia.png" src="res/zs6.png" style="width: 100%;">
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="swiper mySwiper tonius-art-focus">
+                                    <div class="swiper-wrapper">
+                                        <div class="swiper-slide">
+                                            <div class="swiper-zoom-container">
+                                                <img class="modal-trigger" title="res/Fatalis.png" src="res/FatalisRight.jpg" style="width:100%">
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="swiper mySwiper tonius-art-focus">
+                                    <div class="swiper-wrapper">
+                                        <div class="swiper-slide">
+                                            <div class="swiper-zoom-container">
+                                                <img class="modal-trigger" title="res/Askeladd[webpage-preview].png" src="res/Askeladd[webpage-preview].png" style="width:100%">
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="swiper mySwiper tonius-art-focus">
+                                    <div class="swiper-wrapper">
+                                        <div class="swiper-slide">
+                                            <div class="swiper-zoom-container">
+                                                <img class="modal-trigger" title="res/GrigoriςWallArt.png" src="res/GrigoriRight.jpg" style="width:100%">
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="swiper mySwiper tonius-art-focus">
+                                    <div class="swiper-wrapper">
+                                        <div class="swiper-slide">
+                                            <div class="swiper-zoom-container">
+                                                <img class="modal-trigger" title="res/Horror-HuTao-Noised.png" src="res/Horror-HuTao-Noised.png" style="width:100%" id="art2">
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="swiper mySwiper tonius-art-focus">
+                                    <div class="swiper-wrapper">
+                                        <div class="swiper-slide">
+                                            <div class="swiper-zoom-container">
+                                                <img class="modal-trigger" title="res/Wilds.png" src="res/WildsRight.png" style="width:100%">
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="swiper mySwiper tonius-art-focus">
+                                    <div class="swiper-wrapper">
+                                        <div class="swiper-slide">
+                                            <div class="swiper-zoom-container">
+                                                <img class="modal-trigger" title="res/XiaoLanzaDelRelampago.png" src="res/XiaoLanzaDelRelampago.png" style="width:100%">
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="swiper mySwiper tonius-art-focus">
+                                    <div class="swiper-wrapper">
+                                        <div class="swiper-slide">
+                                            <div class="swiper-zoom-container">
+                                                <img class="modal-trigger" title="res/GhostLeviathanWallArt.png" src="res/GhostLevRight.png" style="width:100%">
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="swiper mySwiper tonius-art-focus">
+                                    <div class="swiper-wrapper">
+                                        <div class="swiper-slide">
+                                            <div class="swiper-zoom-container">
+                                                <img class="modal-trigger" title="res/Cave.png" src="res/Cave.png" style="width:100%">
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="swiper mySwiper tonius-art-focus">
+                                    <div class="swiper-wrapper">
+                                        <div class="swiper-slide">
+                                            <div class="swiper-zoom-container">
+                                                <img class="modal-trigger" title="res/Plane-Window-View.png" src="res/Plane-Window-View.png" style="width:100%">
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <br />
+                            </div>
+                            <!---                    <button class="tonius-button-dark w3-button w3-margin-bottom" id="toggle" style="width:100%">Show me more drawings!</button> -->
+                            <div id="toggle"></div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="modal-footer">
+                    <button class="close-btn" onclick="closeCurrentModal()" title="Close and scroll up"><i class='fa fa-angle-double-up' style='font-size:48px;color:#FFFFFF'></i></button><br /><br />
+                </div>
+            </div>
+
+            <div id="modal-2" class="custom-modal">
+                <!-- The Github Section -->
+                <div class="tonius-dark" id="github">
+                    <div class="w3-container w3-content tonius-container" style="max-width:2000px">
+                        <br />
+                        <h2 class="w3-wide w3-center" style="font-family: 'Courier New'">GITHUB REPOSITORIES</h2>
+                        <p class="w3-opacity w3-center"><i>A few of my repositories are kept public.</i></p><br>
+                        <br />
+                        <br />
+                        <br />
+
+                        <div class="w3-row-padding">
+                            <a href="https://github.com/AnthonyAl/Educational-Software">
+                                <div class="dirt w3-card-4 w3-third w3-th tonius-focus w3-margin-bottom" style="border-radius: 1px;">
+                                    <p style="font-size: larger; margin-left: 8px"><b>  Educational-Software</b></p>
+                                    <br />
+                                    <br />
+                                    <img style="width: 100%; object-fit: cover; aspect-ratio: 4/3" src="res/edsoft.PNG" />
+                                    <br />
+                                    <br />
+                                    <div class="w3-container w3-center">
+                                        <p class="w3-opacity">Jun 16, 2023</p>
+                                        <p style="font-size: large">This Greek app was made as a demo for a university project.</p>
+                                        <br />
+                                        <br />
+                                        <br />
+                                        <br />
+                                        <div style="width: 100%; position: relative; text-align: center">
+                                            <h4 style="font-family: 'Courier New'; text-decoration: double;" class="w3-margin-bottom tonius-button-dark w3-button w3-margin-bottom">Check repository</h4>
+                                        </div>
+                                    </div>
+                                </div>
+                            </a>
+                            <a href="https://github.com/AnthonyAl/EchoTrials">
+                                <div class="dirt w3-card-4 w3-third w3-th tonius-focus w3-margin-bottom" style="border-radius: 1px;">
+                                    <p style="font-size: larger; margin-left: 8px"><b>  Echo Trials</b></p>
+                                    <br />
+                                    <br />
+                                    <img style="width: 100%; object-fit: cover; aspect-ratio: 4/3 " src="res/EchoTrials.png" />
+                                    <br />
+                                    <br />
+                                    <div class="w3-container w3-center">
+                                        <p class="w3-opacity">Dec 15, 2024</p>
+                                        <p style="font-size: large">A 2D platformer with unique mechanics and particle effects.</p>
+                                        <br />
+                                        <br />
+                                        <br />
+                                        <br />
+                                        <div style="width: 100%; position: relative; text-align: center">
+                                            <h4 style="font-family: 'Courier New'; text-decoration: double;" class="w3-margin-bottom tonius-button-dark w3-button w3-margin-bottom">Check repository</h4>
+                                        </div>
+                                    </div>
+                                </div>
+                            </a>
+                            <a href="https://github.com/AnthonyAl/MinecraftPluginTemplate">
+                                <div class="dirt w3-card-4 w3-third w3-th tonius-focus w3-margin-bottom" style="border-radius: 1px;">
+                                    <p style="font-size: larger; margin-left: 8px"><b>  MinecraftPluginTemplate</b></p>
+                                    <br />
+                                    <br />
+                                    <img style="width: 100%; object-fit: fill; aspect-ratio: 4/3 " src="res/SPIGOT.jpg" />
+                                    <br />
+                                    <br />
+                                    <div class="w3-container w3-center">
+                                        <p class="w3-opacity">Sep 24, 2022</p>
+                                        <p style="font-size: large">This is a Spigot template for faster creation of new plugins.</p>
+                                        <br />
+                                        <br />
+                                        <br />
+                                        <br />
+                                        <div style="width: 100%; position: relative; text-align: center">
+                                            <h4 style="font-family: 'Courier New'; text-decoration: double;" class="w3-margin-bottom tonius-button-dark w3-button w3-margin-bottom">Check repository</h4>
+                                        </div>
+                                    </div>
+                                </div>
+                            </a>
+
+                        </div>
+                    </div>
+                    <br />
+                    <br />
+                    <br />
+                    <br />
+                    <br />
+                    <br />
+                </div>
+                <div class="modal-footer">
+                    <button class="close-btn" onclick="closeCurrentModal()" title="Close and scroll up"><i class='fa fa-angle-double-up' style='font-size:48px;color:#FFFFFF'></i></button><br /><br />
+                </div>
+            </div>
+
+            <div id="modal-3" class="custom-modal">
+                <!-- The Thesis Project Section -->
+                <div id="thesis">
+                    <div class="w3-container w3-content tonius-container" style="max-width:2000px" id="projects2">
+                        <br />
+                        <h2 class="w3-wide w3-center" style="font-family: 'Courier New'">MY THESIS</h2>
+                        <p class="w3-opacity w3-center"><i>This is my Thesis on Android Video Game Design</i></p>
+                        <h3 class="w3-wide w3-center" style="font-family: 'Courier New'">ECHO TRIALS ON ANDROID</h3>
+                        <a href="https://anthonyal.github.io/EchoTrials/" style="display: block; height: 100%; width: 100%; text-decoration: none;">
+                            <div class="tonius-dark dirt w3-container tonius-focus" style="width: 100%; border-radius: 0.5%">
+                                <img class="squiggle" src="res/EchoTrials.png" style="width: 102.5%; border-radius: 1%; transform: translate(-1.25%, -0.25%)">
+                                <br />
+                                <br />
+                                <br />
+                                <h3 style="text-align: center;"><b>A Challenging 2D Platformer</b></h3>
+                                <p class="w3-opacity" style="text-align: center;">Test your intuition, memory, and patience</p>
+                                <br />
+                                <h5 style="width: 80%; text-align: center; margin-left: 10%">
+                                    Echo Trials is a unique 2D Android platformer that challenges players through distinct levels,
+                                    each introducing new mechanics and obstacles. Master wall jumps, navigate treacherous pits,
+                                    and face the ultimate challenge in the final level that combines all mechanics.
+                                    <br /><b>Features a Level Creator for full support on Community Driven Content.</b>
+                                </h5>
+                                <br />
+                                <div style="width: 100%; position: relative; text-align: center">
+                                    <h4 style="font-family: 'Courier New'; text-decoration: double;" class="w3-margin-bottom tonius-button-dark w3-button w3-margin-bottom">Visit Web Page</h4>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+                <br />
+                <br />
+                <div class="modal-footer">
+                    <button class="close-btn" onclick="closeCurrentModal()" title="Close and scroll up"><i class='fa fa-angle-double-up' style='font-size:48px;color:#FFFFFF'></i></button><br /><br />
+                </div>
+            </div>
+
+            <div id="modal-5" class="custom-modal">
+                <!-- Footer -->
+                <footer class="tonius-dark w3-container w3-center w3-xlarge" id="footer">
+
+                    <!-- The Contact Section -->
+                    <div class="w3-container" id="contact">
+                        <br />
+                        <h2 class="w3-wide w3-center" style="font-family: 'Courier New'">CONTACT</h2>
+                        <p class="w3-medium w3-opacity w3-center"><i>You can reach me through mail</i></p>
+                        <div class="w3-padding-32 w3-center">
+                            <div class="w3-large w3-margin-bottom w3-center">
+                                <i class="fa fa-map-marker" style="width:30px"> </i> Athens, Greece<br><br>
+                                <i class="fa fa-envelope" style="width:30px"> </i> Email:<br><a draggable="false">anthony.alexandris.saviolidis@gmail.com</a><br>
+                            </div>
+                        </div>
+                    </div>
+
+                    <i class="fa fa-facebook-official w3-hover-opacity"></i>
+                    <a style="text-decoration: none" href="https://www.instagram.com/antitonius/" class="fa fa-instagram w3-hover-opacity"></a>
+                    <a style="text-decoration: none" href="https://github.com/AnthonyAl" class="fa fa-github w3-hover-opacity"></a>
+                    <a style="text-decoration: none" href="https://www.deviantart.com/antitonius" class="fa fa-deviantart w3-hover-opacity"></a>
+                    <p class="w3-medium">Powered by <a style="text-decoration: none" href="https://www.w3schools.com/w3css/default.asp" target="_blank">w3.css</a></p>
+                </footer>
+                <div class="modal-footer">
+                    <button class="close-btn" onclick="closeCurrentModal()" title="Close and scroll up"><i class='fa fa-angle-double-up' style='font-size:48px;color:#FFFFFF'></i></button><br /><br />
+                </div>
+            </div>
+        </div>
     </div>
 
     <!-- End Page Content -->
@@ -917,32 +1091,71 @@
         </div>
     </div>
 
-    <!-- Footer -->
-    <footer class="tonius-dark dirt w3-container w3-center w3-xlarge w3-padding-32" id="footer">
-
-        <!-- The Contact Section -->
-        <div class="w3-container w3-padding-64" id="contact">
-            <h2 class="w3-wide w3-center" style="font-family: 'Courier New'">CONTACT</h2>
-            <p class="w3-medium w3-opacity w3-center"><i>You can reach me through mail</i></p>
-            <div class="w3-padding-32 w3-center">
-                <div class="w3-large w3-margin-bottom w3-center">
-                    <i class="fa fa-map-marker" style="width:30px"> </i> Athens, Greece<br><br>
-                    <i class="fa fa-envelope" style="width:30px"> </i> Email:<br><a draggable="false">anthony.alexandris.saviolidis@gmail.com</a><br>
-                </div>
-            </div>
-        </div>
-
-        <i class="fa fa-facebook-official w3-hover-opacity"></i>
-        <a style="text-decoration: none" href="https://www.instagram.com/antitonius/" class="fa fa-instagram w3-hover-opacity"></a>
-        <a style="text-decoration: none" href="https://github.com/AnthonyAl" class="fa fa-github w3-hover-opacity"></a>
-        <a style="text-decoration: none" href="https://www.deviantart.com/antitonius" class="fa fa-deviantart w3-hover-opacity"></a>
-        <p class="w3-medium">Powered by <a style="text-decoration: none" href="https://www.w3schools.com/w3css/default.asp" target="_blank">w3.css</a></p>
-    </footer>
-
     <script src="finisher-header.es5.min.js" type="text/javascript"></script>
     <!-- Swiper JS -->
     <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
 
+    <script>
+        const container = document.getElementById('modal-container');
+        let currentActiveModalId = null;
+
+        function handleButtonClick(modalId) {
+            // If clicking the button of the currently open modal, close it.
+            if (currentActiveModalId === modalId) {
+                closeCurrentModal();
+                return;
+            }
+
+            // If a different modal is already open, hide it instantly before showing the new one
+            if (currentActiveModalId) {
+                const oldModal = document.getElementById(currentActiveModalId);
+                const oldBtn = document.querySelector(`[data-target="${currentActiveModalId}"]`);
+                oldModal.classList.remove('active');
+                oldBtn.classList.remove('selected');
+            }
+
+            // Open the new modal
+            const targetModal = document.getElementById(modalId);
+            const targetBtn = document.querySelector(`[data-target="${modalId}"]`);
+
+            targetModal.classList.add('active');
+            targetBtn.classList.add('selected');
+
+            // Adjust container height to the new modal's content
+            container.style.height = targetModal.scrollHeight + 'px';
+
+            // Update state
+            currentActiveModalId = modalId;
+        }
+
+        function closeCurrentModal() {
+            if (!currentActiveModalId) return;
+
+            const modal = document.getElementById(currentActiveModalId);
+            const btn = document.querySelector(`[data-target="${currentActiveModalId}"]`);
+
+            // 1. Scroll back to top
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+
+            // 2. Animate modal out and shrink container
+            setTimeout(() => {
+                modal.classList.remove('active');
+                btn.classList.remove('selected');
+                container.style.height = '0px';
+
+                // Reset state
+                currentActiveModalId = null;
+            }, 300);
+        }
+
+        // Recalculate height on window resize if a modal is open
+        window.addEventListener('resize', () => {
+            if (currentActiveModalId) {
+                const activeModal = document.getElementById(currentActiveModalId);
+                container.style.height = activeModal.scrollHeight + 'px';
+            }
+        });
+    </script>
 
     <script>
 
@@ -959,111 +1172,46 @@
             },
         });
 
-        var swiper = new Swiper(".mySwiper", {
-            zoom: true,
-            grabCursor: true,
-            spaceBetween: -1,
-            initialSlide: 1,
+        // First, clear out any old window.onclick overrides to prevent conflicts
+        window.onclick = null;
+
+        // Listen for clicks anywhere on the window
+        window.addEventListener("click", function (event) {
+            const ticketModal = document.getElementById('ticketModal');
+            const zoomedModal = document.getElementById("myModal");
+
+            // 1. Handle the Ticket Modal
+            if (event.target === ticketModal) {
+                ticketModal.style.display = "none";
+            }
+
+            // 2. Handle the Zoomed Modal
+            // Check if the click hit the outer modal OR the empty dark space inside the Swiper container
+            const isSwiperBackgroundClick =
+                event.target === zoomedModal ||
+                event.target.classList.contains('swiper-slide') ||
+                event.target.classList.contains('swiper-zoom-container');
+
+            if (isSwiperBackgroundClick) {
+                // A. Force Swiper to zoom out instantly
+                if (swiper.zoom) {
+                    swiper.zoom.out();
+                }
+
+                // B. Remove the fullscreen class FIRST so the `display: flex !important` is stripped away
+                zoomedModal.classList.remove('zoomed-fullscreen');
+
+                // C. NOW apply the display none (it will actually work now)
+                zoomedModal.style.display = "none";
+
+                // D. Update Swiper internally so it doesn't glitch the next time you open it
+                setTimeout(() => {
+                    swiper.update();
+                }, 50);
+            }
         });
 
-        var color = document.getElementById("btn1").style.color;
-        var bcolor = document.getElementById("btn1").style.backgroundColor;
-        adjustStyles(document.getElementById("btn1"), "btn2", "btn3", "btn4", "btn5");
-
-        function adjustStyles(param, id1, id2, id3, id4) {
-            param.style.color = "#fff";
-            param.style.backgroundColor = "#000209";
-
-            document.getElementById(id1).style.color = color;
-            document.getElementById(id1).style.backgroundColor = bcolor;
-
-            document.getElementById(id2).style.color = color;
-            document.getElementById(id2).style.backgroundColor = bcolor;
-
-            document.getElementById(id3).style.color = color;
-            document.getElementById(id3).style.backgroundColor = bcolor;
-
-            document.getElementById(id4).style.color = color;
-            document.getElementById(id4).style.backgroundColor = bcolor;
-        }
-
-        function btn(param) {
-            if (param.id == "btn1") {
-                adjustStyles(param, "btn2", "btn3", "btn4", "btn5");
-            }
-            if (param.id == "btn2") {
-                adjustStyles(param, "btn1", "btn3", "btn4", "btn5");
-            }
-            if (param.id == "btn3") {
-                adjustStyles(param, "btn2", "btn1", "btn4", "btn5");
-            }
-            if (param.id == "btn4") {
-                adjustStyles(param, "btn2", "btn3", "btn1", "btn5");
-            }
-            if (param.id == "btn5") {
-                adjustStyles(param, "btn2", "btn3", "btn4", "btn1");
-            }
-        }
-
-        document.getElementById("toggle").onclick = function () {
-            let target = document.getElementById("toggled");
-            let button = document.getElementById("toggle");
-            target.style.display = "block";
-            button.style.display = "none";
-        }
-
-        // When the user clicks anywhere outside of the modal, close it
-        var modal = document.getElementById('ticketModal');
-        window.onclick = function (event) {
-            if (event.target == modal) {
-                modal.style.display = "none";
-            }
-        }
-
         window.onscroll = function () {
-
-            var btn = document.getElementById("btn1");
-            var myElement = document.getElementById("home");
-            var bounding = myElement.getBoundingClientRect();
-            var myElementHeight = myElement.offsetHeight;
-            elementInView(btn, bounding, myElementHeight);
-
-            var btn = document.getElementById("btn1");
-            var myElement = document.getElementById("about");
-            var bounding = myElement.getBoundingClientRect();
-            var myElementHeight = myElement.offsetHeight;
-            elementInView(btn, bounding, myElementHeight);
-
-            var btn = document.getElementById("btn2");
-            var myElement = document.getElementById("art1");
-            var bounding = myElement.getBoundingClientRect();
-            var myElementHeight = myElement.offsetHeight;
-            elementInView(btn, bounding, myElementHeight);
-
-            var btn = document.getElementById("btn2");
-            var myElement = document.getElementById("art2");
-            var bounding = myElement.getBoundingClientRect();
-            var myElementHeight = myElement.offsetHeight;
-            elementInView(btn, bounding, myElementHeight);
-
-            var btn = document.getElementById("btn3");
-            var myElement = document.getElementById("github");
-            var bounding = myElement.getBoundingClientRect();
-            var myElementHeight = myElement.offsetHeight;
-            elementInView(btn, bounding, myElementHeight);
-
-            var btn = document.getElementById("btn4");
-            var myElement = document.getElementById("projects2");
-            var bounding = myElement.getBoundingClientRect();
-            var myElementHeight = myElement.offsetHeight;
-            elementInView(btn, bounding, myElementHeight);
-
-            var btn = document.getElementById("btn5");
-            var myElement = document.getElementById("contact");
-            var bounding = myElement.getBoundingClientRect();
-            var myElementHeight = myElement.offsetHeight;
-            elementInView(btn, bounding, myElementHeight);
-
             progressBar();
 
         }
@@ -1124,54 +1272,117 @@
             });
         });
 
-        // Only initialize for elements with specific class 'modal-trigger'
+        // 1. Declare an empty variable for the Swiper instance
+        let activeSwiper = null;
+
+        const myZoomModal = document.getElementById("myModal");
         const modalTriggers = document.querySelectorAll('.modal-trigger');
 
-        // Only proceed if we find modal trigger elements
-        if (modalTriggers.length > 0) {
-            const modal = document.getElementById("myModal");
-            const modalImg = document.getElementById("modal-image");
+        if (modalTriggers.length > 0 && myZoomModal) {
 
-            // Add click event only to modal trigger images
+            // Open the Modal:
             modalTriggers.forEach(img => {
                 img.addEventListener('click', function (e) {
-                    e.stopPropagation(); // Prevent event bubbling
-                    modal.style.display = "block";
-                    modalImg.src = this.title;
+                    e.stopPropagation();
 
-                    modalImg.onload = function () {
-                        const viewportWidth = window.innerWidth * 0.8;  // 90% of viewport width
-                        const viewportHeight = window.innerHeight * 0.8; // 90% of viewport height
+                    const imageSrc = this.title;
 
-                        // Calculate scaling ratio to fit within viewport while maintaining aspect ratio
-                        const widthRatio = viewportWidth / this.naturalWidth;
-                        const heightRatio = viewportHeight / this.naturalHeight;
+                    myZoomModal.style.display = "block";
+                    myZoomModal.classList.remove('zoomed-fullscreen');
+
+                    // PHYSICAL DOM RESET:
+                    // Wiping the innerHTML and rebuilding it from scratch to clear the cache.
+                    myZoomModal.innerHTML = `
+                                <div class="swiper mySwiper">
+                                    <div class="swiper-wrapper">
+                                        <div class="swiper-slide">
+                                            <div class="swiper-zoom-container">
+                                                <img class="modal-content" id="modal-image" src="${imageSrc}">
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            `;
+
+                    const newModalImg = document.getElementById("modal-image");
+                    const newSwiperEl = myZoomModal.querySelector('.mySwiper');
+
+                    const initializeSwiper = function () {
+                        const viewportWidth = window.innerWidth * 0.8;
+                        const viewportHeight = window.innerHeight * 0.8;
+
+                        const widthRatio = viewportWidth / newModalImg.naturalWidth;
+                        const heightRatio = viewportHeight / newModalImg.naturalHeight;
                         const scale = Math.min(1, widthRatio, heightRatio);
 
-                        // Set the container size to match the scaled image
-                        const swiper = modal.querySelector('.swiper');
-                        if (swiper) {
-                            swiper.style.width = `${this.naturalWidth * scale}px`;
-                            swiper.style.height = `${this.naturalHeight * scale}px`;
+                        if (newSwiperEl) {
+                            newSwiperEl.style.width = `${newModalImg.naturalWidth * scale}px`;
+                            newSwiperEl.style.height = `${newModalImg.naturalHeight * scale}px`;
+
+                            activeSwiper = new Swiper(newSwiperEl, {
+                                zoom: true,
+                                grabCursor: true,
+                                spaceBetween: -1,
+                                initialSlide: 0,
+                                on: {
+                                    zoomChange: function (swiperInstance, scale) {
+                                        if (scale > 1) {
+                                            myZoomModal.classList.add('zoomed-fullscreen');
+                                        } else {
+                                            myZoomModal.classList.remove('zoomed-fullscreen');
+                                        }
+                                        setTimeout(() => { swiperInstance.update(); }, 50);
+                                    }
+                                }
+                            });
                         }
                     };
+
+                    if (newModalImg.complete) {
+                        initializeSwiper();
+                    } else {
+                        newModalImg.onload = initializeSwiper;
+                    }
                 });
             });
 
-            // Optional: Close modal when clicking outside the image
-            modal.addEventListener('click', function (e) {
-                if (e.target === modal) {
-                    modal.style.display = "none";
+            function closeModal() {
+                myZoomModal.classList.remove('zoomed-fullscreen');
+                myZoomModal.style.display = "none";
+
+                // Destroy the Javascript memory of Swiper
+                if (activeSwiper) {
+                    activeSwiper.destroy(true, true);
+                    activeSwiper = null;
+                }
+
+                // Incinerate the HTML so it is a blank slate for the next click
+                myZoomModal.innerHTML = '';
+            }
+
+            // Close on background click
+            myZoomModal.addEventListener('click', function (e) {
+                if (e.target === myZoomModal || e.target.classList.contains('swiper-slide') || e.target.classList.contains('swiper-zoom-container')) {
+                    closeModal();
                 }
             });
 
-            // Add escape key listener
+            // Close on Escape key
             document.addEventListener('keydown', function (e) {
-                if (e.key === 'Escape' && modal.style.display === "block") {
-                    modal.style.display = "none";
+                if (e.key === 'Escape' && myZoomModal.style.display === "block") {
+                    closeModal();
                 }
             });
 
+            // Close on background click (Anywhere outside the image)
+            myZoomModal.addEventListener('click', function (e) {
+                const isImage = e.target.tagName === 'IMG';
+                const isNavButton = e.target.classList.contains('swiper-button-next') || e.target.classList.contains('swiper-button-prev');
+
+                if (!isImage && !isNavButton) {
+                    closeModal();
+                }
+            });
         }
 
     </script>

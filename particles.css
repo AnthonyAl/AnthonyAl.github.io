@@ -1,6 +1,10 @@
+
 .forest {
-    background: url("res/forest.png");
-    background-size: cover;
+    background-image: url("res/Portrait.png") !important;
+    
+    background-size: cover !important; 
+    background-position: center center !important; 
+    background-repeat: no-repeat !important; 
 }
 
 .dirt {

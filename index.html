@@ -349,12 +349,12 @@
             }
 
             .hideOnPhone {
-                display: none;
+                display: none !important;
             }
 
             .trigger-btn {
-                transform: scale(1.5);
-                margin-right: 5vw;
+                transform: scale(1.5) !important;
+                margin-right: 5vw !important;
             }
         }
 
@@ -459,7 +459,7 @@
     <!-- Navbar on very short height screens (Hidden on heigh screens) -->
     <div class="w3-top nav2">
         <div class="w3-bar w3-black w3-opacity w3-hover-opacity-off w3-center w3-large">
-            <a class="w3-bar-item w3-button hideOnPhone" style="width:16.5% !important" draggable="false" onclick="closeCurrentModal()">HOME</a>
+            <a class="w3-bar-item w3-button w3-hide-small hideOnPhone" style="width:16.5% !important" draggable="false" onclick="closeCurrentModal()">HOME</a>
             <a href="#art" class="w3-bar-item w3-button" style="width:20% !important" draggable="false" onclick="handleButtonClick('modal-1')">ART</a>
             <a href="#github" class="w3-bar-item w3-button" style="width:20% !important" draggable="false" onclick="handleButtonClick('modal-2')">GIT</a>
             <a href="#thesis" class="w3-bar-item w3-button" style="width:20% !important" draggable="false" onclick="handleButtonClick('modal-3')">NOW</a>
@@ -523,7 +523,7 @@
                 <a class="trigger-btn w3-button" data-target="modal-5" onclick="handleButtonClick('modal-5')" title="Section 5" draggable="false" href="#contact" style="z-index: 10;">
                     <span class="icon fa fa-envelope w3-xxlarge"></span>
                 </a>
-                <a class="trigger-btn w3-button" data-target="" onclick="" title="Section 5" draggable="false" href="" style="visibility: hidden;">
+                <a class="trigger-btn w3-button hideOnPhone w3-hide-small" data-target="" onclick="" title="Section 5" draggable="false" href="" style="visibility: hidden;">
                     <span></span>
                 </a>
             </div>

@@ -335,17 +335,25 @@
         @media screen and (max-width: 768px) {
             /* Base size for phones */
             .icon {
-                transform: scale(1);
+                transform: scale(0.8);
             }
 
             /* Hover state (Note: hover can sometimes stick on touch screens) */
             .trigger-btn:hover .icon {
-                transform: scale(1.2);
+                transform: scale(1);
             }
 
             /* Active/Tap state */
             .trigger-btn:active .icon {
-                transform: scale(0.8);
+                transform: scale(0.6);
+            }
+
+            .hideOnPhone {
+                display: none;
+            }
+
+            .trigger-btn {
+                transform: scale(1.5);
             }
         }
 
@@ -450,7 +458,7 @@
     <!-- Navbar on very short height screens (Hidden on heigh screens) -->
     <div class="w3-top nav2">
         <div class="w3-bar w3-black w3-opacity w3-hover-opacity-off w3-center w3-large">
-            <a class="w3-bar-item w3-button" style="width:16.5% !important" draggable="false" onclick="closeCurrentModal()">HOME</a>
+            <a class="w3-bar-item w3-button hideOnPhone" style="width:16.5% !important" draggable="false" onclick="closeCurrentModal()">HOME</a>
             <a href="#art" class="w3-bar-item w3-button" style="width:20% !important" draggable="false" onclick="handleButtonClick('modal-1')">ART</a>
             <a href="#github" class="w3-bar-item w3-button" style="width:20% !important" draggable="false" onclick="handleButtonClick('modal-2')">GIT</a>
             <a href="#thesis" class="w3-bar-item w3-button" style="width:20% !important" draggable="false" onclick="handleButtonClick('modal-3')">NOW</a>

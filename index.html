@@ -179,14 +179,20 @@
 
         /* More mobile fixes */
         @media screen and (max-width: 768px) {
-            .forest, .avatar {
-                min-height: auto !important;
-                height: 95svh !important;
+            body {
+                margin: 0 !important;
+                padding: 0 !important;
             }
 
-                .forest > br {
-                    display: none !important;
-                }
+            .forest, .avatar {
+                min-height: auto !important;
+                height: 100svh !important;
+                box-sizing: border-box !important;
+            }
+
+            .forest > br {
+                display: none !important;
+            }
 
             .nav2 .w3-bar {
                 display: flex !important;

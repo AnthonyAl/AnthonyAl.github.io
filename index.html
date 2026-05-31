@@ -177,6 +177,53 @@
             }
         }
 
+        /* More mobile fixes */
+        @media screen and (max-width: 768px) {
+            .forest, .avatar {
+                min-height: auto !important;
+                height: 100svh !important;
+            }
+
+                .forest > br {
+                    display: none !important;
+                }
+
+            .nav2 .w3-bar {
+                display: flex !important;
+                justify-content: center !important;
+                width: 100% !important;
+            }
+
+            .nav2 .w3-bar-item {
+                width: 25% !important;
+                padding-left: 0 !important;
+                padding-right: 0 !important;
+                font-size: 13px !important;
+            }
+
+            .btn-text {
+                display: none !important;
+            }
+
+            .trigger-btn {
+                width: 65px !important;
+                height: 65px !important;
+                margin: 0 5px !important;
+                transform: none !important;
+                border-radius: 12px !important;
+            }
+        }
+
+        /* 4. Fix the Close Button Hover State */
+        .close-btn {
+            color: #FFFFFF !important;
+        }
+
+            .close-btn:hover, .close-btn:focus, .close-btn:active {
+                background-color: #FFFFFF !important;
+                color: #000000 !important; /* Turns black on focus/hover */
+            }
+
 
 
 
@@ -507,24 +554,23 @@
             <br />
             <br />
             <br />
-            <div>
-                <a class="trigger-btn w3-button" onclick="closeCurrentModal()" title="Section 0" draggable="false" style="z-index: 10;">
-                    <span class="icon fa fa-home w3-xxlarge"></span>
+            <div style="margin-top: 25vh;"></div>
+
+            <div style="display: flex; justify-content: center; flex-wrap: wrap; width: 100%;">
+                <a class="trigger-btn w3-button" onclick="closeCurrentModal()" title="HOME" draggable="false" style="z-index: 10;">
+                    <span class="icon fa fa-home w3-xxlarge"><span class="btn-text"> HOME</span></span>
                 </a>
-                <a class="trigger-btn w3-button" data-target="modal-1" onclick="handleButtonClick('modal-1')" title="Section 1" draggable="false" href="#art" style="z-index: 10;">
-                    <span class="icon fa fa-pencil w3-xxlarge"></span>
+                <a class="trigger-btn w3-button" data-target="modal-1" onclick="handleButtonClick('modal-1')" title="MY ART" draggable="false" href="#art" style="z-index: 10;">
+                    <span class="icon fa fa-pencil w3-xxlarge"><span class="btn-text"> MY ART</span></span>
                 </a>
-                <a class="trigger-btn w3-button" data-target="modal-2" onclick="handleButtonClick('modal-2')" title="Section 2" draggable="false" href="#github" style="z-index: 10;">
-                    <span class="icon fa fa-github w3-xxlarge"></span>
+                <a class="trigger-btn w3-button" data-target="modal-2" onclick="handleButtonClick('modal-2')" title="REPOSITORIES" draggable="false" href="#github" style="z-index: 10;">
+                    <span class="icon fa fa-github w3-xxlarge"><span class="btn-text"> REPOSITORIES</span></span>
                 </a>
-                <a class="trigger-btn w3-button" data-target="modal-3" onclick="handleButtonClick('modal-3')" title="Section 3" draggable="false" href="#thesis" style="z-index: 10;">
-                    <span class="icon fa fa-eye w3-xxlarge"></span>
+                <a class="trigger-btn w3-button" data-target="modal-3" onclick="handleButtonClick('modal-3')" title="MY THESIS" draggable="false" href="#thesis" style="z-index: 10;">
+                    <span class="icon fa fa-eye w3-xxlarge"><span class="btn-text"> MY THESIS</span></span>
                 </a>
-                <a class="trigger-btn w3-button" data-target="modal-5" onclick="handleButtonClick('modal-5')" title="Section 5" draggable="false" href="#contact" style="z-index: 10;">
-                    <span class="icon fa fa-envelope w3-xxlarge"></span>
-                </a>
-                <a class="trigger-btn w3-button hideOnPhone w3-hide-small" data-target="" onclick="" title="Section 5" draggable="false" href="" style="visibility: hidden;">
-                    <span></span>
+                <a class="trigger-btn w3-button" data-target="modal-5" onclick="handleButtonClick('modal-5')" title="CONNECTIONS" draggable="false" href="#contact" style="z-index: 10;">
+                    <span class="icon fa fa-envelope w3-xxlarge"><span class="btn-text"> CONNECTIONS</span></span>
                 </a>
             </div>
         </div>
@@ -924,7 +970,7 @@
                 </div>
 
                 <div class="modal-footer">
-                    <button class="close-btn" onclick="closeCurrentModal()" title="Close and scroll up"><i class='fa fa-angle-double-up' style='font-size:48px;color:#FFFFFF'></i></button><br /><br />
+                    <button class="close-btn" onclick="closeCurrentModal()" title="Close and scroll up"><i class='fa fa-angle-double-up' style='font-size:48px;'></i></button><br /><br />
                 </div>
             </div>
 
@@ -1014,7 +1060,7 @@
                     <br />
                 </div>
                 <div class="modal-footer">
-                    <button class="close-btn" onclick="closeCurrentModal()" title="Close and scroll up"><i class='fa fa-angle-double-up' style='font-size:48px;color:#FFFFFF'></i></button><br /><br />
+                    <button class="close-btn" onclick="closeCurrentModal()" title="Close and scroll up"><i class='fa fa-angle-double-up' style='font-size:48px;'></i></button><br /><br />
                 </div>
             </div>
 
@@ -1024,22 +1070,25 @@
                     <div class="w3-container w3-content tonius-container" style="max-width:2000px" id="projects2">
                         <br />
                         <h2 class="w3-wide w3-center" style="font-family: 'Courier New'">MY THESIS</h2>
-                        <p class="w3-opacity w3-center"><i>This is my Thesis on Android Video Game Design</i></p>
+                        <p class="w3-opacity w3-center"><i>Video game development with community features in an Android setting</i></p>
                         <h3 class="w3-wide w3-center" style="font-family: 'Courier New'">ECHO TRIALS ON ANDROID</h3>
-                        <a href="https://anthonyal.github.io/EchoTrials/" style="display: block; height: 100%; width: 100%; text-decoration: none;">
+                        <a href="https://anthonyal.github.io/EchoTrialsonAndroid/" style="display: block; height: 100%; width: 100%; text-decoration: none;">
                             <div class="tonius-dark dirt w3-container tonius-focus" style="width: 100%; border-radius: 0.5%">
                                 <img class="squiggle" src="res/EchoTrials.png" style="width: 102.5%; border-radius: 1%; transform: translate(-1.25%, -0.25%)">
                                 <br />
                                 <br />
                                 <br />
-                                <h3 style="text-align: center;"><b>A Challenging 2D Platformer</b></h3>
+                                <h3 style="text-align: center;"><b>A Challenging 2D Platformer on Android</b></h3>
                                 <p class="w3-opacity" style="text-align: center;">Test your intuition, memory, and patience</p>
                                 <br />
                                 <h5 style="width: 80%; text-align: center; margin-left: 10%">
-                                    Echo Trials is a unique 2D Android platformer that challenges players through distinct levels,
-                                    each introducing new mechanics and obstacles. Master wall jumps, navigate treacherous pits,
-                                    and face the ultimate challenge in the final level that combines all mechanics.
-                                    <br /><b>Features a Level Creator for full support on Community Driven Content.</b>
+                                    From the earliest days of video games, platformers have stood as one of the most iconic genres, continuing to captivate audiences worldwide across both consoles and mobile devices.
+                                    Echo Trials represents not only a 2D platformer for Android but also the transformation of a personal project into a complete ecosystem for mobile game development.
+                                    What began as a JavaFX desktop experi- ment inspired by the indie title Level Devil evolved into a fully realized Android game that challenges conventional approaches to mobile development.
+                                    At its core, Echo Trials is more than a game: it is a platform for creative expression. Players can engage with complex challenges, design and share their own levels, and explore the collective imagination
+                                    of the community through an integrated level editor and cloud-based sharing. Beyond the gameplay, the development journey itself demonstrates the power of systematic innovation marked by migrations, optimizations,
+                                    and architectural breakthroughs. This documentation captures not only the final implementation but the process of evolution, offering insights into both game design and the technical details behind scalable mobile platforms.
+                                    <br /><br /><b>In association with University of Piraeus: School of Information and Communication Technologies, Department of Informatics</b>
                                 </h5>
                                 <br />
                                 <div style="width: 100%; position: relative; text-align: center">
@@ -1052,7 +1101,7 @@
                 <br />
                 <br />
                 <div class="modal-footer">
-                    <button class="close-btn" onclick="closeCurrentModal()" title="Close and scroll up"><i class='fa fa-angle-double-up' style='font-size:48px;color:#FFFFFF'></i></button><br /><br />
+                    <button class="close-btn" onclick="closeCurrentModal()" title="Close and scroll up"><i class='fa fa-angle-double-up' style='font-size:48px;'></i></button><br /><br />
                 </div>
             </div>
 
@@ -1073,14 +1122,14 @@
                         </div>
                     </div>
 
-                    <i class="fa fa-facebook-official w3-hover-opacity"></i>
+                    <a style="text-decoration: none" href="https://www.linkedin.com/in/anthony-alexandris-saviolidis-44127b413" class="fa fa-linkedin w3-hover-opacity"></a>
                     <a style="text-decoration: none" href="https://www.instagram.com/antitonius/" class="fa fa-instagram w3-hover-opacity"></a>
                     <a style="text-decoration: none" href="https://github.com/AnthonyAl" class="fa fa-github w3-hover-opacity"></a>
                     <a style="text-decoration: none" href="https://www.deviantart.com/antitonius" class="fa fa-deviantart w3-hover-opacity"></a>
                     <p class="w3-medium">Powered by <a style="text-decoration: none" href="https://www.w3schools.com/w3css/default.asp" target="_blank">w3.css</a></p>
                 </footer>
                 <div class="modal-footer">
-                    <button class="close-btn" onclick="closeCurrentModal()" title="Close and scroll up"><i class='fa fa-angle-double-up' style='font-size:48px;color:#FFFFFF'></i></button><br /><br />
+                    <button class="close-btn" onclick="closeCurrentModal()" title="Close and scroll up"><i class='fa fa-angle-double-up' style='font-size:48px;'></i></button><br /><br />
                 </div>
             </div>
         </div>
@@ -1109,11 +1158,11 @@
         let currentActiveModalId = null;
 
         function handleButtonClick(modalId) {
-            // If clicking the button of the currently open modal, close it.
-            if (currentActiveModalId === modalId) {
-                closeCurrentModal();
-                return;
-            }
+            // // If clicking the button of the currently open modal, close it.
+            // if (currentActiveModalId === modalId) {
+            //     closeCurrentModal();
+            //     return;
+            // }
 
             // If a different modal is already open, hide it instantly before showing the new one
             if (currentActiveModalId) {
@@ -1302,16 +1351,16 @@
                     // PHYSICAL DOM RESET:
                     // Wiping the innerHTML and rebuilding it from scratch to clear the cache.
                     myZoomModal.innerHTML = `
-                                <div class="swiper mySwiper">
-                                    <div class="swiper-wrapper">
-                                        <div class="swiper-slide">
-                                            <div class="swiper-zoom-container">
-                                                <img class="modal-content" id="modal-image" src="${imageSrc}">
+                                    <div class="swiper mySwiper">
+                                        <div class="swiper-wrapper">
+                                            <div class="swiper-slide">
+                                                <div class="swiper-zoom-container">
+                                                    <img class="modal-content" id="modal-image" src="${imageSrc}">
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
-                                </div>
-                            `;
+                                `;
 
                     const newModalImg = document.getElementById("modal-image");
                     const newSwiperEl = myZoomModal.querySelector('.mySwiper');

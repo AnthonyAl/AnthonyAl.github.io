@@ -378,7 +378,47 @@
             transform: scale(1.7);
         }
 
-        @media screen and (max-width: 1200px) {
+        .avatarUT, .avatarFHD, .avatarUW {
+            display: none;
+        }
+
+        @media (orientation: portrait) {
+            .forest {
+                background-image: url("res/Portrait UW.png") !important;
+            }
+
+            .hideOnUW {
+                display: none;
+            }
+        }
+
+
+        @media (orientation: landscape) and (max-aspect-ratio: 20/9) {
+            .forest {
+                background-image: url("res/Portrait.png") !important;
+            }
+
+            .avatarFHD {
+                display: block;
+            }
+        }
+
+
+        @media (min-aspect-ratio: 20/9) {
+            .forest {
+                background-image: url("res/Portrait UW.png") !important;
+            }
+
+            .avatarUW {
+                display: block;
+            }
+
+            .hideOnUW {
+                display: none;
+            }
+        }
+
+        @media screen and (max-width: 1919px) {
             /* Base size for phones */
             .icon {
                 transform: scale(1);
@@ -394,10 +434,30 @@
                 transform: scale(0.8);
             }
 
-            .hideOnPhone {
-                display: none !important;
+            .btn-text {
+                font-size: 0.15em !important;
+            }
+        }
+
+        @media screen and (max-width: 1919px) {
+            /* Base size for phones */
+            .icon {
+                transform: scale(1);
             }
 
+            /* Hover state (Note: hover can sometimes stick on touch screens) */
+            .trigger-btn:hover .icon {
+                transform: scale(1.2);
+            }
+
+            /* Active/Tap state */
+            .trigger-btn:active .icon {
+                transform: scale(0.8);
+            }
+
+            .btn-text {
+                font-size: 0.15em !important;
+            }
         }
 
         @media screen and (max-width: 768px) {
@@ -512,12 +572,12 @@
         }
 
         .btn-text {
-            font-size: 0.4em !important; 
-            font-family: 'Courier New', Courier, monospace !important; 
-            margin-top: 8px !important; 
+            font-size: 0.24em !important;
+            font-family: 'Courier New', Courier, monospace !important;
+            margin-top: 8px !important;
             font-weight: bold !important;
             letter-spacing: 1px !important;
-            white-space: nowrap !important; 
+            white-space: nowrap !important;
         }
     </style>
 </head>
@@ -556,12 +616,13 @@
     </div>
 
     <!-- Page content -->
-    <div class="w3-content" style="max-width:8000px;margin-top:0px" , id="main">
+    <div class="w3-content" style="max-width:8000px;margin-top:0px;margin-bottom:0;", id="main">
         <!-- The Home Section -->
-        <div class="w3-center w3-padding-32 forest"
+        <div class="w3-center forest"
              style="color: #fff !important; width: 100%; height: 100vh; min-height: 1100px;" id="home">
 
-            <img class="avatar" src="res/Portrait Subject.png" style="position: absolute; top: 0; left: 0; z-index: 5; pointer-events: none;">
+            <img class="avatar avatarFHD" src="res/Portrait Subject.png" style="position: absolute; top: 0; left: 0; z-index: 5; pointer-events: none;">
+            <img class="avatar avatarUW" src="res/Portrait Subject UW.png" style="position: absolute; top: 0; left: 0; z-index: 5; pointer-events: none;">
             <div style="width: 100%; transform: translate(0%, 50%)">
                 <div>
                     <div class="w3-center" style="width: 100vw; background-color: black; opacity: 0.5">
@@ -579,8 +640,7 @@
                     </div>
                 </div>
             </div>
-            <br />
-            <div style="margin-top: 25vh;"></div>
+            <div style="margin-top: 20vh;"></div>
 
             <div style="display: flex; justify-content: center; flex-wrap: wrap; width: 100%;">
                 <a class="trigger-btn w3-button" onclick="closeCurrentModal()" title="HOME" draggable="false" style="z-index: 4;">
@@ -599,6 +659,9 @@
                     <span class="icon fa fa-envelope w3-xxlarge"><span class="btn-text"> CONNECTIONS</span></span>
                 </a>
                 <a class="trigger-btn w3-button hideOnPhone" draggable="false" style="z-index: 5; visibility: hidden;">
+                    <span class="icon fa fa-envelope w3-xxlarge"><span class="btn-text"> </span></span>
+                </a>
+                <a class="trigger-btn w3-button hideOnPhone hideOnUW" draggable="false" style="z-index: 5; visibility: hidden;">
                     <span class="icon fa fa-envelope w3-xxlarge"><span class="btn-text"> </span></span>
                 </a>
             </div>

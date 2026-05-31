@@ -19,7 +19,7 @@
             top: 0 !important;
             left: 0 !important;
             width: 100vw !important;
-            height: 100vh !important;
+            height: 100dvh !important;
             margin: 0 !important;
             padding: 0 !important; /* CRITICAL: This overrides your original padding-top: 100px */
             background: rgba(0, 0, 0, 0.95) !important;
@@ -98,7 +98,7 @@
             left: 0;
             top: 0;
             width: 100vw; /* Full width */
-            height: 100vh; /* Full height */
+            height: 100dvh; /* Full height */
             overflow: auto; /* Enable scroll if needed */
             background-color: rgb(0,0,0); /* Fallback color */
             background-color: rgba(0,0,0,0.9); /* Black w/ opacity */
@@ -186,7 +186,7 @@
 
             .forest, .avatar {
                 min-height: auto !important;
-                height: 100svh !important;
+                height: 100dvh !important;
                 box-sizing: border-box !important;
             }
 
@@ -390,6 +390,10 @@
             .hideOnUW {
                 display: none;
             }
+
+            .tallOnPortrait {
+                margin-top: 7vh;
+            }
         }
 
 
@@ -415,27 +419,6 @@
 
             .hideOnUW {
                 display: none;
-            }
-        }
-
-        @media screen and (max-width: 1919px) {
-            /* Base size for phones */
-            .icon {
-                transform: scale(1);
-            }
-
-            /* Hover state (Note: hover can sometimes stick on touch screens) */
-            .trigger-btn:hover .icon {
-                transform: scale(1.2);
-            }
-
-            /* Active/Tap state */
-            .trigger-btn:active .icon {
-                transform: scale(0.8);
-            }
-
-            .btn-text {
-                font-size: 0.15em !important;
             }
         }
 
@@ -545,6 +528,12 @@
             transition: all 0.3s ease;
         }
 
+        *, *::before, *::after {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
         .close-btn:hover {
             background: var(--text-color);
             color: var(--bg-color);
@@ -557,7 +546,7 @@
         }
 
         .avatar {
-            height: 100vh !important;
+            height: 100dvh !important;
             width: 100vw !important;
             object-fit: cover !important;
             object-position: center center !important;
@@ -619,14 +608,14 @@
     <div class="w3-content" style="max-width:8000px;margin-top:0px;margin-bottom:0;", id="main">
         <!-- The Home Section -->
         <div class="w3-center forest"
-             style="color: #fff !important; width: 100%; height: 100vh; min-height: 1100px;" id="home">
+             style="color: #fff !important; width: 100%; height: 100dvh; min-height: 1100px;" id="home">
 
             <img class="avatar avatarFHD" src="res/Portrait Subject.png" style="position: absolute; top: 0; left: 0; z-index: 5; pointer-events: none;">
             <img class="avatar avatarUW" src="res/Portrait Subject UW.png" style="position: absolute; top: 0; left: 0; z-index: 5; pointer-events: none;">
             <div style="width: 100%; transform: translate(0%, 50%)">
                 <div>
                     <div class="w3-center" style="width: 100vw; background-color: black; opacity: 0.5">
-                        <h1 class="w3-wide w3-center tonius-big-text" style="font-family: 'Courier New'; opacity: 1">
+                        <h1 class="w3-wide w3-center tonius-big-text tallOnPortrait" style="font-family: 'Courier New'; opacity: 1; z-index: 6">
 
                             <br> ANTHONY
                             <br> ALEXANDRIS

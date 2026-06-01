@@ -596,10 +596,10 @@
     <div class="w3-top nav2">
         <div class="w3-bar w3-black w3-opacity w3-hover-opacity-off w3-center w3-large">
             <a class="w3-bar-item w3-button w3-hide-small hideOnPhone" style="width:16.5% !important" draggable="false" onclick="closeCurrentModal()">HOME</a>
-            <a href="#art" class="w3-bar-item w3-button" style="width:20% !important" draggable="false" onclick="handleButtonClick(event, 'modal-1')">ART</a>
-            <a href="#github" class="w3-bar-item w3-button" style="width:20% !important" draggable="false" onclick="handleButtonClick(event, 'modal-2')">GIT</a>
-            <a href="#thesis" class="w3-bar-item w3-button" style="width:20% !important" draggable="false" onclick="handleButtonClick(event, 'modal-3')">THESIS</a>
-            <a href="#contact" class="w3-bar-item w3-button" style="width:23.5% !important" draggable="false" onclick="handleButtonClick(event, 'modal-5')">CONTACT</a>
+            <a class="w3-bar-item w3-button" style="width:20% !important" draggable="false" onclick="handleButtonClick(event, 'modal-1')">ART</a>
+            <a class="w3-bar-item w3-button" style="width:20% !important" draggable="false" onclick="handleButtonClick(event, 'modal-2')">GIT</a>
+            <a class="w3-bar-item w3-button" style="width:20% !important" draggable="false" onclick="handleButtonClick(event, 'modal-3')">THESIS</a>
+            <a class="w3-bar-item w3-button" style="width:23.5% !important" draggable="false" onclick="handleButtonClick(event, 'modal-5')">CONTACT</a>
         </div>
         <div class="progress-container">
             <div class="progress-bar" id="myBar"></div>
@@ -637,16 +637,16 @@
                 <a class="trigger-btn w3-button" onclick="closeCurrentModal()" title="HOME" draggable="false" style="z-index: 4;">
                     <span class="icon fa fa-home w3-xxlarge"><span class="btn-text"> HOME</span></span>
                 </a>
-                <a class="trigger-btn w3-button" data-target="modal-1" onclick="handleButtonClick(event, 'modal-1')" title="MY ART" draggable="false" href="#art" style="z-index: 4;">
+                <a class="trigger-btn w3-button" data-target="modal-1" onclick="handleButtonClick(event, 'modal-1')" title="MY ART" draggable="false" style="z-index: 4;">
                     <span class="icon fa fa-pencil w3-xxlarge"><span class="btn-text"> MY ART</span></span>
                 </a>
-                <a class="trigger-btn w3-button" data-target="modal-2" onclick="handleButtonClick(event, 'modal-2')" title="REPOSITORIES" draggable="false" href="#github" style="z-index: 4;">
+                <a class="trigger-btn w3-button" data-target="modal-2" onclick="handleButtonClick(event, 'modal-2')" title="REPOSITORIES" draggable="false" style="z-index: 4;">
                     <span class="icon fa fa-github w3-xxlarge"><span class="btn-text"> REPOSITORIES</span></span>
                 </a>
-                <a class="trigger-btn w3-button" data-target="modal-3" onclick="handleButtonClick(event, 'modal-3')" title="MY THESIS" draggable="false" href="#thesis" style="z-index: 4;">
+                <a class="trigger-btn w3-button" data-target="modal-3" onclick="handleButtonClick(event, 'modal-3')" title="MY THESIS" draggable="false" style="z-index: 4;">
                     <span class="icon fa fa-eye w3-xxlarge"><span class="btn-text"> MY THESIS</span></span>
                 </a>
-                <a class="trigger-btn w3-button" data-target="modal-5" onclick="handleButtonClick(event, 'modal-5')" title="CONNECTIONS" draggable="false" href="#contact" style="z-index: 4;">
+                <a class="trigger-btn w3-button" data-target="modal-5" onclick="handleButtonClick(event, 'modal-5')" title="CONNECTIONS" draggable="false" style="z-index: 4;">
                     <span class="icon fa fa-envelope w3-xxlarge"><span class="btn-text"> CONNECTIONS</span></span>
                 </a>
                 <a class="trigger-btn w3-button hideOnPhone" draggable="false" style="z-index: 5; visibility: hidden;">
@@ -1228,6 +1228,7 @@
     </div>
 
     <script src="finisher-header.es5.min.js" type="text/javascript"></script>
+
     <!-- Swiper JS -->
     <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
 
@@ -1235,7 +1236,13 @@
         const container = document.getElementById('modal-container');
         let currentActiveModalId = null;
 
+        let activeScrollFrame = null;
+        let activeScrollCleanup = null;
+
         function customSmoothScroll(targetElement, duration) {
+            if (activeScrollFrame) cancelAnimationFrame(activeScrollFrame);
+            if (activeScrollCleanup) activeScrollCleanup();
+
             const targetPosition = targetElement.getBoundingClientRect().top + window.pageYOffset;
             const startPosition = window.pageYOffset;
             const distance = targetPosition - startPosition;
@@ -1249,7 +1256,11 @@
                 return -c / 2 * (t * (t - 2) - 1) + b;
             }
 
-            // Interruption Logic:
+            function handleKeydown(e) {
+                const scrollKeys = ['ArrowUp', 'ArrowDown', 'Space', 'PageUp', 'PageDown', 'Home', 'End'];
+                if (scrollKeys.includes(e.code)) abortScroll();
+            }
+
             function abortScroll() {
                 cancelAnimationFrame(animationFrameId);
                 cleanupListeners();
@@ -1260,24 +1271,17 @@
                 window.removeEventListener('touchstart', abortScroll);
                 window.removeEventListener('touchmove', abortScroll);
                 window.removeEventListener('mousedown', abortScroll);
-                window.removeEventListener('keydown', abortScroll);
+                window.removeEventListener('keydown', handleKeydown);
+
+                activeScrollFrame = null;
+                activeScrollCleanup = null;
             }
 
-            // 1. Mouse wheel
             window.addEventListener('wheel', abortScroll, { passive: true });
-            // 2. Mobile screen tap
             window.addEventListener('touchstart', abortScroll, { passive: true });
-            // 3. Mobile screen swipe 
             window.addEventListener('touchmove', abortScroll, { passive: true });
-            // 4. Desktop scrollbar drag
             window.addEventListener('mousedown', abortScroll, { passive: true });
-            // 5. Keyboard arrows, spacebar, page up/down
-            window.addEventListener('keydown', (e) => {
-                const scrollKeys = ['ArrowUp', 'ArrowDown', 'Space', 'PageUp', 'PageDown', 'Home', 'End'];
-                if (scrollKeys.includes(e.code)) {
-                    abortScroll();
-                }
-            }, { passive: true });
+            window.addEventListener('keydown', handleKeydown, { passive: true });
 
             function animation(currentTime) {
                 if (startTime === null) startTime = currentTime;
@@ -1288,6 +1292,7 @@
 
                 if (timeElapsed < duration) {
                     animationFrameId = requestAnimationFrame(animation);
+                    activeScrollFrame = animationFrameId;
                 } else {
                     window.scrollTo(0, targetPosition);
                     cleanupListeners();
@@ -1295,6 +1300,8 @@
             }
 
             animationFrameId = requestAnimationFrame(animation);
+            activeScrollFrame = animationFrameId;
+            activeScrollCleanup = cleanupListeners;
         }
 
         function handleButtonClick(event, modalId) {

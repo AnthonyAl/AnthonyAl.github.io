@@ -1258,10 +1258,15 @@
             currentActiveModalId = modalId;
 
             setTimeout(() => {
-                targetModal.scrollIntoView({
-                    behavior: 'smooth',
-                    block: 'start'
-                });
+                const rect = targetModal.getBoundingClientRect();
+                const isSufficientlyInView = rect.top >= 0 && rect.top <= (window.innerHeight * 0.5);
+
+                if (!isSufficientlyInView) {
+                    targetModal.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
             }, 50);
         }
 
@@ -1304,39 +1309,29 @@
             },
         });
 
-        // First, clear out any old window.onclick overrides to prevent conflicts
         window.onclick = null;
 
-        // Listen for clicks anywhere on the window
         window.addEventListener("click", function (event) {
             const ticketModal = document.getElementById('ticketModal');
             const zoomedModal = document.getElementById("myModal");
 
-            // 1. Handle the Ticket Modal
             if (event.target === ticketModal) {
                 ticketModal.style.display = "none";
             }
-
-            // 2. Handle the Zoomed Modal
-            // Check if the click hit the outer modal OR the empty dark space inside the Swiper container
             const isSwiperBackgroundClick =
                 event.target === zoomedModal ||
                 event.target.classList.contains('swiper-slide') ||
                 event.target.classList.contains('swiper-zoom-container');
 
             if (isSwiperBackgroundClick) {
-                // A. Force Swiper to zoom out instantly
                 if (swiper.zoom) {
                     swiper.zoom.out();
                 }
 
-                // B. Remove the fullscreen class FIRST so the `display: flex !important` is stripped away
                 zoomedModal.classList.remove('zoomed-fullscreen');
 
-                // C. NOW apply the display none (it will actually work now)
                 zoomedModal.style.display = "none";
 
-                // D. Update Swiper internally so it doesn't glitch the next time you open it
                 setTimeout(() => {
                     swiper.update();
                 }, 50);
@@ -1404,7 +1399,6 @@
             });
         });
 
-        // 1. Declare an empty variable for the Swiper instance
         let activeSwiper = null;
 
         const myZoomModal = document.getElementById("myModal");
@@ -1422,7 +1416,6 @@
                     myZoomModal.style.display = "block";
                     myZoomModal.classList.remove('zoomed-fullscreen');
 
-                    // PHYSICAL DOM RESET:
                     // Wiping the innerHTML and rebuilding it from scratch to clear the cache.
                     myZoomModal.innerHTML = `
                                     <div class="swiper mySwiper">
@@ -1482,13 +1475,11 @@
                 myZoomModal.classList.remove('zoomed-fullscreen');
                 myZoomModal.style.display = "none";
 
-                // Destroy the Javascript memory of Swiper
                 if (activeSwiper) {
                     activeSwiper.destroy(true, true);
                     activeSwiper = null;
                 }
 
-                // Incinerate the HTML so it is a blank slate for the next click
                 myZoomModal.innerHTML = '';
             }
 

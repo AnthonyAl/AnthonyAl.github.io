@@ -1258,10 +1258,26 @@
             function cleanupListeners() {
                 window.removeEventListener('wheel', abortScroll);
                 window.removeEventListener('touchstart', abortScroll);
+                window.removeEventListener('touchmove', abortScroll);
+                window.removeEventListener('mousedown', abortScroll);
+                window.removeEventListener('keydown', abortScroll);
             }
 
+            // 1. Mouse wheel
             window.addEventListener('wheel', abortScroll, { passive: true });
+            // 2. Mobile screen tap
             window.addEventListener('touchstart', abortScroll, { passive: true });
+            // 3. Mobile screen swipe 
+            window.addEventListener('touchmove', abortScroll, { passive: true });
+            // 4. Desktop scrollbar drag
+            window.addEventListener('mousedown', abortScroll, { passive: true });
+            // 5. Keyboard arrows, spacebar, page up/down
+            window.addEventListener('keydown', (e) => {
+                const scrollKeys = ['ArrowUp', 'ArrowDown', 'Space', 'PageUp', 'PageDown', 'Home', 'End'];
+                if (scrollKeys.includes(e.code)) {
+                    abortScroll();
+                }
+            }, { passive: true });
 
             function animation(currentTime) {
                 if (startTime === null) startTime = currentTime;

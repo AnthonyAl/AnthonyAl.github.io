@@ -1235,6 +1235,52 @@
         const container = document.getElementById('modal-container');
         let currentActiveModalId = null;
 
+        function customSmoothScroll(targetElement, duration) {
+            const targetPosition = targetElement.getBoundingClientRect().top + window.pageYOffset;
+            const startPosition = window.pageYOffset;
+            const distance = targetPosition - startPosition;
+            let startTime = null;
+            let animationFrameId = null;
+
+            function easeInOutQuad(t, b, c, d) {
+                t /= d / 2;
+                if (t < 1) return c / 2 * t * t + b;
+                t--;
+                return -c / 2 * (t * (t - 2) - 1) + b;
+            }
+
+            // Interruption Logic:
+            function abortScroll() {
+                cancelAnimationFrame(animationFrameId);
+                cleanupListeners();
+            }
+
+            function cleanupListeners() {
+                window.removeEventListener('wheel', abortScroll);
+                window.removeEventListener('touchstart', abortScroll);
+            }
+
+            window.addEventListener('wheel', abortScroll, { passive: true });
+            window.addEventListener('touchstart', abortScroll, { passive: true });
+
+            function animation(currentTime) {
+                if (startTime === null) startTime = currentTime;
+                const timeElapsed = currentTime - startTime;
+
+                const nextPosition = easeInOutQuad(timeElapsed, startPosition, distance, duration);
+                window.scrollTo(0, nextPosition);
+
+                if (timeElapsed < duration) {
+                    animationFrameId = requestAnimationFrame(animation);
+                } else {
+                    window.scrollTo(0, targetPosition);
+                    cleanupListeners();
+                }
+            }
+
+            animationFrameId = requestAnimationFrame(animation);
+        }
+
         function handleButtonClick(event, modalId) {
 
             if (event) {
@@ -1262,10 +1308,7 @@
                 const isSufficientlyInView = rect.top >= 0 && rect.top <= (window.innerHeight * 0.5);
 
                 if (!isSufficientlyInView) {
-                    targetModal.scrollIntoView({
-                        behavior: 'smooth',
-                        block: 'start'
-                    });
+                    customSmoothScroll(targetModal, 800);
                 }
             }, 50);
         }
